@@ -2,15 +2,10 @@
 
 ## Current Support Channels
 
-### TTU Users
-- Email: support@repacss.org
+### Contact us
+- Email: repacss.support@ttu.edu
 - Office Hours: Mon-Fri, 9AM-5PM CST
 - Emergency Support: 24/7 on-call rotation
-
-### Future ACCESS Integration
-- ACCESS support portal (Coming Soon)
-- National support integration
-- ACCESS-specific documentation
 
 ## Getting Help
 

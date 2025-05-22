@@ -20,8 +20,8 @@ $ showquota
 Your current disk quotas are:
 Disk                  Disk Usage      Limit   File Usage      Limit
 /home/username              1.4G     100.0G         3661      10000
-/scratch/user/username    117.6G       1.0T        24226     250000
-/scratch/group/projectid  510.5G       5.0T       128523     500000
+/scratch/username    117.6G       1.0T        24226     250000
+/work/projectid  510.5G       5.0T       128523     500000
 ```
 
 ## File Transfer
@@ -51,7 +51,7 @@ REPACSS provides Globus Connect for efficient data transfer. Benefits include:
    - Navigate to your storage areas:
      - Home: `/home/USERID`
      - Scratch: `/scratch/USERID`
-     - Project: `/work/USERID`
+     - Work: `/work/USERID`
 
 #### Transferring Between Sites
 
