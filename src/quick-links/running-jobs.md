@@ -4,9 +4,7 @@
 
 ### Interactive Jobs
 ```bash
-srun --pty bash
-srun -p zen4 --pty bash
-srun -p h100 --pty bash
+interactive -c 8 -p h100
 ```
 
 ### Batch Jobs
@@ -31,7 +29,7 @@ sbatch -p h100 job.sh
 #SBATCH --mem=4G
 
 # Load modules
-module load default
+module load 
 
 # Run program
 ./my_program

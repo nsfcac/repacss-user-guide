@@ -32,15 +32,15 @@
 ### First Login
 ```bash
 # TTU users
-ssh username@login.repacss.org
+ssh username@repacss.ttu.edu
 
 # ACCESS users (Coming soon)
-ssh username@access.repacss.org
+ssh username@
 ```
 
 ### Environment Setup
 ```bash
-module load default
+module load 
 ```
 
 ## Basic Commands {#commands}

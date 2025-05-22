@@ -62,6 +62,7 @@ Many research organizations have Globus Connect endpoints. To transfer data:
    - REPACSS: "REPACSS"
    - Remote site: Their endpoint name
 
+Quesions? submit to repacss.globus@ttu.edu
 ## Best Practices
 
 ### Storage Management

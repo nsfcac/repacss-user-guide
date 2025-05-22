@@ -16,13 +16,13 @@
 
 ## Workshop Schedule {#schedule}
 
-### March 2024
+### March 2026
 | Date | Time | Topic | Location |
 |------|------|-------|----------|
 | 03/05 | 10:00-12:00 | HPC Basics | Virtual |
 | 03/19 | 14:00-16:00 | Job Submission | Virtual |
 
-### April 2024
+### April 2026
 | Date | Time | Topic | Location |
 |------|------|-------|----------|
 | 04/02 | 10:00-12:00 | Software Usage | Virtual |
