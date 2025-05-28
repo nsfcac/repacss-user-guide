@@ -35,6 +35,29 @@ module load
 ./my_program
 ```
 
+### Python Template
+```bash
+#!/bin/bash
+#SBATCH --job-name=python_job
+#SBATCH --output=python_job.out
+#SBATCH --error=python_job.err
+#SBATCH --time=01:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+
+# Load required modules
+module load gcc
+
+# Activate conda environment
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate myenv
+
+# Run Python script
+python script.py
+```
+
 ### GPU Template
 ```bash
 #!/bin/bash
@@ -90,9 +113,15 @@ scancel -p zen4
 - `--gres=gpu:2`: Request 2 GPUs
 - `--gres=gpu:4`: Request 4 GPUs
 
+### Python Jobs
+- For Python-specific job configurations and environment setup, see [Python Environment Setup](python.md)
+- Consider using `--cpus-per-task` for parallel Python processing
+- Adjust `--mem` based on your data processing needs
+
 ## Related Resources
 
 - [System Overview](system-overview.md)
 - [Software](software.md)
 - [File Management](file-management.md)
+- [Python Environment Setup](python.md)
 - [Support](../support&resources/support.md) 

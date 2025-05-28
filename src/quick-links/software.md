@@ -15,7 +15,7 @@
 - HDF5
 
 ### Applications
-- Python 3.11
+- Python 3.11 (see [Python Environment Setup](python.md) for recommended Miniforge installation)
 - R 4.3.0
 
 ## Module System {#modules}
@@ -63,10 +63,12 @@ module load cuda
 - Set paths
 - Check dependencies
 - Document setup
+- For Python environments, use Miniforge (see [Python Environment Setup](python.md))
 
 ## Related Resources
 
 - [System Overview](system-overview.md)
 - [Running Jobs](running-jobs.md)
 - [File Management](file-management.md)
+- [Python Environment Setup](python.md)
 - [Support](../support&resources/support.md) 

@@ -64,6 +64,8 @@ module load <module_name>
 
 # Set up your environment
 source ~/.bashrc
+
+# For Python users, set up Miniforge (see Python Environment Setup guide)
 ```
 
 ## Basic Commands {#commands}
@@ -97,10 +99,12 @@ sinfo                 # Check cluster status
 2. Learn about [Running Jobs](running-jobs.md) for computational tasks
 3. Master [File Management](file-management.md) for efficient data handling
 4. Explore available [Software](software.md) and tools
+5. Set up your [Python Environment](python.md) if needed
 
 ## Related Resources
 
 - [Training](../support&resources/training.md) - Learn about available training programs
 - [Support](../support&resources/support.md) - Get help and support
 - [FAQ](../support&resources/faq.md) - Find answers to common questions
-- [Documentation](../documentation.md) - Access detailed documentation 
+- [Documentation](../documentation.md) - Access detailed documentation
+- [Python Environment Setup](python.md) - Set up Python environments with Miniforge 
