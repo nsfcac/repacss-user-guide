@@ -131,7 +131,7 @@ conda env remove -n envname
 
 1. Request an interactive session:
 ```bash
-interactive -c 8 -p zen4
+interactive -c 8 -p h100
 ```
 
 2. Activate your environment:
@@ -153,6 +153,7 @@ Create a job script (e.g., `run_python.sh`):
 #SBATCH --output=python_job.out
 #SBATCH --error=python_job.err
 #SBATCH --time=01:00:00
+#SBATCH --partition=h100
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
