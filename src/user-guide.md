@@ -11,6 +11,7 @@ Essential guides for getting started and daily operations:
 - [Running Jobs](quick-links/running-jobs.md) - Job submission and management
 - [File Management](quick-links/file-management.md) - Storage systems and file operations
 - [Software](quick-links/software.md) - Available software and environment setup
+- [Python Environment Setup](quick-links/python.md) - Setting up Python environments with Miniforge
 
 ### Support & Resources
 Additional resources and support information:
