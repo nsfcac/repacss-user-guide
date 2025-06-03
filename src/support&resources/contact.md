@@ -22,7 +22,9 @@
 
 ### Mailing Address
 902 Boston Ave
+
 TTU Engineering Center Suite 102
+
 Lubbock, TX 79409-3104
 
 ### Virtual Meetings
