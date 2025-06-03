@@ -22,17 +22,8 @@
 
 ## Submission Methods {#submit}
 
-### Online Form
-- [Web Form](https://repacss.org/feedback)
-- Required fields:
-  - Name
-  - Email
-  - Category
-  - Description
-  - Priority
-
 ### Email Submission
-- Email: feedback@repacss.org
+- Email: repacss.support@ttu.edu
 - Subject: [Feedback] Category
 - Include:
   - Contact information
@@ -106,4 +97,4 @@
 - [Support](support.md)
 - [Training](training.md)
 - [System Status](system-status.md)
-- [Contact](contact.md) 
+- [Contact](contact.md)
