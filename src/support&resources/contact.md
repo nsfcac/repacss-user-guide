@@ -18,22 +18,19 @@
 - General: repacss.support@ttu.edu
 - Globus: repacss.globus@ttu.edu
 
-### Phone Support
-- Main: (555) 123-4567
-
 ## Location {#location}
 
-### Physical Address
-REPACSS Center
-123 University Drive
-Lubbock, TX 79409
+### Mailing Address
+902 Boston Ave
+TTU Engineering Center Suite 102
+Lubbock, TX 79409-3104
 
 ### Virtual Meetings
-- Teams: 
+- Teams:
 
 ## Related Resources
 
 - [Support](support.md)
 - [FAQ](faq.md)
 - [Training](training.md)
-- [System Status](system-status.md) 
+- [System Status](system-status.md)
