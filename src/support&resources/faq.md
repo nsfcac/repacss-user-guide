@@ -6,15 +6,19 @@
 To obtain an account, follow these steps:
 
 - Submit a Request
+
 Visit repacss.org and fill out the account request form. Make sure to provide all required information accurately, including your contact details, organization, and reason for requesting access.
 
 - Complete the Required Training
+
 After submitting your request, you’ll need to complete a mandatory training module. This ensures that all users understand the system’s functionality, guidelines, and data usage responsibilities.
 
 - Accept the Usage Policy
+
 Once training is complete, you’ll be asked to review and accept the system’s usage policy. This agreement outlines your responsibilities as a user, including data security and proper access protocols.
 
 - Wait for Approval
+
 After completing the previous steps, your application will be reviewed by the administrative team. You’ll receive a notification once your account is approved and activated.
 
 ### How do I reset my password?
