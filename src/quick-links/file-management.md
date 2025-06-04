@@ -2,26 +2,23 @@
 
 ## File Systems
 
-Global file space on REPACSS is available on all compute and login nodes. It is organized into the file systems shown in the table below. Access to the allocated file space is through the indicated directories that are setup automatically for every user.
+Global file space on REPACSS is available on all compute, gpu, and login nodes. It is organized into the file systems shown in the table below. Access to the allocated file space is through the indicated directories that are setup automatically for every user.
 
-| File System | Directory                | Environment Variable | Storage Hardware | File Space Quota | File Counts Quota | Comments                                                                                                                                                                                                                                                                   |
-| ----------- | ------------------------ | -------------------- | ---------------- | ---------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Home        | /home/USERID             | $HOME                | NVMe             | 100 GB           | 10000             | Upon login, you will be situated in **/home/$USER**. The use of this area is for small-to-modest amounts of processing: small software, scripts, compiling, editing. Its space and file count limits are not extensible.                                                   |
-| Scratch     | /scratch/USERID     | $SCRATCH             | NVMe             | 1 TB             | 250000            | This is high performance storage intended to temporarily hold larger files and is for on-going processing that uses them. **It is NOT backed up nor is it intended as long-term storage.** Please delete or move out of these area any files that are not frequently used. |
-| Work     | /work/USERID | $Work             | NVMe             | 5 TB             | 500000            |                      |
+| File System | Directory                | Environment Variable |
+| ----------- | ------------------------ | -------------------- | 
+| Home        | /mnt/GROUPID/home/USERID             | $HOME    |
+| Work        | /mnt/GROUPID/work/USERID             | $WORK    |
+| Scratch     | /mnt/GROUPID/scratch/USERID          | $SCRATCH |
 
 ## Checking Quotas
-ref: https://www.nccs.nasa.gov/nccs-users/instructional/using-discover/file-system-storage/show-quota
-Use the `showquota` command to display your current file usage:
+REPACSS storage space usage is currently organized by the REPACSS group. 
+Use the following command to display your current file usage:
 
 ```bash
-$ showquota
+$ df -h /mnt/$(id -gn)
 
-Your current disk quotas are:
-Disk                  Disk Usage      Limit   File Usage      Limit
-/home/username              1.4G     100.0G         3661      10000
-/scratch/username    117.6G       1.0T        24226     250000
-/work/projectid  510.5G       5.0T       128523     500000
+Filesystem              Size  Used Avail Use% Mounted on
+10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS
 ```
 
 ## File Transfer
