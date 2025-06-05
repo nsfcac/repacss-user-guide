@@ -21,63 +21,63 @@ This guide provides detailed instructions for setting up and using the GlobalPro
 ### 2. Download and Install {#download-install}
 1. Download the GlobalProtect software from the [IT Online Software Store](https://software.ttu.edu/)
 2. Locate and open the downloaded file (typically in Downloads folder)
-3. Select the correct version based on your system type (64-bit or 32-bit Windows)
-![Download Package](images/win/download-2.png)
+3. Select the correct version based on your system type (64-bit or 32-bit Windows)<br>
+![Download Package](images/win/download-2.png)<br>
 
-4. Click Next to begin installation
-![Install Start](images/win/download-3.png)
+4. Click Next to begin installation<br>
+![Install Start](images/win/download-3.png)<br>
 
-5. Select the installation folder
-![Select Folder](images/win/download-4.png)
+5. Select the installation folder<br>
+![Select Folder](images/win/download-4.png)<br>
 
-6. Click Next to confirm and proceed
-![Confirm Installation](images/win/download-5.png)
+6. Click Next to confirm and proceed<br>
+![Confirm Installation](images/win/download-5.png)<br>
 
-7. Click Yes if prompted by User Account Control
-![UAC Prompt](images/win/download-6.png)
+7. Click Yes if prompted by User Account Control<br>
+![UAC Prompt](images/win/download-6.png)<br>
 
-8. Click Continue if prompted about GlobalProtect files being in use
-![Files in Use](images/win/download-7.png)
+8. Click Continue if prompted about GlobalProtect files being in use<br>
+![Files in Use](images/win/download-7.png)<br>
 
-9. Wait for the installation to complete
-![Installation Progress](images/win/download-8.png)
+9. Wait for the installation to complete<br>
+![Installation Progress](images/win/download-8.png)<br>
 
-10. Click Close when finished
-![Install Complete](images/win/download-9.png)
+10. Click Close when finished<br>
+![Install Complete](images/win/download-9.png)<br>
 
-11. Restart your computer if prompted (recommended)
-![Restart Prompt](images/win/download-10.png)
+11. Restart your computer if prompted (recommended)<br>
+![Restart Prompt](images/win/download-10.png)<br>
 
 ## Connecting to VPN {#connecting}
 
 ### 1. Launch GlobalProtect {#launch}
 1. Click the GlobalProtect icon in the Notification Area (bottom right of screen)
-2. If the icon isn't visible, click the upward arrow (˄) to reveal hidden icons
-![Notification Area](images/win/connect-2.png)
+2. If the icon isn't visible, click the upward arrow (˄) to reveal hidden icons<br>
+![Notification Area](images/win/connect-2.png)<br>
 
 ### 2. Configure Connection {#configure}
 1. In the GlobalProtect window, enter the portal address: `vpn.ttu.edu`
-2. Click Connect
-![Connect Dialog](images/win/connect-3.png)
+2. Click Connect<br>
+![Connect Dialog](images/win/connect-3.png)<br>
 
 ### 3. Authentication {#authentication}
 1. Your default browser will open automatically for sign-in
 2. If browser doesn't open automatically, open it manually
 3. Sign in with your eRaider credentials
-4. Click "Open GlobalProtect" when prompted by your browser
-![Open App](images/win/connect-5.png)
+4. Click "Open GlobalProtect" when prompted by your browser<br>
+![Open App](images/win/connect-5.png)<br>
 
-5. Wait while the VPN connection is established
-![Connection Progress](images/win/connect-6.png)
+5. Wait while the VPN connection is established<br>
+![Connection Progress](images/win/connect-6.png)<br>
 
 ## Disconnecting from VPN {#disconnecting}
 
 ### 1. Disconnect {#disconnect}
-1. Click the GlobalProtect icon in the Notification Area
-![Notification Icon](images/win/disconnect-1.png)
+1. Click the GlobalProtect icon in the Notification Area<br>
+![Notification Icon](images/win/disconnect-1.png)<br>
 
-2. Click Disconnect in the GlobalProtect window
-![Disconnect Button](images/win/disconnect-2.png)
+2. Click Disconnect in the GlobalProtect window<br>
+![Disconnect Button](images/win/disconnect-2.png)<br>
 
 ## Important Notes {#notes}
 > <span style="color: red">**Important**: VPN connection is mandatory for all REPACSS access</span>

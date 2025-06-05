@@ -25,7 +25,9 @@ This guide provides detailed instructions for setting up and using the GlobalPro
 4. Ensure you have configured [Microsoft Multi-Factor Authentication (MFA)](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed)
 
 ### 2. Download and Install {#download-install}
-1. Visit [TTU Software Center](https://software.ttu.edu/global-protect)
+1. Visit [TTU Software Center](https://software.ttu.edu/global-protect)<br>
+![Download Package](images/linux/download.png)<br>
+
 2. Log in with your eRaider credentials
 3. Download the Linux version of GlobalProtect
 
