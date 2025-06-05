@@ -2,7 +2,7 @@
 
 Welcome to the REPACSS User Guide. This documentation provides comprehensive information about using the REPACSS high-performance computing resources.
 
-For detailed documentation, please visit our [User Guide](src/user-guide.md).
+For detailed documentation, please visit our [User Guide](docs/index.md).
 
 ## References
 This documentation is based on the following resources:
