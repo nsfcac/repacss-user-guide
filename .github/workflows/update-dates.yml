@@ -1,0 +1,31 @@
+name: Update Last Modified Dates
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+
+jobs:
+  update-dates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Update dates in markdown files
+        run: |
+          current_date=$(date "+%B %d, %Y")
+          find . -name "*.md" -type f -exec sed -i "s/\*Last updated:.*\*/\*Last updated: $current_date\*/" {} \;
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: update last modified dates" && git push) 
