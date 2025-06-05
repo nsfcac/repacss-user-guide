@@ -17,7 +17,7 @@
 - SSH client (e.g., MobaXterm for Windows, Terminal for Mac/Linux)
 - GlobalProtect VPN client
 - Two-factor authentication (2FA) setup
-- Basic knowledge of Linux command line
+
 
 ## Initial Setup {#setup}
 
@@ -25,10 +25,8 @@
 1. Ensure you have a valid TTU eRaider account
 2. Install and configure GlobalProtect VPN:
    - [Main VPN Setup Guide](vpn/vpn-setup.md)
-   - [Windows Setup](vpn/windows-setup.md)
-   - [macOS Setup](vpn/macos-setup.md)
-   - [Linux Setup](vpn/linux-setup.md)
-3. Set up two-factor authentication
+3. Set up two-factor authentication:
+   - [Microsoft Multi-Factor Authentication(MFA)](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed)
 4. Contact system administrators for access approval
 
 ### Connect to REPACSS
