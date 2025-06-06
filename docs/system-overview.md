@@ -1,24 +1,3 @@
-# System Overview
-
-## Introduction
-
-The REPACSS (Renewable Energy-Powered Advanced Computing at Scale and Sustainability) is a state-of-the-art high-performance computing (HPC) infrastructure designed to support intensive computational and data-driven research. Powered by renewable energy, REPACSS is built to accommodate large-scale simulations, AI/ML training, and advanced data analytics across diverse scientific domains.
-
-The system integrates high-performance compute, GPU, and storage nodes connected by high-speed networking for seamless data transfer and workload execution.
-
----
-
-## Prerequisites
-
-Before accessing REPACSS, ensure you have the following:
-
-- An active TTU eRaider account (for TTU-affiliated users)
-- GlobalProtect VPN access
-- Basic understanding of HPC workflows
-- Familiarity with the Linux command-line interface
-
----
-
 ## System Architecture
 
 ### 🖥 Compute Resources
