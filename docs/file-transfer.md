@@ -47,24 +47,6 @@ Instead, use **Globus Connect** for large and reliable transfers.
 
 ---
 
-## 🛠 Command Line Transfer (Advanced)
-
-If you **must** use CLI methods (e.g., for automation), follow these:
-
-### ✅ Transfer via Data Node or Staging Node
-
-```bash
-# Upload to REPACSS
-scp myfile.txt username@dtn.repacss.ttu.edu:/mnt/GROUPID/work/username/
-
-# Download from REPACSS
-scp username@dtn.repacss.ttu.edu:/mnt/GROUPID/work/username/output.txt ./
-```
-
-> Replace `dtn.repacss.ttu.edu` with the correct staging node if assigned.
-
----
-
 ## 📂 Best Practices
 
 - Use **scratch** for active workloads, not for archiving
