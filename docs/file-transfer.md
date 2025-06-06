@@ -1,7 +1,6 @@
 # File Transfer Guide
 
 > ⚠️ **Notice:** *Globus Connect is currently unavailable.*  
-> Please use the command-line SCP method described below until further notice.
 
 ---
 
