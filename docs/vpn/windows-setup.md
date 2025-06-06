@@ -30,8 +30,8 @@ This guide explains how to install and use **GlobalProtect VPN** on Windows syst
 
 1. Download the installer from the [TTU Software Portal](https://software.ttu.edu/)
 2. Open the downloaded `.msi` file from your Downloads folder
-3. Choose the appropriate version for your system (32-bit or 64-bit)
    ![Download Package](images/win/download-2.png)
+3. Choose the appropriate version for your system (32-bit or 64-bit)
 4. Click **Next** to start the installation  
    ![Install Start](images/win/download-3.png)
 5. Select an installation folder  
