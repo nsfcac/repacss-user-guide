@@ -1,5 +1,12 @@
 # File Transfer Guide
 
+> ⚠️ **Notice:** *Globus Connect is currently unavailable.*  
+> Please use the command-line SCP method described below until further notice.
+
+---
+
+
+
 Efficient file transfer is essential for working with data on the REPACSS HPC cluster. This guide outlines best practices and supported methods.
 
 ---
