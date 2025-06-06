@@ -1,70 +1,90 @@
-# VPN Setup Guide
+# 🔐 VPN Setup Guide
 
-## Overview {#overview}
-This guide provides instructions for setting up and using the GlobalProtect VPN to access REPACSS resources. The TTU VPN connection is required for all users, regardless of whether they are on-campus or off-campus.
+## Overview
 
-## Prerequisites {#prerequisites}
-- Valid TTU eRaider account
-- Microsoft Multi-Factor Authentication (MFA) configured
-- Administrator access to your computer
-- Internet connection
-
-## Installation Steps {#installation}
-
-### Request TTU VPN Access {#request-access}
-1. Complete the [VPN request form](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=a990ee5ddbdf41144d17266e139619f8):
-   - Under **Type of Assistance**, select **Enable**
-   - For the reason, enter: "Need TTUnet VPN to access REPACSS"
-2. Ensure you have configured [Microsoft Multi-Factor Authentication (MFA)](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed), as it is required to connect to the TTUnet VPN
-
-### Platform-Specific Guides {#platform-guides}
-For detailed installation instructions, please refer to the platform-specific guides:
-- [Windows Setup Guide](windows-setup.md)
-- [macOS Setup Guide](macos-setup.md)
-- [Linux Setup Guide](linux-setup.md)
-
-## Important Notes {#notes}
-> <span style="color: red">**Important**: VPN connection is mandatory for all REPACSS access</span>
-
-- Keep your GlobalProtect client updated
-- Use the official TTU VPN portal only
-- The TTUnet VPN service provides a secure connection to the Texas Tech University (TTU) network only
-- It is not designed for general-purpose internet encryption
-
-## Troubleshooting {#troubleshooting}
-### Common Issues
-1. **Connection Failures**
-   - Verify internet connection
-   - Check eRaider credentials
-   - Ensure correct portal address
-   - Restart GlobalProtect client
-   - Verify MFA is properly configured
-
-2. **Installation Problems**
-   - Run installer as administrator
-   - Check system requirements
-   - Clear temporary files
-   - Contact IT Help Central
-
-3. **Authentication Problems**
-   - Verify eRaider credentials
-   - Check MFA status
-   - Clear browser cache and cookies
-
-
-## Related Resources {#resources}
-- [System Overview](../system-overview.md)
-- [Getting Started](../getting-started.md)
-
-## Next Steps {#next}
-1. Choose your platform-specific guide:
-   - [Windows Setup Guide](windows-setup.md)
-   - [macOS Setup Guide](macos-setup.md)
-   - [Linux Setup Guide](linux-setup.md)
-2. Follow the installation steps
-3. Verify TTU VPN connection
-4. Proceed to [Getting Started](../getting-started.md)
+To securely access the REPACSS HPC system, all users — both on-campus and off-campus — must connect through the **GlobalProtect VPN** provided by Texas Tech University (TTU). This guide outlines how to request access, install the client, and troubleshoot issues.
 
 ---
 
-*Last updated: June 5, 2025* 
+## ✅ Prerequisites
+
+Before proceeding, ensure the following:
+
+- You have a **valid eRaider** account
+- **Microsoft Multi-Factor Authentication (MFA)** is enabled
+- You have **administrator privileges** on your computer
+- You are connected to the internet
+
+---
+
+## 📝 Request TTU VPN Access
+
+1. Fill out the [TTU VPN request form](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=a990ee5ddbdf41144d17266e139619f8):
+   - Under **Type of Assistance**, select **Enable**
+   - For the reason, write: `Need TTUnet VPN to access REPACSS`
+
+2. Set up [Microsoft MFA](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed) if you haven't already.
+
+---
+
+## 💻 Installation Guides
+
+Choose your operating system and follow the corresponding instructions:
+
+- 🪟 [Windows Setup Guide](windows-setup.md)
+- 🍎 [macOS Setup Guide](macos-setup.md)
+- 🐧 [Linux Setup Guide](linux-setup.md)
+
+---
+
+## ⚠️ Important Notes
+
+> **‼ VPN access is mandatory for all connections to REPACSS.**
+
+- Use **only** the official **TTU VPN portal**: `vpn.ttu.edu`
+- Keep the GlobalProtect client **up to date**
+- VPN is for **TTU resource access only**, not general internet use
+- Confirm that MFA is configured and working before attempting connection
+
+---
+
+## 🧰 Troubleshooting
+
+### 1. Connection Fails
+- Verify your internet is working
+- Check that your credentials are correct
+- Make sure the portal address is `vpn.ttu.edu`
+- Restart the GlobalProtect app
+- Double-check that MFA is set up
+
+### 2. Installer Issues
+- Run the installer **as administrator**
+- Clear temporary files or cache
+- Ensure your system meets requirements
+- Reboot and retry installation
+
+### 3. Authentication Errors
+- Make sure your **eRaider credentials** are up-to-date
+- Re-enroll or verify **MFA status**
+- Clear browser cookies/cache if using web authentication
+
+---
+
+## 🔗 Related Resources
+
+- 📘 [System Overview](../system-overview.md)
+- 🚀 [Getting Started](../getting-started.md)
+
+---
+
+## 📌 Next Steps
+
+1. Complete the [VPN access request](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=a990ee5ddbdf41144d17266e139619f8)
+2. Set up [Microsoft MFA](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed)
+3. Install GlobalProtect using your OS-specific guide
+4. Confirm your connection to the TTU VPN
+5. Proceed to [Getting Started](../getting-started.md) for cluster access
+
+---
+
+_Last updated: June 5, 2025_
