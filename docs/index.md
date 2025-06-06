@@ -19,8 +19,6 @@ REPACSS supports compute-intensive and data-driven research across a wide range 
 ### 🚀 Job Execution & Workflows
 - [Running Jobs](running-jobs.md)  
   Understand job types, submission syntax, and monitoring with SLURM.
-- [Job Submission](job-submission.md)  
-  Create and configure SLURM batch scripts and job arrays.
 
 ---
 
