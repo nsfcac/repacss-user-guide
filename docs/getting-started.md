@@ -1,65 +1,72 @@
 # Getting Started
 
-## Prerequisites
+Welcome to REPACSS! This guide will walk you through the steps required to access the system, configure your environment, and begin working with high-performance computing resources.
 
-### ✅ Account Access
+---
 
-**Current Users (TTU Test Phase)**  
-- Valid **eRaider** account (TTU)
+## ✅ Prerequisites
+
+### 🔐 Account Access
+
+**Current Users (TTU Test Phase):**
+- Active **eRaider** account (TTU)
 - Access to **GlobalProtect VPN**
 
-**Future Users (Post ACCESS Integration)**  
+**Future Users (ACCESS Integration):**
 - TTU Users: eRaider account  
-- ACCESS Users: ACCESS account  
-- Active project allocation  
-- Completed required training
+- ACCESS Users: ACCESS credentials  
+- Approved project allocation  
+- Completion of required onboarding and training
 
 ---
 
-### 🖥 System Requirements
+### 💻 System Requirements
 
-- SSH client  
-  *(e.g., [MobaXterm](https://mobaxterm.mobatek.net) for Windows, Terminal for Mac/Linux)*
-- GlobalProtect VPN client
-- Two-factor authentication (2FA) enabled
+Before connecting to REPACSS, ensure the following:
+
+- **SSH Client**  
+  - Windows: [MobaXterm](https://mobaxterm.mobatek.net)  
+  - macOS/Linux: Terminal application
+- **GlobalProtect VPN client**
+- **Two-factor authentication (2FA)** (Microsoft MFA)
 
 ---
 
-## Initial Setup
+## 📝 Initial Setup
 
-### 📝 Request Access
+### Step 1: Request Access
 
-1. Ensure your **eRaider** account is active.
-2. Install & configure GlobalProtect VPN:  
+1. Ensure your eRaider account is active.
+2. Install and configure GlobalProtect VPN:  
    👉 [VPN Setup Guide](vpn/vpn-setup.md)
-3. Set up two-factor authentication:  
-   👉 [Microsoft MFA Setup](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed)
-4. Contact the system administrators to request access.
+3. Enable Microsoft Multi-Factor Authentication (MFA):  
+   👉 [MFA Setup Instructions](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed)
+4. Submit an access request to system administrators.
 
 ---
 
-### 🔐 Connect to REPACSS
+### Step 2: Connect to REPACSS
 
-> ⚠️ **Important:** All users (on-campus or off-campus) must connect via **GlobalProtect VPN**.
+> ⚠️ **Note:** All users must connect via **GlobalProtect VPN**, whether on-campus or off-campus.
 
-#### For Windows (MobaXterm)
+#### 🪟 For Windows (MobaXterm)
 
-1. Install [MobaXterm](https://mobaxterm.mobatek.net)
-2. Open it and create a new SSH session:
+1. Download and install [MobaXterm](https://mobaxterm.mobatek.net).
+2. Launch MobaXterm and create a new SSH session:
    ```
-   Host: repacss.ttu.edu  
+   Host: repacss.ttu.edu
    Username: <your_eRaider_username>
    ```
 
-#### For Mac / Linux
+#### 🍎 For Mac/Linux (Terminal)
 
-1. Open your terminal.
-2. Connect using SSH:
+1. Open the Terminal.
+2. Run the following command:
    ```bash
    ssh <your_eRaider_username>@repacss.ttu.edu
    ```
 
-After entering your password, you should see:
+If successful, you will see the welcome banner:
 
 ```
 ***************************************************************
@@ -73,66 +80,66 @@ After entering your password, you should see:
 
 ---
 
-### 🧪 Environment Setup
+## 🧪 Environment Setup
 
-Once logged in:
+Once connected to the cluster:
 
 ```bash
-# Load necessary modules
+# Load required modules
 module load <module_name>
 
-# Source your environment settings
+# Apply your shell settings
 source ~/.bashrc
 
-# (Optional) Set up Python via Miniforge
-# See: Python Environment Setup guide
+# Optional: set up a Python environment
+# See the [Python Environment Setup](python.md) guide
 ```
 
 ---
 
-## 🛠 Basic Commands
+## 🛠 Basic Linux Commands
 
-### File Navigation
+### 📁 File Navigation
 
 ```bash
-pwd     # Show current directory
-ls      # List files
-cd      # Change directory
+pwd      # Show current working directory
+ls       # List files and directories
+cd       # Change directory
 ```
 
-### File Management
+### 📂 File Management
 
 ```bash
-cp      # Copy files
-mv      # Move or rename files
-rm      # Remove files
-mkdir   # Create a new directory
+cp       # Copy files
+mv       # Move or rename files
+rm       # Delete files
+mkdir    # Create new directory
 ```
 
-### Job Management
+### 🧑‍💻 Job Management with SLURM
 
 ```bash
-sbatch script.sh       # Submit a SLURM job
-squeue -u <username>   # Check your job queue
-scancel <job_id>       # Cancel a job
-sinfo                  # Show node/cluster status
+sbatch script.sh         # Submit a batch job
+squeue -u <username>     # View your job queue
+scancel <job_id>         # Cancel a job
+sinfo                    # Show cluster node status
 ```
 
 ---
 
-## 🚀 What’s Next?
+## 🚀 Next Steps
 
-Continue learning with these resources:
+Once you're connected, check out the following guides:
 
 - 📘 [System Overview](system-overview.md)  
 - 🧬 [Running Jobs](running-jobs.md)  
 - 📂 [File Management](file-management.md)  
 - 🧰 [Available Software](software.md)  
-- 🐍 [Python Setup](python.md)
+- 🐍 [Python Environment Setup](python.md)
 
 ---
 
-## 🔗 Related Resources
+## 📎 Additional Resources
 
-- 🎓 [Training & Support](support.md)  
-- ❓ [FAQ](faq.md)
+- 🎓 [Support & Training](support.md)  
+- ❓ [Frequently Asked Questions (FAQ)](faq.md)
