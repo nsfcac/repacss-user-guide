@@ -92,8 +92,9 @@ module load <module_name>
 source ~/.bashrc
 
 # Optional: set up a Python environment
-# See the [Python Environment Setup](python.md) guide
 ```
+See the [Python Environment Setup](python.md) guide
+
 
 ---
 
