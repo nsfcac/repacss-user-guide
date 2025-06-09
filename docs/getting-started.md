@@ -121,7 +121,7 @@ mkdir    # Create new directory
 
 ```bash
 sbatch script.sh         # Submit a batch job
-squeue -u <username>     # View your job queue
+squeue --me              # View your job queue
 scancel <job_id>         # Cancel a job
 sinfo                    # Show cluster node status
 ```
