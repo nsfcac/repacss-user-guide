@@ -6,8 +6,6 @@ REPACSS supports compute-intensive and data-driven research across a wide range 
 
 ---
 
-## 📚 Quick Navigation
-
 ### 🛠 Getting Started
 - [Getting Started](getting-started.md)  
   Set up your account, connect to REPACSS, and log in for the first time.
