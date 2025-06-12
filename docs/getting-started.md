@@ -92,8 +92,9 @@ module load <module_name>
 source ~/.bashrc
 
 # Optional: set up a Python environment
-# See the [Python Environment Setup](python.md) guide
 ```
+See the [Python Environment Setup](python.md) guide
+
 
 ---
 
@@ -120,7 +121,7 @@ mkdir    # Create new directory
 
 ```bash
 sbatch script.sh         # Submit a batch job
-squeue -u <username>     # View your job queue
+squeue --me              # View your job queue
 scancel <job_id>         # Cancel a job
 sinfo                    # Show cluster node status
 ```
