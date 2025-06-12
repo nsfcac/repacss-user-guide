@@ -142,5 +142,5 @@ Once you're connected, check out the following guides:
 
 ## 📎 Additional Resources
 
-- 🎓 [Support & Training](support.md)  
+- 🎓 [Support](support.md) & [Training](others/training.md)  
 - ❓ [Frequently Asked Questions (FAQ)](faq.md)
