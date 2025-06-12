@@ -48,7 +48,6 @@ This glossary defines key terms, acronyms, and tools you'll encounter while usin
 ---
 
 ## 🧪 Software & Environments
-
 - **Module**: A system that dynamically configures your environment to access specific software versions.
 - **Miniforge**: A minimal Conda installer optimized for scientific computing with the conda-forge channel.
 - **Conda Environment**: An isolated workspace that contains its own Python interpreter and installed packages.
@@ -82,5 +81,5 @@ This glossary defines key terms, acronyms, and tools you'll encounter while usin
 
 ---
 
-_Still confused by a term? Reach out via [support.md](support.md)._  
+_Still confused by a term? Reach out via [support](support.md)._  
 _Last updated: June 2025_
