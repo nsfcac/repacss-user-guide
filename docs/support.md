@@ -18,7 +18,7 @@ Start by reviewing available documentation:
 
 - [Getting Started Guide](getting-started.md)
 - [Frequently Asked Questions (FAQ)](faq.md)
-- [Training Materials](/others/training.md)
+- [Training Materials](others/training.md)
 
 Many questions are already answered in the guides, saving you time and allowing you to learn more about the system.
 
