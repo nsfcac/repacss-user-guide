@@ -47,7 +47,7 @@ The more detail you provide, the faster we can help resolve your issue.
 
 ## Related Resources
 
-- [Training](others/`training.md)
+- [Training](others/training.md)
 - [FAQ](faq.md)
 - [Contact](others/contact.md)
 - [System Status](others/system-status.md)
