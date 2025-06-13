@@ -1,0 +1,96 @@
+site_name: REPACSS User Guide
+site_url: https://your-site-url.com
+site_description: Official documentation for the REPACSS HPC cluster at Texas Tech University
+site_author: REPACSS Team
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    #- navigation.sections     # 🧭 enables collapsible sidebar sections
+    #- navigation.expand 
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+repo_name: TalkingJupiter/repacss-user-guide
+repo_url: https://github.com/TalkingJupiter/repacss-user-guide
+edit_uri: edit/main/docs/
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started-at-REPACSS.md
+  - Absolute Beginner Guide: absolute-beginner-guide.md
+
+  - Understanding Our Systems:
+      - Architecture: understanding/repacss-system/architecture.md
+      - Timeline: understanding/repacss-system/timeline.md
+      - Known Issues: understanding/repacss-system/known-issues.md
+      - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
+
+  - Getting and Managing Your Account:
+      - Overview: account/index.md
+      - TTU: account/ttu.md
+      - ACCESS: account/access.md
+      - Passwords: account/passwords.md
+      - Policy: account/policy.md
+
+  - Connecting to REPACSS:
+      - Overview: connecting/index.md
+      - VPN: connecting/vpn.md
+      - MFA Setup: connecting/mfa.md
+      - VSCode SSH: connecting/vscode.md
+
+  - Running Jobs:
+      - Job Basics: running-jobs/basics.md
+      - Job Examples: running-jobs/examples.md
+      - Queues & Charges: running-jobs/queues-charges.md
+      - Scheduling: running-jobs/scheduling.md
+      - Policies: running-jobs/policies.md
+      - Understanding REPACSS: running-jobs/understanding-repacss.md
+      - Troubleshooting: running-jobs/troubleshooting.md
+      - Monitoring: running-jobs/monitoring.md
+      - Best Practices: running-jobs/best-practices.md
+      - Interactive Sessions: running-jobs/interactive.md
+
+  - Software:
+      - Module System: software/module-system.md
+      - Available Software: software/available-software.md
+      - Installing Packages: software/installing-packages.md
+
+  - Performance:
+      - Compiler Flags: performance/compiler-flags.md
+      - Profiling Tools: performance/profiling-tools.md
+      - Scaling Tests: performance/scaling-tests.md
+
+  - Reference:
+      - Glossary: reference/glossary.md
+      - Cheatsheet: reference/cheatsheet.md
+      - Common Errors: reference/common-errors.md
+
+  - File Transfer: file-transfer.md
+  - File Permissions: unix-permissions.md
+  - System Status: status.md
+  - Support: support.md

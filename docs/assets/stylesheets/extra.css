@@ -1,0 +1,48 @@
+/* 🎯 Force red scrollbars everywhere */
+:root {
+  --md-primary-fg-color: #CC0000;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #CC0000;
+}
+
+/* Global scrollbar override */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #CC0000 !important;
+  border-radius: 4px;
+  border: none !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* 🔧 Left sidebar scrollwrap fix */
+.md-sidebar__scrollwrap {
+  scrollbar-color: #CC0000 transparent;
+  scrollbar-width: thin;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar {
+  width: 8px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background-color: #CC0000 !important;
+  border-radius: 4px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* ✅ Make sure Firefox also applies red */
+.md-sidebar__scrollwrap {
+  scrollbar-color: #CC0000 transparent;
+}

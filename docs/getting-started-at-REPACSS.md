@@ -31,8 +31,8 @@ To use REPACSS resources, you must have a valid TTU or ACCESS account.
 
 To connect to REPACSS, you must be connected to the TTU GlobalProtect VPN and have MFA enabled.
 
-- [VPN Setup Instructions](../connecting/vpn.md)
-- [MFA Configuration Guide](../connecting/mfa.md)
+- [VPN Setup Instructions](connecting/vpn.md)
+- [MFA Configuration Guide](connecting/mfa.md)
 
 !!! warning "MFA and VPN required"
     All login attempts from outside TTU’s network must be authenticated through VPN and MFA.
@@ -49,7 +49,7 @@ ssh <your-ttu-username>@login.repacss.ttu.edu
 
 You can also connect via Visual Studio Code:
 
-- [Connecting via VSCode](../connecting/vscode.md)
+- [Connecting via VSCode](connecting/vscode.md)
 
 !!! tip "First-time login tip"
     On first login, review your disk quota using `quota -s` and check available modules with `module avail`.
@@ -62,7 +62,7 @@ You can move data to and from REPACSS using the following methods:
 
 - Command line: `scp`, `rsync`
 - GUI: [WinSCP](https://winscp.net), [Cyberduck](https://cyberduck.io)
-- [Globus Transfer Guide](../file-transfer.md)
+- [Globus Transfer Guide](file-transfer.md)
 
 !!! note "Storage areas"
     Use `/home` for persistent scripts, `/work` for active jobs, and `/scratch` for temporary data.
@@ -78,9 +78,9 @@ module avail         # See available modules
 module load gcc/12   # Example: Load GCC 12
 ```
 
-- [Using Modules](../software/module-system.md)
-- [Available Software](../software/available-software.md)
-- [Installing Your Own Packages](../software/installing-packages.md)
+- [Using Modules](software/module-system.md)
+- [Available Software](software/available-software.md)
+- [Installing Your Own Packages](software/installing-packages.md)
 
 ---
 
@@ -110,14 +110,14 @@ Monitor your job with:
 squeue -u <your-username>
 ```
 
-- [SLURM Job Basics](../running-jobs/basics.md)
-- [Example Job Scripts](../running-jobs/examples.md)
+- [SLURM Job Basics](running-jobs/basics.md)
+- [Example Job Scripts](running-jobs/examples.md)
 
 ---
 
 ## 🆘 Getting Help
 
-Need assistance? Visit the [Support Page](../support.md) or join our user Slack (coming soon).
+Need assistance? Visit the [Support Page](support.md) or join our user Slack (coming soon).
 
 !!! info "Support hours"
     Monday–Friday, 9am–5pm Central Time. Submit tickets via [repacss.org](https://repacss.org).
