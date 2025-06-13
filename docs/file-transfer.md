@@ -1,69 +1,109 @@
-# File Transfer Guide
+# 📂 File Transfer
 
-> ⚠️ **Notice:** *Globus Connect is currently unavailable.*  
+!!! warning
+    The **Globus Connect** service may be unreliable. Please use one of the SSH-based alternatives below for secure and consistent file transfers.
 
----
-
-
-
-Efficient file transfer is essential for working with data on the REPACSS HPC cluster. This guide outlines best practices and supported methods.
+REPACSS supports file transfers using standard tools available on most systems. These include **SCP**, **rsync**, and **SFTP**. All tools use **SSH** for secure authentication.
 
 ---
 
-## 🚫 Avoid Direct SCP/SFTP/Rsync to Login Nodes
+## 📦 SCP (Secure Copy)
 
-To preserve login node performance, **do not** use:
-- `scp`
-- `sftp`
-- `rsync` directly to login nodes
+SCP is a simple and fast way to copy files between your local machine and REPACSS.
 
-Instead, use **Globus Connect** for large and reliable transfers.
+### 🔼 Upload a file
 
----
+```bash
+scp myfile.txt username@login.repacss.ttu.edu:/mnt/DISCL/home/username/
+```
 
-## 🌐 Using Globus Connect
+### 🔽 Download a file
 
-### ✅ Benefits
-- High-speed, parallel data transfer
-- Automatic retry on failure
-- Web interface for ease of use
-- No load on login nodes
+```bash
+scp username@login.repacss.ttu.edu:/mnt/DISCL/home/username/data.csv ./data.csv
+```
 
-### 🔧 Setup Steps
-
-1. Install Globus Connect Personal:
-   - [Windows Guide](https://docs.globus.org/globus-connect-personal-windows-installation-guide/)
-   - [Mac Guide](https://docs.globus.org/globus-connect-personal-mac-installation-guide/)
-   - [Linux Guide](https://docs.globus.org/globus-connect-personal-linux-installation-guide/)
-
-2. Create a personal endpoint (your local computer)
-
-3. Search for endpoint: `REPACSS`
-
-4. Authenticate with your TTU credentials
-
-5. Select paths:
-   - `/home/USERNAME`
-   - `/scratch/USERNAME`
-   - `/work/USERNAME`
-
-6. Start transfers using the web portal
-
-> 📧 Questions? Contact: repacss.globus@ttu.edu
+!!! tip
+    Use `-r` to copy directories recursively:  
+    `scp -r myfolder/ username@login.repacss.ttu.edu:/mnt/DISCL/home/username/`
 
 ---
 
-## 📂 Best Practices
+## 🔁 Rsync (Recommended for Large Transfers)
 
-- Use **scratch** for active workloads, not for archiving
-- Store long-term data in **archive** locations
-- Monitor your quota usage: `df -h /mnt/$(id -gn)`
-- Clean up temporary or unused data
+`rsync` is great for syncing entire folders and resuming interrupted transfers.
+
+### 🔼 Upload a directory
+
+```bash
+rsync -avh myfolder/ username@login.repacss.ttu.edu:/mnt/DISCL/home/username/myfolder/
+```
+
+### 🔽 Download from REPACSS
+
+```bash
+rsync -avh username@login.repacss.ttu.edu:/mnt/DISCL/home/username/project/ ./project/
+```
+
+!!! tip
+    Add `-P` to track progress and allow resuming:
+    ```bash
+    rsync -avhP myfolder/ username@login.repacss.ttu.edu:/mnt/DISCL/home/username/
+    ```
 
 ---
 
-## 🔗 Related Docs
+## 🖥️ SFTP (Interactive Terminal)
 
-- [File Management](file-management.md)
-- [System Overview](system-overview.md)
-- [Getting Started](getting-started.md)
+SFTP allows interactive browsing of files on REPACSS.
+
+### Start session:
+
+```bash
+sftp username@login.repacss.ttu.edu
+```
+
+### Common SFTP commands:
+
+```bash
+cd /mnt/DISCL/home/username/
+put myfile.txt     # Upload
+get output.log     # Download
+ls                 # List directory contents
+exit               # Close connection
+```
+
+!!! note
+    Unlike SCP or rsync, SFTP lets you navigate the remote file structure before transferring.
+
+---
+
+## 🪟 Windows Users
+
+!!! tip
+    Windows 10+ includes `scp`, `sftp`, and `ssh` in PowerShell by default.
+
+If you prefer graphical interfaces:
+
+- **[WinSCP](https://winscp.net)** – supports SCP and SFTP
+- **[FileZilla](https://filezilla-project.org/)** – easy drag-and-drop transfers
+
+Or use **WSL** to access Linux-style CLI tools like `rsync`.
+
+---
+
+## 🧭 Tips & Troubleshooting
+
+- Always use your **eRaider username**
+- Use the **TTUnet VPN** before initiating transfers
+- Make sure file paths are correct, especially when uploading to subdirectories
+
+!!! note
+    For large files or many files, prefer `rsync` over `scp` due to its error recovery and syncing capabilities.
+
+---
+
+## 🔗 Related Links
+
+- [Connecting to REPACSS](connecting/index.md)
+- [VPN Setup Guide](connecting/vpn.md)

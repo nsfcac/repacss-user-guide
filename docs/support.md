@@ -1,4 +1,4 @@
-# Support
+# 📞 Support
 
 ## Current Support Channels
 
@@ -16,9 +16,8 @@
 
 Start by reviewing available documentation:
 
-- [Getting Started Guide](getting-started.md)
+- [Getting Started Guide](getting-started-at-REPACSS.md)
 - [Frequently Asked Questions (FAQ)](faq.md)
-- [Training Materials](others/training.md)
 
 Many questions are already answered in the guides, saving you time and allowing you to learn more about the system.
 
@@ -47,7 +46,7 @@ The more detail you provide, the faster we can help resolve your issue.
 
 ## Related Resources
 
-- [Training](others/training.md)
+
 - [FAQ](faq.md)
-- [Contact](others/contact.md)
-- [System Status](others/system-status.md)
+- [Contact](support.md)
+- [System Status](status.md)

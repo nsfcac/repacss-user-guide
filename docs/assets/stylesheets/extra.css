@@ -1,0 +1,45 @@
+.md-logo img {
+  width: 68px !important;
+  height: 24px !important;
+}
+
+:root {
+
+  /* Default foreground color shades */
+  --md-default-fg-color:               rgb(11, 33, 57);
+  --md-default-fg-color--light:        rgba(11, 33, 57, 0.8);
+  --md-default-fg-color--lighter:      rgba(11, 33, 57, 0.5);
+  --md-default-fg-color--lightest:     rgba(11, 33, 57, 0.1);
+
+  /* Primary brand color: Texas Tech red (#CC0000) */
+  --md-primary-fg-color:               #CC0000;
+  --md-primary-fg-color--light:        rgba(204, 0, 0, 0.8);
+  --md-primary-fg-color--dark:         rgb(102, 0, 0);
+
+  /* Accent color */
+  --md-accent-fg-color:                rgb(248, 150, 29);
+  --md-accent-fg-color--transparent:   rgba(248, 150, 29, 0.25);
+
+  --md-accent-bg-color:                rgb(255, 232, 213);
+  --md-accent-bg-color--light:         rgba(255, 232, 213, 0.5);
+
+  /* Code block styles */
+  --md-code-bg-color:                  rgba(210, 227, 235, 0.3);
+  --md-code-fg-color:                  rgb(64, 0, 0); /* slightly reddish black */
+}
+
+/* Footer social padding */
+.md-footer-social {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Accessibility: highlight active nav link */
+.md-nav__link.md-nav__link--active {
+  font-weight: bold;
+}
+
+/* Underline links in body content */
+.md-content a {
+  text-decoration: underline;
+}

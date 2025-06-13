@@ -57,7 +57,8 @@ scancel -p zen4
 
 ### How do I transfer files?
 
-> ⚠️ Use **Globus** for large or frequent transfers. Use `scp` only for quick one-time needs.
+!!! warning
+    Use **Globus** for large or frequent transfers. Use `scp` only for quick one-time needs.
 
 ```bash
 # Upload to REPACSS
@@ -85,12 +86,3 @@ module list
 - Provide installation instructions and dependencies
 - Specify whether it’s for shared use or personal use
 - Wait for confirmation from the system admin team
-
----
-
-## 📚 Related Resources
-
-- [Support](support.md)
-- [Training](training.md)
-- [System Status](system-status.md)
-- [Contact](contact.md)
