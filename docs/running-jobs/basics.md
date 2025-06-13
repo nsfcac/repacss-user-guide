@@ -221,4 +221,3 @@ sacct -j <job_id>
 * [Monitoring Jobs](monitoring.md)
 * [Interactive Sessions](interactive.md)
 * [Best Practices](best-practices.md)
-

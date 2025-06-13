@@ -1,5 +1,5 @@
 site_name: REPACSS User Guide
-site_url: https://your-site-url.com
+site_url: https://repacss.org
 site_description: Official documentation for the REPACSS HPC cluster at Texas Tech University
 site_author: REPACSS Team
 
@@ -19,13 +19,15 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+  logo: assets/images/Favicon.svg
+  favicon: assets/images/Favicon.svg
   features:
 
 extra_css:
   - assets/stylesheets/extra.css
 
-repo_name: TalkingJupiter/repacss-user-guide
-repo_url: https://github.com/TalkingJupiter/repacss-user-guide
+repo_name: nsfcac/repacss-user-guide
+repo_url: https://github.com/nsfcac/repacss-user-guide
 edit_uri: edit/main/docs/
 
 markdown_extensions:
