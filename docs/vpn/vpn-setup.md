@@ -39,7 +39,7 @@ Choose your operating system and follow the corresponding instructions:
 
 ## ⚠️ Important Notes
 
-> **‼ VPN access is mandatory for all connections to REPACSS.**
+> All users must be connected to the TTU network to access REPACSS. This is typically achieved by using **GlobalProtect VPN** when off-campus. However, users in the Computer Science Department building may experience issues accessing REPACSS even when connected to TTUnet (the campus wireless network). For these users, it is recommended to use GlobalProtect VPN as a workaround to ensure proper access.
 
 - Use **only** the official **TTU VPN portal**: `vpn.ttu.edu`
 - Keep the GlobalProtect client **up to date**
