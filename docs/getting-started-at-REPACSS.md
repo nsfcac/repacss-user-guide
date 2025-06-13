@@ -13,13 +13,15 @@ To use REPACSS resources, you must have a valid TTU or ACCESS account.
 
 ### TTU Users
 
-- Complete the [REPACSS Access Request Form](https://repacss.org/request-access).
+- Get access from the system admin.
 - Requires a valid `ttu.edu` email address.
 - Access is typically granted within 2–3 business days.
 
 ### ACCESS Users
+!!! warning
+    ACCESS users are unable to login to REPACSS System at this stage of the project.
 
-- Must have an [ACCESS allocation](https://access-ci.org).
+- Must have an [ACCESS allocation]<!--(https://access-ci.org)-->.
 - Contact REPACSS support with your ACCESS project ID and intended use.
 
 !!! note "Account prerequisites"
