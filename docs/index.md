@@ -62,8 +62,9 @@ The Research and Educational Platform for Advanced Computing Support Services (R
 
 ---
 
-## 🧪 Use Cases {**Coming Soon**}
-
+## 🧪 Use Cases 
+!!! note
+    This feature is still in development!
 - Student Research Highlight<!--(use-cases/student-story.md)  -->
 - Bioinformatics Stack<!--(use-cases/bioinformatics-stack.md)  -->
 - Machine Learning with GPUs<!--(use-cases/ml-environment.md)  -->
@@ -89,11 +90,9 @@ The Research and Educational Platform for Advanced Computing Support Services (R
 
 ---
 
-## 💡 Tip
+!!! tip 
+    Join the REPACSS user Slack workspace (coming soon!) to ask questions, get updates, and share knowledge with the TTU HPC community.
 
-Join the REPACSS user Slack workspace (coming soon!) to ask questions, get updates, and share knowledge with the TTU HPC community.
-
----
 
 ## 🤝 Contribute
 

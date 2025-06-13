@@ -20,8 +20,6 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
-    #- navigation.sections     # 🧭 enables collapsible sidebar sections
-    #- navigation.expand 
 
 extra_css:
   - assets/stylesheets/extra.css
@@ -49,6 +47,9 @@ nav:
       - Timeline: understanding/repacss-system/timeline.md
       - Known Issues: understanding/repacss-system/known-issues.md
       - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
+      - File System:
+        - File Transfer: file-transfer.md
+        - File Permissions: unix-permissions.md 
 
   - Getting and Managing Your Account:
       - Overview: account/index.md
@@ -66,19 +67,17 @@ nav:
   - Running Jobs:
       - Job Basics: running-jobs/basics.md
       - Job Examples: running-jobs/examples.md
-      - Queues & Charges: running-jobs/queues-charges.md
+      - Queues: running-jobs/queues-charges.md
       - Scheduling: running-jobs/scheduling.md
-      - Policies: running-jobs/policies.md
-      - Understanding REPACSS: running-jobs/understanding-repacss.md
-      - Troubleshooting: running-jobs/troubleshooting.md
+      - Interactive Sessions: running-jobs/interactive.md
       - Monitoring: running-jobs/monitoring.md
       - Best Practices: running-jobs/best-practices.md
-      - Interactive Sessions: running-jobs/interactive.md
 
   - Software:
       - Module System: software/module-system.md
       - Available Software: software/available-software.md
       - Installing Packages: software/installing-packages.md
+      - Setting-up Python Env: software/python.md
 
   - Performance:
       - Compiler Flags: performance/compiler-flags.md
@@ -89,8 +88,8 @@ nav:
       - Glossary: reference/glossary.md
       - Cheatsheet: reference/cheatsheet.md
       - Common Errors: reference/common-errors.md
-
-  - File Transfer: file-transfer.md
-  - File Permissions: unix-permissions.md
+      
   - System Status: status.md
-  - Support: support.md
+  - Support:
+    - Contact Us: support.md
+    - FAQ: faq.md
