@@ -1,22 +1,28 @@
-# Manage Your Account 🧑‍💻🔐
+# Account Management
 
-!!! info "About this Section 📘"
-    This section provides essential information on how to manage your REPACSS account, update credentials, and ensure secure access to system resources.
+!!! info "Purpose of This Section"
+    This section outlines procedures for managing user accounts on the REPACSS High-Performance Computing (HPC) system, including credential updates and authentication protocols.
 
-To use REPACSS, users must have an active account. Managing your account ensures uninterrupted access to computing resources, data storage, and support tools.
+In order to access REPACSS resources, users must maintain an active and secure account. Proper account management ensures continued access to computing services, storage allocations, and user support systems.
 
+---
 
-## Password & Credential Management 🔒
+## Password and Credential Management
 
-User authentication is critical to secure access. REPACSS supports:
+Secure authentication is required for all user interactions with the REPACSS system. The following credential management practices are supported:
 
-- 🔄 Secure password updates  
-- 🛡️ Multi-Factor Authentication (MFA) setup *(coming soon)*  
-- 🗝️ SSH key registration for seamless logins  
+- Secure password updates through the official TTU identity management system
+- Multi-Factor Authentication (MFA) support
+- SSH key registration for secure and password-less logins
 
-If you forget your password, contact IT Help Central to reset your TTU password.
+If your password is forgotten or compromised, you must contact Texas Tech University’s IT Help Central to initiate a reset and regain account access.
 
+---
 
-## Support 🆘
+## Support and Issue Resolution
 
-If you encounter account-related issues or have trouble accessing your dashboard, please contact the [REPACSS Support Team](mailto:repacss-support@domain.edu).
+For assistance with account access, credential issues, or related technical matters, contact the REPACSS Support Team via email at [repacss-support@ttu.edu](mailto:repacss-support@ttu.edu). Include your eRaider ID and a detailed description of the issue to expedite resolution.
+
+---
+
+_Last updated: June 2025_

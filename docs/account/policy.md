@@ -1,75 +1,81 @@
-# Account Policies 📜🔐
+# Account Usage Policies
 
-!!! info "About this Page"
-    This page outlines the core account usage policies that apply to all REPACSS users at Texas Tech University. Following these rules ensures safe, secure, and responsible use of HPC resources.
-
----
-
-## 👤 User Account Ownership, Password, and MFA Policies
-
-Every user is assigned a unique **username**, which is protected by a personal **password** and **Multi-Factor Authentication (MFA)** token. These credentials are private and must **not be shared** under any circumstance.
-
-- 🔑 **Passwords** must be strong and changed periodically. See the [Passwords](passwords.md) page for more.
-- 🔐 **MFA tokens** must be securely stored and are tied to individual accounts.
-- ❌ **Account sharing is strictly prohibited.** If multiple users are detected accessing a single account, that account will be suspended.
-
-!!! danger "Sharing is a Violation"
-    If someone other than the assigned user accesses a REPACSS account, **all associated accounts will be disabled immediately**. Reinstatement requires a formal justification from the PI.
+!!! info "Purpose of This Document"
+    This document outlines mandatory account usage policies for all users of the REPACSS system at Texas Tech University. Adherence to these policies ensures the security, integrity, and proper utilization of REPACSS high-performance computing (HPC) resources.
 
 ---
 
-## 🔐 Security Incidents
+## Account Ownership, Password Requirements, and MFA Policy
 
-If you suspect a **security breach** or account misuse, report it **immediately** to:
+Each user is issued a unique username secured with both a password. The credentials are strictly confidential and must not be shared.
 
-- 📧 `repacss-support@ttu.edu`
+- Passwords must be strong, rotated regularly, and follow the guidelines outlined on the [Passwords](passwords.md) page.
+- MFA credentials are tied to the individual user and must be securely stored.
+- Shared account usage is strictly prohibited. REPACSS enforces a one-user-per-account policy without exception.
 
-Include any available logs, screenshots, or timestamps when reporting an incident. Prompt action helps protect everyone.
-
----
-
-## 🔄 Account Lifecycle
-
-### 🆕 Account Creation
-- Accounts must be requested through an official research project.
-- New users are vetted by the REPACSS team before access is granted.
-- Setup includes MFA registration and password initialization.
-
-### ✅ Account Continuation
-- Accounts remain active only if associated with an active TTU project.
-- Users must re-accept updated **Policies** and **Code of Conduct** documents when prompted.
-
-### ❌ Account Deactivation
-
-Accounts can be deactivated under several conditions:
-
-| Reason | What Happens |
-|--------|--------------|
-| 🔄 End of project allocation | Login disabled, data access only for 60 days |
-| 🧑‍🔧 User-initiated | Immediate deactivation |
-| 👨‍🏫 PI removes user | Immediate deactivation |
-| 🕐 Project membership expiration | Immediate deactivation |
-| 📜 Policy agreement not signed | Account suspended until accepted |
-| ⚠️ Security violation | Immediate deactivation |
-
-After deactivation:
-- Passwords and MFA tokens are deleted.
-- Data **may** remain accessible for a limited period through transfer nodes only.
+!!! danger "Account Misuse Policy"
+    If unauthorized access or account sharing is detected, all affected accounts will be disabled immediately. Reinstatement requires a written explanation and authorization from the Principal Investigator (PI) or project lead.
 
 ---
 
-## 📣 Acknowledge Use of REPACSS Resources
+## Security Incidents and Reporting
 
-!!! info "Why Acknowledgment Matters 📄✨"
-    Proper acknowledgment of REPACSS in your publications helps demonstrate the impact of our research infrastructure, supports funding renewals, and shows the broader academic value of our cluster.
+Users who suspect account compromise, unauthorized activity, or any security incident must report it immediately to the system administrators.
 
-If you publish work that involved the use of REPACSS compute resources, **please include the following acknowledgment**:
+- Email: [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu)
 
-> **This research used resources of the REPACSS high-performance computing system at Texas Tech University, supported in part by the National Science Foundation under NSF Award No. 2404438 and Texas Tech's High Performance Computing Center (HPCC).**
-
-Including this sentence in your papers, posters, or talks helps ensure continued investment in high-performance computing resources and encourages further research support.
+When reporting, please include as much detail as possible (e.g., timestamps, logs, screenshots) to expedite investigation and remediation.
 
 ---
 
-!!! tip "Not sure if you should include this?"
-    If your work ran any code, training, or simulations on REPACSS — even during testing — please include the acknowledgment.
+## Account Lifecycle Management
+
+REPACSS accounts follow a lifecycle process aligned with institutional research allocations.
+
+### Account Provisioning
+
+- Access is granted upon official request and must be tied to a recognized TTU research project.
+- New users undergo a vetting process by the REPACSS administrative team.
+- Account setup includes MFA enrollment and initial password configuration.
+
+### Account Maintenance
+
+- Accounts remain active only while associated with an ongoing research allocation.
+- Users may be prompted to acknowledge and re-accept updated policy or conduct agreements.
+
+### Account Deactivation
+
+Accounts are subject to deactivation under the following conditions:
+
+| Condition                             | Action Taken                                           |
+|---------------------------------------|--------------------------------------------------------|
+| End of research project               | Login disabled; data access granted for 60 days        |
+| User-initiated request                | Immediate deactivation                                 |
+| User removed by project PI            | Immediate deactivation                                 |
+| Expiration of project membership      | Immediate deactivation                                 |
+| Refusal to accept policy updates      | Access suspended until acknowledgment is received      |
+| Violation of system security policies | Immediate deactivation; subject to further review      |
+
+Upon deactivation:
+- Login credentials and MFA tokens are invalidated.
+- Data may be accessible through designated transfer endpoints for a limited duration, subject to administrative approval.
+
+---
+
+## Proper Acknowledgment of REPACSS Resources
+
+!!! info "Citation Requirement"
+    All publications, presentations, or research outputs that utilize REPACSS computing resources must include the official acknowledgment statement below.
+
+### Acknowledgment Text
+
+> *This research used resources of the REPACSS high-performance computing system at Texas Tech University, supported in part by the National Science Foundation under NSF Award No. 2404438 and Texas Tech’s High Performance Computing Center (HPCC).*
+
+Proper citation ensures continued support and funding for REPACSS and reflects the scientific value of computational infrastructure.
+
+!!! tip "Not Sure If This Applies?"
+    If your research made use of REPACSS for simulations, analysis, training, or testing, it qualifies for acknowledgment.
+
+---
+
+_Last updated: June 2025_

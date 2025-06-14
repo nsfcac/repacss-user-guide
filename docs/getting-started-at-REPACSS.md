@@ -7,78 +7,69 @@ Welcome to REPACSS — Texas Tech University's research and educational platform
 
 ---
 
-## 🧾 Account Access
+## Account Access
 
-To use REPACSS resources, you must have a valid TTU or ACCESS account.
+To utilize REPACSS resources, users must have a valid TTU or ACCESS account.
 
 ### TTU Users
 
-- Get access from the system admin.
-- Requires a valid `ttu.edu` email address.
-- Access is typically granted within 2–3 business days.
+- Access must be requested through the system administrator.
+- A valid institutional email address (ending in `ttu.edu`) is required.
+- Provisioning typically takes 2–3 business days after the request is approved.
 
 ### ACCESS Users
+
 !!! warning
-    ACCESS users are unable to login to REPACSS System at this stage of the project.
-
-- Must have an [ACCESS allocation]<!--(https://access-ci.org)-->.
-- Contact REPACSS support with your ACCESS project ID and intended use.
-
-!!! note "Account prerequisites"
-    New users must have their accounts approved before attempting to log in to the cluster.
+    ACCESS users are currently unable to log in to the REPACSS system. This capability is under development.
 
 ---
 
-## 🔐 Multi-Factor Authentication (MFA) & VPN
+## Multi-Factor Authentication (MFA) and VPN
 
-To connect to REPACSS, you must be connected to the TTU GlobalProtect VPN and have MFA enabled.
+All users accessing the system remotely must use TTU’s GlobalProtect VPN and have Microsoft Multi-Factor Authentication (MFA) configured.
 
 - [VPN Setup Instructions](connecting/vpn.md)
 - [MFA Configuration Guide](connecting/mfa.md)
 
 !!! warning "MFA and VPN required"
-    All login attempts from outside TTU’s network must be authenticated through VPN and MFA.
+    Login attempts from outside the TTU network require both MFA and VPN authentication.
 
 ---
 
-## 💻 Connecting to the Cluster
+## Connecting to the Cluster
 
-Once your account is active and your VPN/MFA setup is complete, connect via SSH:
+Once account provisioning and secure connection setup are complete, users may connect via Secure Shell (SSH):
 
 ```bash
-ssh <your-ttu-username>@login.repacss.ttu.edu
+ssh <your-ttu-username>@repacss.ttu.edu
 ```
 
-You can also connect via Visual Studio Code:
+Access via Visual Studio Code is also supported:
 
 - [Connecting via VSCode](connecting/vscode.md)
 
 !!! tip "First-time login tip"
-    On first login, review your disk quota using `quota -s` and check available modules with `module avail`.
+    On initial login, run `quota -s` to review disk usage, and `module avail` to browse available software modules.
 
 ---
-
-## 📁 Transferring Files
-
-You can move data to and from REPACSS using the following methods:
-
-- Command line: `scp`, `rsync`
-- GUI: [WinSCP](https://winscp.net), [Cyberduck](https://cyberduck.io)
-- [Globus Transfer Guide](file-transfer.md)
 
 !!! note "Storage areas"
-    Use `/home` for persistent scripts, `/work` for active jobs, and `/scratch` for temporary data.
+    - Use `/home` for scripts and long-term storage.
+    - Use `/work` for project-related data under active development.
+    - Use `/scratch` for temporary data during compute jobs.
 
 ---
 
-## ⚙️ Environment Setup
+## Environment Setup
 
-REPACSS uses a module system to manage software:
+REPACSS uses an environment module system to manage software packages.
 
 ```bash
-module avail         # See available modules
-module load gcc/12   # Example: Load GCC 12
+module avail         # List available modules
+module load gcc/12   # Load a specific version
 ```
+
+Resources:
 
 - [Using Modules](software/module-system.md)
 - [Available Software](software/available-software.md)
@@ -86,9 +77,11 @@ module load gcc/12   # Example: Load GCC 12
 
 ---
 
-## 🧪 Submitting Your First Job
+## Submitting Your First Job
 
-REPACSS uses the SLURM workload manager. Jobs are submitted using a script like:
+REPACSS employs the SLURM workload manager to schedule jobs.
+
+### Sample SLURM Script
 
 ```bash
 #!/bin/bash
@@ -100,7 +93,7 @@ REPACSS uses the SLURM workload manager. Jobs are submitted using a script like:
 hostname
 ```
 
-Submit the job using:
+Submit the job with:
 
 ```bash
 sbatch job.slurm
@@ -112,18 +105,20 @@ Monitor your job with:
 squeue -u <your-username>
 ```
 
+Resources:
+
 - [SLURM Job Basics](running-jobs/basics.md)
 - [Example Job Scripts](running-jobs/examples.md)
 
 ---
 
-## 🆘 Getting Help
+## Getting Help
 
-Need assistance? Visit the [Support Page](support.md) or join our user Slack (coming soon).
+If assistance is required:
 
-!!! info "Support hours"
-    Monday–Friday, 9am–5pm Central Time. Submit tickets via [repacss.org](https://repacss.org).
+- Visit the [Support Page](support.md)
+- Join the REPACSS user Slack workspace (coming soon)
 
 ---
 
-_Last updated: June 12, 2025_
+_Last updated: June, 2025_

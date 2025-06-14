@@ -1,16 +1,10 @@
-# 🔐 Unix File Permissions
+# Unix File Permissions
 
-## 📘 Overview
+## Overview
 
-Every file and directory in a Unix system has:
+This document provides an overview of the Unix file permission model, which governs access to files and directories on REPACSS systems. Each object in the file system is associated with an owner and permission flags that define read, write, and execute privileges for different user classes.
 
-- An **owner**
-- A set of **permission flags**
-- Permissions for:
-  - the **user** (owner)
-  - **other** (everyone else)
-
-You can view permissions using the `ls -l` command:
+Permissions are typically reviewed using the `ls -l` command:
 
 ```bash
 ls -l
@@ -25,111 +19,129 @@ drwx------ 2 bsencer bsencer  2048 Jun 12 2012 private
 drwxr-xr-x 3 bsencer bsencer  2048 Nov 13 2011 public
 ```
 
-### 🔎 Understanding the Permission Flags
+---
 
-| Position | Meaning                                 |
-|----------|------------------------------------------|
-| 1        | `d` if directory, `-` if regular file     |
-| 2–4      | Read (`r`), Write (`w`), Execute (`x`) for **user** (owner) |
-| 5–7      | Read, Write, Execute for **group** (removed from scope) |
-| 8–10     | Read, Write, Execute for **other** (world) |
+## File Permission Structure
 
-Flag meanings:
+Each line of output in `ls -l` contains a 10-character string representing the file type and permission bits:
 
-- `-` = flag is not set
-- `r` = readable
-- `w` = writable
-- `x` = executable
-- `s` = setgid (not used in simplified form)
+| Position | Description                                 |
+|----------|---------------------------------------------|
+| 1        | File type: `d` (directory) or `-` (regular file) |
+| 2–4      | Permissions for the user (owner)            |
+| 5–7      | Permissions for the group (not evaluated in current REPACSS scope) |
+| 8–10     | Permissions for others (i.e., all users)    |
 
-### 🧠 Interpreting Examples
+Permission flags are defined as follows:
 
-- `drwx------`: directory, full access for owner, no access for others.
-- `-rw-------`: regular file, readable and writable by owner only.
-- `-rwx------`: executable file, accessible only by owner.
-- `drwxr-xr-x`: directory, readable/executable by everyone, writable by owner.
+- `r`: Read permission
+- `w`: Write permission
+- `x`: Execute permission
+- `-`: Permission not granted
+
+Special flags such as `s` (setgid) are not used in standard user scenarios on REPACSS.
+
+### Interpreting Permission Strings
+
+- `drwx------`: A directory accessible only by the owner
+- `-rw-------`: A file readable and writable only by the owner
+- `-rwx------`: An executable file restricted to the owner
+- `drwxr-xr-x`: A directory accessible to all users for reading and execution, but writable only by the owner
 
 ---
 
-## 🛠 Useful File Permission Commands
+## Managing Default Permissions: `umask`
 
-### 🧰 umask
+The `umask` command controls the default permission settings for newly created files and directories. The following table outlines common `umask` values and their corresponding default permissions:
 
-Controls default permissions for new files. Common values:
+| `umask` | File Permissions | Directory Permissions |
+|---------|------------------|------------------------|
+| 002     | `rw-rw-r--`       | `rwxrwxr-x`            |
+| 007     | `rw-rw----`       | `rwxrwx---`            |
+| 022     | `rw-r--r--`       | `rwxr-xr-x`            |
+| 027     | `rw-r-----`       | `rwxr-x---`            |
+| 077     | `rw-------`       | `rwx------`            |
 
-| umask | File Perms | Dir Perms   |
-|-------|------------|-------------|
-| 002   | `rw-rw-r--`| `rwxrwxr-x` |
-| 007   | `rw-rw----`| `rwxrwx---` |
-| 022   | `rw-r--r--`| `rwxr-xr-x` |
-| 027   | `rw-r-----`| `rwxr-x---` |
-| 077   | `rw-------`| `rwx------` |
+Users may configure their preferred `umask` value by adding the command to their `.bash_profile`.
 
-Set this in `.bash_profile` for it to persist.
+---
 
-### 🔧 chmod (Change Mode)
+## Modifying Permissions: `chmod`
 
-Used to change permissions.
+The `chmod` utility is used to alter file and directory permissions. This can be done using either octal or symbolic notation.
 
-#### Using Octal Notation
+### Octal Notation
 
-| Octal | Meaning         |
-|-------|------------------|
-| 0     | --- (none)       |
-| 1     | --x (execute)    |
-| 2     | -w- (write)      |
-| 3     | -wx (write+exec) |
-| 4     | r-- (read)       |
-| 5     | r-x (read+exec)  |
-| 6     | rw- (read+write) |
-| 7     | rwx (all)        |
+| Octal Value | Permission Bits | Description         |
+|-------------|------------------|---------------------|
+| 0           | `---`            | No permissions      |
+| 1           | `--x`            | Execute only        |
+| 2           | `-w-`            | Write only          |
+| 3           | `-wx`            | Write and execute   |
+| 4           | `r--`            | Read only           |
+| 5           | `r-x`            | Read and execute    |
+| 6           | `rw-`            | Read and write      |
+| 7           | `rwx`            | All permissions     |
 
 Example:
 
 ```bash
 chmod 755 file
-# Sets: rwxr-xr-x
 ```
 
-#### Using Symbolic Notation
+This sets the file to be fully accessible by the owner, and readable and executable by others (`rwxr-xr-x`).
+
+### Symbolic Notation
+
+Users may also modify permissions with symbolic notation:
 
 ```bash
 chmod u+x,go+rx file
-# Adds execute to user, read+execute to others
 ```
 
-| Class | Description              |
-|-------|--------------------------|
-| u     | user (owner)             |
-| o     | other (world)            |
-| a     | all (user + other)       |
+This command grants execute permission to the user, and read/execute permissions to group and others.
 
-| Operator | Meaning                 |
-|----------|--------------------------|
-| `+`      | Add permission           |
-| `-`      | Remove permission        |
-| `=`      | Set exact permission     |
+| Class | Definition         |
+|-------|--------------------|
+| `u`   | User (owner)       |
+| `o`   | Other (non-owners) |
+| `a`   | All users          |
 
-| Mode | Description                              |
-|------|------------------------------------------|
-| r    | read                                     |
-| w    | write                                    |
-| x    | execute                                  |
-| X    | special execute (only if already set)    |
+| Operator | Meaning            |
+|----------|--------------------|
+| `+`      | Add permission      |
+| `-`      | Remove permission   |
+| `=`      | Set exact permission |
 
-Example:
+| Mode | Action                    |
+|------|---------------------------|
+| `r`  | Read                      |
+| `w`  | Write                     |
+| `x`  | Execute                   |
+| `X`  | Conditional execute (directories or if already executable) |
+
+Recursive operations may be executed as follows:
 
 ```bash
 chmod -R o+rX directory/
 ```
 
-Adds read and execute to others for all directories and executable files within.
+This command grants read and execute access to others for all applicable files and directories within the specified directory.
 
 ---
 
-## ✅ Summary
+## Summary
 
-- Use `ls -l` to check permissions.
-- Use `chmod` to modify them.
-- Use `umask` to control defaults for new files.
-- Keep sensitive files private with `chmod 600 file`.
+- Use `ls -l` to audit file and directory permissions.
+- Apply `chmod` to update access control.
+- Configure `umask` to enforce default file security.
+- Sensitive files should be explicitly protected using:
+
+```bash
+chmod 600 sensitive_file
+```
+
+This ensures exclusive read/write access to the owner and denies access to all other users.
+
+---
+_Last updated: June 2025_

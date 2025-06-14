@@ -1,4 +1,4 @@
-# 🛠️ Troubleshooting Guide
+# Troubleshooting Guide
 
 !!! warning
     This page is still under development. The content below may be incomplete or subject to revision.
@@ -7,7 +7,7 @@ Use this page to identify and resolve common issues encountered on REPACSS.
 
 ---
 
-## ❓ Job Not Starting
+## Job Not Starting
 
 - Check if your job is pending due to resource availability:
   
@@ -22,7 +22,7 @@ Use this page to identify and resolve common issues encountered on REPACSS.
 
 ---
 
-## 🧾 Invalid Account or Partition
+## Invalid Account or Partition
 
 If you see:
 ```
@@ -38,7 +38,7 @@ sbatch: error: Job request does not match any supported policy.
 
 ---
 
-## 🐍 Python Module Not Found
+## Python Module Not Found
 
 If you get:
 ```
@@ -57,7 +57,7 @@ ModuleNotFoundError: No module named 'numpy'
 
 ---
 
-## 🔗 SSH Connection Issues
+## SSH Connection Issues
 
 - If login is slow or stuck:
   - Try verbose output to debug:
@@ -69,7 +69,7 @@ ModuleNotFoundError: No module named 'numpy'
 
 ---
 
-## 🔍 "command not found"
+## "command not found"
 
 If a common command like `gcc`, `python`, or `nvcc` fails:
 - Check if the required module is loaded:
@@ -80,7 +80,7 @@ If a common command like `gcc`, `python`, or `nvcc` fails:
 
 ---
 
-## 📉 Poor Performance
+## Poor Performance
 
 - Check if you’re using correct compiler flags and parallel settings.
 - Use profiling tools like:
@@ -93,7 +93,7 @@ If a common command like `gcc`, `python`, or `nvcc` fails:
 
 ---
 
-## 🧼 Disk Quota or Storage Issues
+## Disk Quota or Storage Issues
 
 If you see:
 ```
@@ -105,7 +105,7 @@ Disk quota exceeded
 
 ---
 
-## 📤 Data Transfer Fails
+## Data Transfer Fails
 
 - If `scp` or `rsync` fails:
   - Double-check path and permissions.
@@ -116,7 +116,7 @@ Disk quota exceeded
 
 ---
 
-## 🔁 Infinite Loop or Hanging Job
+## Infinite Loop or Hanging Job
 
 - Make sure loops have valid exit conditions.
 - Add logging or print statements to verify execution flow.
@@ -127,7 +127,7 @@ Disk quota exceeded
 
 ---
 
-## 🧩 Module Conflicts
+## Module Conflicts
 
 - If loading a module breaks something:
   ```bash
@@ -137,7 +137,7 @@ Disk quota exceeded
 
 ---
 
-## 📫 Need Help?
+## Need Help?
 
 If all else fails:
 

@@ -1,109 +1,86 @@
-# 🔐 VPN Setup Guide for REPACSS
+# VPN Setup Guide for REPACSS
 
-> **Note:** Access to the REPACSS HPC system requires a secure connection via the **GlobalProtect VPN**, regardless of whether you're on or off campus. All users must also have **Microsoft MFA** enabled.
+!!! info "Purpose"
+    This document outlines the procedure for configuring and utilizing the GlobalProtect VPN client to securely access the REPACSS high-performance computing (HPC) infrastructure at Texas Tech University (TTU).
 
 ---
 
 ## Overview
 
-To connect to REPACSS (`repacss.ttu.edu`), you must be:
-- Using the **vpn.ttu.edu** portal
-- Logged into your **eRaider account**
-- Authenticated via **Microsoft Multi-Factor Authentication (MFA)**
+All users must establish a secure network connection via TTU’s GlobalProtect VPN to access REPACSS (`repacss.ttu.edu`). VPN access requires:
 
-This guide provides setup instructions for:
+- Use of the portal address `vpn.ttu.edu`
+- Authentication through a valid TTU eRaider account
+- An active Microsoft Multi-Factor Authentication (MFA) configuration
 
-- 🪟 Windows  
-- 🍎 macOS  
-- 🐧 Linux
+This guide provides setup instructions for the following operating systems:
+
+- Microsoft Windows
+- Apple macOS
+- GNU/Linux distributions
 
 ---
 
-## 📌 Step 1: Request VPN Access
+## Step 1: Request VPN Access
 
-Before installing the GlobalProtect VPN client:
+Prior to installing the VPN client, users must formally request access:
 
-1. Go to the [TTU VPN Request Form](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=a990ee5ddbdf41144d17266e139619f8)
-!!! tip
-    Don't forget to sign-in to your TTU account in ServiceNow
-2. Under “Type of Assistance,” select `Enable`
-3. For the reason, enter:  
+1. Navigate to the [TTU VPN Access Request Form](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=a990ee5ddbdf41144d17266e139619f8) and make sure you are signed-in to see the form.
+2. Under "Type of Assistance," select: `Enable`
+3. Provide the following justification:
    ```
    Need TTUnet VPN to access REPACSS TTU Cluster
    ```
-4. Ensure [Microsoft MFA](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed) is set up and functional
+4. Confirm that [Microsoft MFA](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=77057d80874eb5509a3a539d3fbb35ed) is active and functional
 
 ---
 
-## 🪟 Windows Setup
+## Windows Configuration
 
-### Install GlobalProtect
+### Installation
 
-1. Visit the [TTU Software Portal](https://software.ttu.edu/)
-2. Download the appropriate `.msi` for your system (32-bit or 64-bit)
-3. Run the installer and follow on-screen instructions:
-    - ![Install Start](../assets/../assets/images/win/download-3.png)
-    - ![Select Folder](../assets/../assets/images/win/download-4.png)
-    - ![Confirm Installation](../assets/../assets/images/win/download-5.png)
-    - ![UAC Prompt](../assets/../assets/images/win/download-6.png)
-    - ![Files in Use](../assets/../assets/images/win/download-7.png)
-    - ![Installation Progress](../assets/../assets/images/win/download-8.png)
-    - ![Install Complete](../assets/../assets/images/win/download-9.png)
-    - ![Restart Prompt](../assets/../assets/images/win/download-10.png)
+1. Visit the [TTU Software Distribution Portal](https://software.ttu.edu/global-protect)
+2. Download the appropriate `.msi` file (32-bit or 64-bit)
+3. Execute the installer and follow the on-screen instructions
+4. Reboot if prompted
 
-### Connect to VPN
+### VPN Connection Procedure
 
-1. Launch **GlobalProtect** from the Notification Area
+1. Launch the GlobalProtect application
 2. Enter the portal address:
    ```
    vpn.ttu.edu
    ```
-3. Click **Connect**
-4. Log in using your eRaider credentials and approve MFA:
-    - ![Notification Area](../assets/../assets/images/win/connect-2.png)
-    - ![Connect Dialog](../assets/../assets/images/win/connect-3.png)
-    - ![Open App](../assets/../assets/images/win/connect-5.png)
-    - ![Connection Progress](../assets/../assets/images/win/connect-6.png)
+3. Authenticate using TTU eRaider credentials and approve the MFA prompt
+4. Upon successful connection, status will display as **Connected**
 
 ---
 
-## 🍎 macOS Setup
+## macOS Configuration
 
-### Install GlobalProtect
+### Installation
 
-1. Download the `.pkg` installer from [software.ttu.edu](https://software.ttu.edu/)
-2. Run the installer and follow prompts:
-    - ![Install Start](../assets/../assets/images/mac/install.png)
-    - ![Select Destination](../assets/../assets/images/mac/install-10.png)
-    - ![Select Component](../assets/../assets/images/mac/install-1.png)
-    - ![Install Button](../assets/../assets/images/mac/install-2.png)
-    - ![Authentication](../assets/../assets/images/mac/install-3.png)
-    - ![Allow Access](../assets/../assets/images/mac/install-5.png)
-    - ![Install Complete](../assets/../assets/images/mac/install-6.png)
-    - ![Cleanup](../assets/../assets/images/mac/install-7.png)
-    - ![Notifications](../assets/../assets/images/mac/install-8.png)
+1. Download the GlobalProtect `.pkg` installer from [TTU Software Distribution Portal](https://software.ttu.edu/global-protect)
+2. Launch the installer and complete all prompts
+3. Grant required permissions if prompted by the operating system
 
-### Connect to VPN
+### VPN Connection Procedure
 
-1. Open **GlobalProtect** from the menu bar:
-    - ![Menu Bar Icon](../assets/../assets/images/mac/connect.png)
+1. Open GlobalProtect from the menu bar
 2. Enter the portal:
    ```
    vpn.ttu.edu
    ```
-3. Click **Connect**
-4. Authenticate using eRaider and MFA:
-    - ![Connect Dialog](../assets/../assets/images/mac/connect-1.png)
-    - ![Configuration](../assets/../assets/images/mac/connect-2.png)
-    - ![Browser Sign-in](../assets/../assets/images/mac/connect-3.png)
-    - ![Open App](../assets/../assets/images/mac/connect-4.png)
-    - ![PanGPS](../assets/images/mac/connect-5.png)
+3. Authenticate using TTU eRaider credentials and Microsoft MFA
+4. Confirm connection status in the application interface
 
 ---
 
-## 🐧 Linux Setup
+## Linux Configuration
 
-### Install Dependencies (Ubuntu)
+### Prerequisites (Ubuntu/Debian)
+
+Install system dependencies:
 
 ```bash
 sudo apt-get update
@@ -112,86 +89,90 @@ libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 \
 libxrandr2 libxrender1 libxtst6 libnss3 libgtk-3-0
 ```
 
-### Install GlobalProtect
+### Installation
 
-1. Visit [software.ttu.edu](https://software.ttu.edu/global-protect)
-2. Download the `.deb` or `.rpm` file
+1. Visit [TTU Software Distribution Portal](https://software.ttu.edu/global-protect)
+2. Download the appropriate `.deb` or `.rpm` package
 
-Install:
+Install the package:
 
-**Ubuntu/Debian**
+**Debian/Ubuntu**
 ```bash
 sudo dpkg -i GlobalProtect_<version>_amd64.deb
 ```
 
-**CentOS/RHEL**
+**RHEL/CentOS**
 ```bash
 sudo rpm -i GlobalProtect_<version>_x86_64.rpm
 ```
 
----
+### VPN Connection Procedure
 
-### Connect to VPN
+Launch the client UI:
 
 ```bash
 globalprotect launch-ui
 ```
 
-1. Enter the portal:
+1. Input portal:
    ```
    vpn.ttu.edu
    ```
-2. Click **Connect**
-3. Authenticate with eRaider + MFA
+2. Authenticate using your TTU eRaider credentials and MFA
 
-Check connection status:
+Verify connection status:
+
 ```bash
 globalprotect show --status
 ```
 
-You should see:
+Expected output:
 ```
 Status: Connected
 ```
 
 ---
 
-## 🧰 Troubleshooting
+## Troubleshooting
 
-### 🔑 Login or MFA Fails
-- Double-check eRaider and MFA
-- Clear browser cookies
-- Try in private/incognito mode
+### Authentication Issues
 
-### 🌐 Cannot Connect
-- Ensure correct portal `vpn.ttu.edu`
-- Restart your machine or GlobalProtect
-- Allow GlobalProtect through your firewall
+- Verify username and MFA credentials
+- Attempt login in a private browser session
+- Clear stored cookies and cached credentials
 
-### 🔧 Installation Issues
-- Use admin privileges
-- Check system compatibility
-- Re-download from the TTU Software Portal
+### Connection Errors
+
+- Confirm the portal address is correct: `vpn.ttu.edu`
+- Restart GlobalProtect and your device
+- Ensure firewall settings permit VPN traffic
+
+### Installation Failures
+
+- Ensure administrative privileges are granted
+- Validate that system requirements are met
+- Re-download installer from official TTU source
 
 ---
 
-## ✅ Disconnect from VPN
+## Disconnecting from VPN
 
-**Windows/macOS**  
-Click GlobalProtect tray/menu icon → Click **Disconnect**
+**Windows/macOS:**  
+Click the GlobalProtect icon and select **Disconnect**
 
-**Linux**
+**Linux:**
+
 ```bash
 globalprotect disconnect
 ```
 
 ---
 
-## 🔗 Related Resources
+## Additional Resources
 
-- [Getting Started](../getting-started-at-REPACSS.md)
-- [Running Jobs](../running-jobs/basics.md)
+- [Getting Started at REPACSS](../getting-started-at-REPACSS.md)
+- [Running Jobs on REPACSS](../running-jobs/basics.md)
 
 ---
 
-_Last updated: June 12, 2025_
+_Last revised: June, 2025_

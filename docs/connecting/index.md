@@ -1,77 +1,74 @@
-# Establishing Connections
+# Establishing Connections to REPACSS
 
-## REPACSS System Address
+!!! info "Purpose of this Page"
+    This document provides detailed instructions on establishing secure remote connections to the REPACSS high-performance computing system at Texas Tech University.
 
-Before you can connect to REPACSS, ensure the following:
+---
 
-- ✅ You have an active TTU account
-- ✅ You have configured your password and **Multi-Factor Authentication (MFA)**
-- ✅ You are connected to the **TTU network**, either via campus Ethernet or **GlobalProtect VPN**
+## System Access Requirements
 
-The system address used to connect is:
+Before attempting to connect to the REPACSS environment, users must confirm the following prerequisites:
+
+- A valid and active TTU eRaider account
+- A properly configured password and Multi-Factor Authentication (MFA)
+- A secure connection to the Texas Tech University (TTU) network, either via wired Ethernet or the GlobalProtect VPN
+
+The fully qualified domain name (FQDN) of the system is:
 
 ```
 repacss.ttu.edu
 ```
 
-## TTU Network & VPN Access
+---
 
-> ⚠️ **VPN Required Off-Campus:**  
-> All users must be connected to the TTU network to access REPACSS.  
-> Use **GlobalProtect VPN** when off-campus or when Wi-Fi-only in the CS Department building.
+## TTU Network Access and VPN Requirement
 
-If you are on TTUnet (Wi-Fi) in the CS building and unable to access REPACSS, switch to VPN.
+Access to REPACSS is restricted to users connected to the TTU internal network. Off-campus users, and users in buildings with known network limitations (e.g., the Computer Science Department), must use the **GlobalProtect VPN**.
 
-- 🔗 [TTU GlobalProtect VPN Setup Guide](https://www.depts.ttu.edu/itts/software/vpn.php)
+For assistance configuring VPN access, refer to the following guide:
+
+- [TTU GlobalProtect VPN Setup Guide](https://www.askit.ttu.edu/vpn)
+
+!!! warning "VPN Required"
+    All off-campus connections must be tunneled through TTU’s GlobalProtect VPN. Local wireless connections (e.g., TTUnet in some buildings) may also require VPN due to firewall restrictions.
 
 ---
 
-## Connecting via SSH
+## Connecting via Secure Shell (SSH)
 
-### 🪟 For Windows (MobaXterm)
+### Instructions for Windows Users
 
-1. Download and install [MobaXterm](https://mobaxterm.mobatek.net).
-2. Open MobaXterm and create a new SSH session:
-   ```
-   Remote Host: repacss.ttu.edu
-   Username:   <your_eRaider_username>
-   ```
-3. Click OK to connect.
+For users operating Microsoft Windows, it is recommended to install and configure **MobaXterm**:
 
-### 🍎 For Mac / Linux (Terminal)
+1. Download the installer from [https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net)
+2. Launch MobaXterm and create a new SSH session with the following details:
+   - **Remote Host**: `repacss.ttu.edu`
+   - **Username**: Your TTU eRaider username
+3. Save and initiate the connection
 
-Open your terminal and enter:
+### Instructions for macOS and Linux Users
+
+Users operating macOS or Linux systems can connect via the built-in terminal application:
 
 ```bash
 ssh <your_eRaider_username>@repacss.ttu.edu
 ```
 
-Upon successful login, you will see:
-
-```
-***************************************************************
-            Welcome to the REPACSS HPC Cluster
-
-           ▗▄▄▖ ▗▄▄▄▖▗▄▄▖  ▗▄▖  ▗▄▄▖ ▗▄▄▖ ▗▄▄▖
-           ▐▌ ▐▌▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌   ▐▌
-           ▐▛▀▚▖▐▛▀▀▘▐▛▀▘ ▐▛▀▜▌▐▌    ▝▀▚▖ ▝▀▚▖
-           ▐▌ ▐▌▐▙▄▄▖▐▌   ▐▌ ▐▌▝▚▄▄▖▗▄▄▞▘▗▄▄▞▘
-***************************************************************
-```
+Upon successful authentication, the system will display a standard login banner.
 
 ---
 
-## Troubleshooting
+## Troubleshooting SSH Connections
 
-### "Permission Denied" or "Too Many Authentication Failures"
+### Authentication Errors
 
-Possible causes:
+Users may encounter "Permission denied" or "Too many authentication failures" messages due to the following:
 
-- ❌ You mistyped your eRaider username or password.
-- ❌ You're not connected to the TTU network or VPN.
-- ❌ Your SSH client is trying too many keys. Add `IdentitiesOnly=yes`.
+- Incorrect credentials (eRaider username or password)
+- VPN not active or improperly configured
+- SSH client sending too many private keys
 
-Example:
+In the case of excessive key attempts, add the following SSH option:
 
 ```bash
 ssh -o IdentitiesOnly=yes <your_eRaider_username>@repacss.ttu.edu
@@ -79,31 +76,26 @@ ssh -o IdentitiesOnly=yes <your_eRaider_username>@repacss.ttu.edu
 
 ---
 
-### SSH Host Key Changed Warning
+### Host Key Verification Failed
 
-If you see:
+If you receive a warning that the remote host identification has changed:
 
-```
-WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
-```
-
-Do the following:
-
-1. Open `~/.ssh/known_hosts`
-2. Remove the line associated with `repacss.ttu.edu`
-3. Retry connecting and verify the new host fingerprint if prompted
+1. Open the file `~/.ssh/known_hosts`
+2. Delete the line containing `repacss.ttu.edu`
+3. Reconnect to the system and manually verify the new host fingerprint when prompted
 
 ---
 
-### Still Can't Connect?
+### Additional Assistance
 
-If you've verified VPN, credentials, and SSH setup but still cannot connect, contact:
+If all configuration steps have been completed and you are still unable to establish a connection, contact the system administrators. Be prepared to provide diagnostic output for further review:
 
-- 📧 Email: [repacss-support@ttu.edu](mailto:repacss-support@ttu.edu)
-- 💬 Include terminal output with `-vvv` for verbose SSH logging
+- **Email**: [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu)
+- **Diagnostic Output**: Include the result of running the SSH command with the verbose flag:
+  ```bash
+  ssh -vvv <your_eRaider_username>@repacss.ttu.edu
+  ```
 
 ---
 
-## Coming Soon: SSH Certificate Authority
-
-> 🚧 **Planned Feature:** We are working on adding SSH certificate authority support to streamline and secure SSH connections to REPACSS.
+_Last updated: June 2025_

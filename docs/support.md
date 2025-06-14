@@ -2,11 +2,11 @@
 
 ## Current Support Channels
 
-### 📬 Contact Information
+### Contact Information
 
 - **Email**: repacss.support@ttu.edu  
-- **Office Hours**: Monday–Friday, 9:00 AM – 5:00 PM CST  
-- **Emergency Support**: Available 24/7 via on-call staff rotation
+- **Office Hours**: TBD
+- **Emergency Support**: TBD
 
 ---
 

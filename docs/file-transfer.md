@@ -1,109 +1,66 @@
-# 📂 File Transfer
+# File Transfer with Globus
 
-!!! warning
-    The **Globus Connect** service may be unreliable. Please use one of the SSH-based alternatives below for secure and consistent file transfers.
-
-REPACSS supports file transfers using standard tools available on most systems. These include **SCP**, **rsync**, and **SFTP**. All tools use **SSH** for secure authentication.
+!!! warning "Avoid Direct Transfers via Login Nodes"
+    Please refrain from using `scp`, `sftp`, `rsync`, or direct connections to the login nodes for data transfer. These methods can degrade system performance and are less efficient compared to Globus Connect.
 
 ---
 
-## 📦 SCP (Secure Copy)
+## Overview
 
-SCP is a simple and fast way to copy files between your local machine and REPACSS.
+REPACSS supports high-performance data movement through **Globus Connect**, a robust tool designed to facilitate large-scale file transfers. It provides:
 
-### 🔼 Upload a file
-
-```bash
-scp myfile.txt username@login.repacss.ttu.edu:/mnt/DISCL/home/username/
-```
-
-### 🔽 Download a file
-
-```bash
-scp username@login.repacss.ttu.edu:/mnt/DISCL/home/username/data.csv ./data.csv
-```
-
-!!! tip
-    Use `-r` to copy directories recursively:  
-    `scp -r myfolder/ username@login.repacss.ttu.edu:/mnt/DISCL/home/username/`
+* High-speed, reliable transfers
+* Automatic error detection and retry
+* Multiple parallel streams for faster throughput
+* No impact on login node performance
+* User-friendly web-based interface
 
 ---
 
-## 🔁 Rsync (Recommended for Large Transfers)
+## Setting Up Globus Connect
 
-`rsync` is great for syncing entire folders and resuming interrupted transfers.
+Follow these steps to enable file transfers using Globus Connect Personal:
 
-### 🔼 Upload a directory
+1. **Install Globus Connect Personal** on your local machine:
 
-```bash
-rsync -avh myfolder/ username@login.repacss.ttu.edu:/mnt/DISCL/home/username/myfolder/
-```
+   * [Windows Installation Guide](https://docs.globus.org/how-to/globus-connect-personal-windows/)
+   * [macOS Installation Guide](https://docs.globus.org/how-to/globus-connect-personal-mac/)
+   * [Linux Installation Guide](https://docs.globus.org/how-to/globus-connect-personal-linux/)
 
-### 🔽 Download from REPACSS
+2. **Create a Personal Collection**:
 
-```bash
-rsync -avh username@login.repacss.ttu.edu:/mnt/DISCL/home/username/project/ ./project/
-```
+   * After installation, set up a Globus collection tied to your system.
 
-!!! tip
-    Add `-P` to track progress and allow resuming:
-    ```bash
-    rsync -avhP myfolder/ username@login.repacss.ttu.edu:/mnt/DISCL/home/username/
-    ```
+3. **Access REPACSS Data**:
 
----
+   * Set the endpoint to: `REPACSS`
+   * Navigate to the appropriate storage paths:
 
-## 🖥️ SFTP (Interactive Terminal)
-
-SFTP allows interactive browsing of files on REPACSS.
-
-### Start session:
-
-```bash
-sftp username@login.repacss.ttu.edu
-```
-
-### Common SFTP commands:
-
-```bash
-cd /mnt/DISCL/home/username/
-put myfile.txt     # Upload
-get output.log     # Download
-ls                 # List directory contents
-exit               # Close connection
-```
-
-!!! note
-    Unlike SCP or rsync, SFTP lets you navigate the remote file structure before transferring.
+     * Home: `/home/USERID`
+     * Scratch: `/scratch/USERID`
+     * Work: `/work/USERID`
 
 ---
 
-## 🪟 Windows Users
+## Transferring Data Between Sites
 
-!!! tip
-    Windows 10+ includes `scp`, `sftp`, and `ssh` in PowerShell by default.
+Many academic and research institutions have established Globus endpoints. To transfer data between REPACSS and other sites:
 
-If you prefer graphical interfaces:
+1. Identify the remote institution’s Globus endpoint name.
+2. Use the [Globus Web Interface](https://app.globus.org/file-manager) to configure transfers.
+3. Select the source and destination endpoints:
 
-- **[WinSCP](https://winscp.net)** – supports SCP and SFTP
-- **[FileZilla](https://filezilla-project.org/)** – easy drag-and-drop transfers
-
-Or use **WSL** to access Linux-style CLI tools like `rsync`.
-
----
-
-## 🧭 Tips & Troubleshooting
-
-- Always use your **eRaider username**
-- Use the **TTUnet VPN** before initiating transfers
-- Make sure file paths are correct, especially when uploading to subdirectories
-
-!!! note
-    For large files or many files, prefer `rsync` over `scp` due to its error recovery and syncing capabilities.
+   * **REPACSS Endpoint**: `REPACSS`
+   * **Remote Endpoint**: Enter the name provided by the collaborating site
 
 ---
 
-## 🔗 Related Links
+## Best Practices
 
-- [Connecting to REPACSS](connecting/index.md)
-- [VPN Setup Guide](connecting/vpn.md)
+* Ensure VPN access is active if required by your home network.
+* Always verify file integrity post-transfer.
+* Monitor job completion using the Globus web interface.
+
+---
+
+*Last updated: June 2025*
