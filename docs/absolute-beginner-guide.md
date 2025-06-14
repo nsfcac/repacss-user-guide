@@ -1,56 +1,51 @@
-# Welcome Home: A Beginner’s Guide to Using REPACSS
+# Introduction to REPACSS: A Beginner’s Guide
 
-Welcome to REPACSS! Whether you’re an undergraduate student, a new graduate researcher, or just someone eager to get started with high-performance computing, this guide is for you. Our goal is to walk you through the basics of using the REPACSS cluster — from logging in to running your first job.
+!!! success "About this page"
+    This document introduces the foundational steps for logging in, navigating storage environments, submitting jobs, and utilizing available software on the REPACSS cluster.
 
-To make things easier to understand, we’ll use the analogy of a house. REPACSS is like a shared home. You enter through the front door (logging in), have your own room for small items (your home directory), a few common areas like closets and garages for larger items (project and scratch storage), and a kitchen (compute nodes) where the real work happens.
+Welcome to REPACSS — Remotely-managed Power Aware Computing Systems and Services at Texas Tech University. This guide is designed for new users, including undergraduate students, graduate researchers, and others who are beginning their journey in high-performance computing (HPC). 
 
 ---
 
-## 🔑 Unlocking the Front Door: Logging In
+## Accessing the System
 
-Before you can start working on REPACSS, you need to log in to the system using SSH.
+Before accessing REPACSS resources, users must be connected to TTUnet.
 
-### SSH Login (The Front Door)
+### SSH Login
 
-To log in from your local terminal:
+To initiate a session:
 
 ```bash
-ssh <your_username>@repacss.hpcc.ttu.edu
+ssh <your_username>@repacss.ttu.edu
 ```
 
-If this is your first time connecting, you'll likely be prompted to verify the server's RSA key fingerprint. Type `yes` to continue. You’ll then enter your password and any additional multi-factor authentication code if your account has MFA enabled.
+During first-time access, the system may prompt you to verify the server’s RSA key fingerprint. Confirm by typing `yes`. You will then be required to enter your password.
 
-!!! note 
-    Login nodes are for setup and light work only — like standing in your foyer. Heavy lifting (computation) should always be done on the compute nodes.
-
----
-
-## 🗄 This House Has Closets: Navigating Storage
-
-REPACSS provides different types of storage spaces based on what you’re doing.
-
-| Storage Type  | Location              | Purpose                                |
-|---------------|-----------------------|----------------------------------------|
-| Home          | `/home/$USER`         | Permanent space for small files/scripts |
-| Scratch       | `/scratch/$USER`      | Fast temporary storage during jobs     |
-| Project/Group | `/project/<group>`    | Shared space for team/project data     |
-
-Your home directory is like your room. Keep only essentials here — it’s backed up and secure. Scratch is like the garage: great for big, messy projects in progress, but regularly cleaned out. Project storage is your shared closet with teammates.
-
-!!! warning
-    Files in `/scratch` may be automatically deleted if left inactive for too long. Always back up important work!
+!!! note
+    Login nodes are reserved for light activities such as file management and job preparation. Computational tasks must be executed on compute nodes.
 
 ---
 
-## 🍳 Cooking with Fire: Running Jobs
+## Storage System Overview
 
-Now that you’re inside the house, it’s time to use the kitchen — the compute nodes.
+REPACSS offers multiple storage environments optimized for different use cases:
 
-You can’t just start computing from the login node. Instead, you must write and submit a **job script** to run your program on compute nodes.
+| Storage Type  | Location              | Environment Variable                            |
+|---------------|-----------------------|--------------------------------------------|
+| Home          | `/mnt/GROUPID/home/USERID`   | $HOME |
+| Scratch       | `/mnt/GROUPID/scratch/USERID`| $WORK |
+| Work          | `/mnt/GROUPID/work/USERID`   | $SCRATCH  |
 
-### Example: A Simple Job Script
 
-Create a file called `hello.sh`:
+---
+
+## Submitting Compute Jobs
+
+Users must submit compute jobs through SLURM job scripts. Direct execution of heavy workloads on login nodes is prohibited.
+
+### Example: Simple Job Script
+
+Create a script file named `hello.sh`:
 
 ```bash
 #!/bin/bash
@@ -58,45 +53,41 @@ Create a file called `hello.sh`:
 #SBATCH --output=hello.out
 #SBATCH --time=00:05:00
 #SBATCH --ntasks=1
-#SBATCH --partition=standard
 
 echo "Hello from REPACSS!"
 ```
 
-Submit it with:
+Submit the script using:
 
 ```bash
 sbatch hello.sh
 ```
 
-Check its status with:
+Monitor the job with:
 
 ```bash
 squeue -u $USER
 ```
 
-!!! tip
-    The `--partition` flag selects which group of compute nodes to use. Common options include `standard`, `gpu`, and `debug`.
-
 ---
 
-## 📦 Recipe Book: Software and Modules
+## Software Access and Modules
 
-REPACSS uses a **module system** to manage software packages. Instead of installing everything yourself, just load what you need!
+REPACSS provides software access via the environment module system. This system allows users to load and unload software packages as needed.
 
 ### Common Module Commands
 
 ```bash
-module avail            # See available software
-module load gcc         # Load a module
-module list             # View currently loaded modules
+module avail            # List available software modules
+module load gcc         # Load a specific module
+module list             # View loaded modules
 module unload gcc       # Unload a module
 ```
 
-If your job needs specific software, include the `module load` commands at the top of your job script.
+Users should include required module commands at the beginning of their job scripts.
 
 !!! example
-    To use Python in a job, your script might start with:
+    For example, to load Python in a job script:
 
     ```bash
     module load python
@@ -104,39 +95,37 @@ If your job needs specific software, include the `module load` commands at the t
 
 ---
 
-## 🧠 Helpful Hints and Where to Get Help
+## Support and Resources
 
-Everyone starts somewhere — and nobody knows everything. If you run into trouble:
+If issues arise or assistance is required, users are encouraged to:
 
-- Check this user guide
-- Ask your PI, research group, or lab manager
-- Visit [Support](support.md) to contact the REPACSS team
+- Refer to this user guide
+- Consult with their research advisor or lab administrator
+- Visit the [Support Page](support.md)
 
 !!! tip
-    When asking for help, include error messages and describe what you were trying to do. The more detail, the better!
+    When seeking help, include specific error messages and a description of the attempted task to expedite troubleshooting.
 
 ---
 
-## 🧹 House Rules: Good HPC Citizenship
+## Best Practices
 
-Because REPACSS is a shared resource, there are a few best practices to follow:
+As REPACSS is a shared infrastructure, users are expected to adhere to the following guidelines:
 
-- **Don’t compute on the login node.**
-- **Use scratch for temporary work**, but clean it regularly.
-- **Keep jobs short in the `debug` partition**; use `standard` for production runs.
-- **Be respectful of shared storage**; avoid hoarding large files.
+- Do not run compute-intensive tasks on login nodes
+- Use the scratch directory for temporary data and clean it periodically
 
 ---
 
-## 🏁 Make Yourself at Home
+## Conclusion
 
-Congratulations! You now understand the basics of REPACSS:
+With these steps, new users are now equipped with the foundational knowledge to:
 
-- You’ve logged in
-- Learned the storage layout
-- Loaded software
-- Written and submitted a job
+- Establish a secure login
+- Navigate the storage architecture
+- Utilize the module system
+- Submit and monitor jobs on the cluster
 
-This is just the beginning — explore more detailed topics in the rest of the documentation as you grow comfortable.
+Users are encouraged to explore the extended documentation to deepen their understanding and optimize their use of REPACSS resources.
 
-Happy computing — and welcome to the cluster!
+_Last updated: June, 2025_

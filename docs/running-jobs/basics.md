@@ -1,10 +1,10 @@
-# 🥮 Basics of Running Jobs
+# Basics of Running Jobs
 
-REPACSS uses **Slurm** for cluster/resource management and job scheduling. Slurm is responsible for allocating resources to users, providing a framework for starting, executing and monitoring work on allocated resources, and scheduling work for future execution.
+REPACSS utilizes the **Slurm Workload Manager** for resource allocation and job scheduling across its high-performance computing infrastructure. Slurm manages the assignment of compute resources, oversees execution and monitoring, and enables the scheduling of tasks for future execution.
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 * [Slurm Documentation](https://slurm.schedmd.com/documentation.html)
 * [Slurm Tutorials](https://slurm.schedmd.com/tutorials.html)
@@ -13,76 +13,76 @@ REPACSS uses **Slurm** for cluster/resource management and job scheduling. Slurm
 
 ---
 
-## 🧪 Jobs
+## Job Definition
 
-A **job** is an allocation of resources such as compute nodes assigned to a user for a specific amount of time. Jobs can be **interactive** or **batch** (via script) and may be scheduled for future execution.
+A **job** is defined as an allocation of compute resources granted to a user for a specified duration. Jobs may be executed interactively or as batch processes (via job scripts) and can be scheduled to run at a future time.
 
-!!! tip
-    REPACSS provides example job scripts and templates.
+!!! note
+    REPACSS provides sample job submission scripts and templates for common workloads.
 
-When you log in to REPACSS, you land on a **login node**. Login nodes are meant for preparing jobs (e.g., editing, compiling). **Jobs must run on compute nodes**, and are submitted using Slurm commands.
+Upon accessing REPACSS, users arrive at a **login node**, which is intended for job preparation activities such as file editing or code compilation. **All computational jobs must be submitted to compute nodes** using Slurm commands.
 
-The system supports a variety of workflows including interactive tasks, serial runs, GPU applications, and large-scale parallel computations.
+The platform supports a wide range of workflows including interactive sessions, serial executions, GPU-based applications, and large-scale parallel computations.
 
 ---
 
-## 🚀 Submitting Jobs
+## Submitting Jobs
 
 ### `sbatch`
 
-Used to submit a batch job script:
+Submit a batch script:
 
 ```bash
 $ sbatch my_job.sh
 Submitted batch job 864933
 ```
 
-The script should include `#SBATCH` directives and typically one or more `srun` commands to launch tasks.
+Job scripts should include `#SBATCH` directives and one or more `srun` commands.
 
 ### `salloc`
 
-Request resources for an interactive session:
+Request an interactive session:
 
 ```bash
 $ salloc --nodes=1 --time=01:00:00 --partition=standard
 ```
 
-This opens an interactive shell on a compute node where you can run `srun` manually.
+An interactive shell is initiated on a compute node.
 
 ### `srun`
 
-Launches job steps in real time:
+Execute a job step in real-time:
 
 ```bash
 $ srun -n 4 ./program
 ```
 
-Use inside a job script or interactively to execute code across allocated nodes.
+May be used within job scripts or interactive sessions.
 
 ---
 
-## ⚙️ Commonly Used Options
+## Commonly Used Options
 
 | Option (long)     | Short | Description                               | sbatch/salloc | srun |
 | ----------------- | ----- | ----------------------------------------- | ------------- | ---- |
-| `--time`          | `-t`  | Max walltime                              | ✅             | ❌    |
-| `--nodes`         | `-N`  | Number of compute nodes                   | ✅             | ✅    |
-| `--ntasks`        | `-n`  | Total number of MPI tasks                 | ✅             | ✅    |
-| `--cpus-per-task` | `-c`  | Number of CPU cores per task              | ✅             | ✅    |
-| `--gpus`          | `-G`  | Number of GPUs                            | ✅             | ✅    |
-| `--constraint`    | `-C`  | Node type or hardware constraint          | ✅             | ❌    |
-| `--qos`           | `-q`  | Quality of service                        | ✅             | ❌    |
-| `--account`       | `-A`  | Project account for charging compute time | ✅             | ❌    |
-| `--job-name`      | `-J`  | Name of the job                           | ✅             | ❌    |
+| `--time`          | `-t`  | Maximum wall clock time                   | ✅             | ❌    |
+| `--nodes`         | `-N`  | Number of nodes                           | ✅             | ✅    |
+| `--ntasks`        | `-n`  | Number of parallel tasks (e.g., MPI)      | ✅             | ✅    |
+| `--cpus-per-task` | `-c`  | CPU cores allocated per task              | ✅             | ✅    |
+| `--gpus`          | `-G`  | Number of GPUs requested                  | ✅             | ✅    |
+| `--constraint`    | `-C`  | Specific hardware or node type constraint | ✅             | ❌    |
+| `--qos`           | `-q`  | Quality of Service tier                   | ✅             | ❌    |
+| `--account`       | `-A`  | Project account for usage tracking        | ✅             | ❌    |
+| `--job-name`      | `-J`  | Name assigned to the job                  | ✅             | ❌    |
 
 !!! tip
-    We recommend using the long-form options (`--option=value`) in scripts for readability.
+    It is advisable to use long-form flags (e.g., `--nodes=2`) in scripts for clarity and maintainability.
 
 ---
 
-## 📝 Writing a Job Script
+## Writing a Job Script
 
-Basic format:
+Sample job script:
 
 ```bash
 #!/bin/bash
@@ -97,7 +97,7 @@ module load gcc
 srun -n 4 ./a.out
 ```
 
-Scripts should always include required Slurm options. The values can also be passed on the command line:
+Slurm options may also be specified at the command line:
 
 ```bash
 sbatch -N 2 -p h100 ./job.sh
@@ -105,20 +105,15 @@ sbatch -N 2 -p h100 ./job.sh
 
 ---
 
-## 🤥 Options Inheritance
+## Option Inheritance and Overriding
 
-Slurm options can be declared:
+Slurm options may be declared within the job script via `#SBATCH` or specified directly on the command line. If both are present, command line options take precedence.
 
-* in the job script with `#SBATCH`
-* or on the `sbatch` command line
-
-If both are present, the **command line overrides the script**. Many values will automatically propagate to `srun` via environment variables (e.g., `SLURM_JOB_NUM_NODES`).
-
-However, avoid manual overrides inside scripts unless necessary. Behavior might vary if `ssh` or `manual launch` techniques are used.
+Environment variables such as `SLURM_JOB_NUM_NODES` are automatically populated and propagated to `srun`. Avoid redundant overrides within the script unless necessary. Behavior may vary when using non-Slurm launch mechanisms.
 
 ---
 
-## 🐍 Example Script: Python
+## Sample Python Job Script
 
 ```bash
 #!/bin/bash
@@ -138,18 +133,16 @@ python script.py
 
 ---
 
-## ⚠️ Defaults
+## Default Settings
 
-If not explicitly set, Slurm applies default values:
-
-| Option  | Default         |
+| Option  | Default Value   |
 | ------- | --------------- |
 | nodes   | 1               |
 | time    | 10 minutes      |
-| qos     | `debug`         |
+| qos     | debug           |
 | account | default project |
 
-Set permanent defaults via environment variables:
+Permanent defaults may be configured via environment variables:
 
 ```bash
 export SBATCH_ACCOUNT=m1234
@@ -157,47 +150,47 @@ export SALLOC_ACCOUNT=m1234
 ```
 
 !!! warning
-    Jobs **must specify a `--constraint`** (e.g., `h100`) or they may be rejected.
+    Users must specify a valid `--constraint` (e.g., `h100`). Omission may result in job rejection.
 
 ---
 
-## 🎮 Running GPU Jobs
+## Submitting GPU Jobs
 
-Use `--gpus` or `--gres=gpu:X` to request GPU access:
+To request GPU resources, use the `--gpus` or `--gres` flag:
 
 ```bash
 #SBATCH --gres=gpu:1
 ```
 
-Failure to do so may cause errors such as:
-
-```
-No CUDA-capable device is detected
-```
-
-Always load the necessary modules:
+Ensure required modules such as CUDA are loaded:
 
 ```bash
 module load cuda
 ```
 
+Failure to request GPUs may result in errors such as:
+
+```
+No CUDA-capable device is detected
+```
+
 ---
 
-## 🔍 Monitoring Jobs
+## Job Monitoring
 
-Check status:
+Check job queue status:
 
 ```bash
 squeue -u $USER
 ```
 
-Estimate start time:
+Estimate job start time:
 
 ```bash
 squeue --start -j <job_id>
 ```
 
-Check usage after job completes:
+Review completed job statistics:
 
 ```bash
 sacct -j <job_id>
@@ -205,17 +198,17 @@ sacct -j <job_id>
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
-* Check quotas: `quota -s`
-* Verify all required options are included
-* Confirm partition and constraint match available hardware
-* Load appropriate modules before execution
-* Inspect job output files (`.out`, `.err`) for errors
+* Verify user disk quotas: `quota -s`
+* Ensure job script includes required Slurm options
+* Confirm partition and hardware constraints match available resources
+* Load relevant modules before execution
+* Inspect job output files (`.out`, `.err`) for detailed error messages
 
 ---
 
-## 📖 Learn More
+## Additional Documentation
 
 * [Job Examples](examples.md)
 * [Monitoring Jobs](monitoring.md)

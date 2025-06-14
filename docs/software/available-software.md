@@ -1,55 +1,105 @@
-# 💻 Available Software
+# Available Software on REPACSS
 
-REPACSS provides a wide range of software environments for computational research and education. These include optimized compilers, mathematical libraries, domain-specific tools, and GPU-accelerated frameworks.
-
-> ℹ️ Most software is accessed using the environment [module system](module-system.md).
+This document provides a formal summary of software environments currently available on the REPACSS high-performance computing system. Software is managed and accessed using the **environment module framework**, which allows users to dynamically configure their shell environments to access compilers, libraries, and applications relevant to their research or instructional activities.
 
 ---
 
-## 🔧 Compilers
+## Software Module Locations
 
-The following compilers are available on REPACSS:
+Software modules are organized within predefined repository paths. The following modules are currently available for loading and execution:
 
-* **GCC** 12.2.0 – General-purpose open-source compiler
-* **Intel OneAPI** 2023.0 – Optimized for Intel CPUs and vector operations
-* **NVIDIA HPC SDK** 23.1 – High-performance compiler suite for NVIDIA GPU programming
+### `/opt/apps/nfs/modules/zen4/rocky9.4/openmpi/4.1.6-vhun5qt/Core`
 
----
+- `fftw/3.3.10`  
+  *Fast Fourier Transform library used in signal and image processing applications.*
+sss
+- `hdf5/1.10.11`  
+  *Hierarchical Data Format library for managing large and complex data collections.*
 
-## 📚 Scientific Libraries
+### `/opt/apps/nfs/modules/zen4/rocky9.4/Core`
 
-Libraries supporting scientific computing and high-performance simulations:
+- `gcc/14.2.0`   
+  *GNU Compiler Collection supporting C, C++, and Fortran languages.*
 
-* **OpenMPI** 4.1.5 – Message Passing Interface for parallel jobs
-* **CUDA** 12.0 – NVIDIA’s GPU computing toolkit
-* **BLAS / LAPACK** – Linear algebra libraries
-* **FFTW** – Fast Fourier Transforms in one or more dimensions
-* **HDF5** – Hierarchical data format for large datasets
-* **ScaLAPACK** – Distributed memory linear algebra
-* **NetCDF** – Scientific data formats for array-oriented data
+- `openmpi/4.1.6`   
+  *High-performance implementation of the Message Passing Interface (MPI) standard.*
 
----
-
-## 🧪 Applications
-
-Commonly used applications and environments for simulation, data analysis, and AI workflows:
-
-* **Python** 3.11 (via Miniforge) – Versatile scripting language for scientific work
-
-  * Install packages via `conda` or `pip` (see [Python Environment Setup](python.md))
-* **R** 4.3.0 – Statistical computing and visualization
-* **TensorFlow**, **PyTorch** – GPU-accelerated machine learning frameworks
-* **GROMACS**, **LAMMPS**, **Quantum ESPRESSO** – Molecular dynamics and quantum chemistry (check availability)
+!!! note 
+    The `(L)` designation indicates that the module is currently loaded in the user’s active environment.
 
 ---
 
-## 📦 Software Access
+## Guidance for Module Usage
 
-To load available software, use the module system:
+Users are advised to utilize the following commands for listing and managing software modules:
+
+### Display All Available Modules
 
 ```bash
-module avail       # Show available software modules
-module load gcc/12.2.0
+module avail
 ```
 
-See the [Module System](module-system.md) page for more guidance.
+### Display Only Default Modules
+
+In the case of an extensive list, users may restrict output to default modules:
+
+```bash
+module --default avail
+# or
+ml -d av
+```
+
+### View Module Categories and Quantities
+
+To obtain a summary overview of available module categories and counts:
+
+```bash
+module overview
+# or
+ml ov
+```
+
+### Discover All Installed Modules and Extensions
+
+To enumerate all possible software packages and extensions, regardless of default visibility:
+
+```bash
+module spider
+```
+
+---
+
+## Loading Software Modules
+
+To access a software environment, load the corresponding module. For example:
+
+```bash
+module load gcc/14.2.0
+```
+
+To verify currently loaded modules:
+
+```bash
+module list
+```
+
+To unload a module:
+
+```bash
+module unload <module_name>
+```
+
+---
+
+## Additional Support and Documentation
+
+Users seeking more detailed instructions for using the module system are encouraged to consult the [Module System User Guide](module-system.md).
+
+If software needed for your research or coursework is not listed among available modules, you may submit a request to the REPACSS support team for consideration.
+
+For further assistance, please contact:
+
+```
+REPACSS System Administration
+repacss.support@ttu.edu
+```

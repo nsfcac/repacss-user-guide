@@ -1,4 +1,4 @@
-# 🖥️ System Status
+# System Status
 
 !!! warning
     This page is under development. Real-time system status and incident reporting features will be added soon.

@@ -1,13 +1,13 @@
 # Monitoring Jobs
 
 !!! note
-    Avoid running multiple instances of `watch squeue` or `watch sqs`. This can overload the scheduler, which is a shared system resource. If you must use watch, do `watch -n 60` and stop the process when you're done.
+    Avoid running multiple instances of `watch squeue` or `watch sqs`. This can overload the scheduler, which is a shared system resource. If you must use watch, use `watch -n 60` and stop the process when finished.
 
 ---
 
-## 🔍 Using `squeue`
+## Using `squeue`
 
-`squeue` shows job queue information directly from Slurm. It's useful for checking job status like `PENDING`, `RUNNING`, or `COMPLETED`.
+The `squeue` command provides real-time job queue information directly from the Slurm scheduler. It is helpful for checking the current state of jobs, such as `PENDING`, `RUNNING`, or `COMPLETED`.
 
 ```bash
 squeue --me          # Shows your jobs
@@ -31,9 +31,9 @@ squeue --steps 1001.0
 
 ---
 
-## 📋 Using `sacct`
+## Using `sacct`
 
-`sacct` displays accounting information for active and completed jobs.
+The `sacct` command retrieves accounting information about active and completed jobs.
 
 Basic usage:
 
@@ -41,25 +41,25 @@ Basic usage:
 sacct
 ```
 
-Format output by fields:
+Customize output by specifying fields:
 
 ```bash
 sacct --format=JobID,JobName,State,Start,Elapsed
 ```
 
-Filter by date range:
+Filter jobs by date:
 
 ```bash
 sacct -S 2024-06-01 -E 2024-06-13
 ```
 
-Show failed jobs:
+Display only failed jobs:
 
 ```bash
 sacct -X --format=User,JobName,State -s F --start=2024-06-01 --end=now
 ```
 
-Filter by job ID:
+Filter by specific job IDs:
 
 ```bash
 sacct -j 123456,123457
@@ -67,9 +67,9 @@ sacct -j 123456,123457
 
 ---
 
-## 📈 Using `sstat`
+## Using `sstat`
 
-`sstat` reports resource usage for **running** jobs:
+Use `sstat` to report resource usage for jobs that are currently running:
 
 ```bash
 sstat -j 123456 -o JobID,MaxRSS
@@ -77,22 +77,22 @@ sstat -j 123456 -o JobID,MaxRSS
 
 ---
 
-## 📊 Using `jobstats`
+## Using `jobstats`
 
-`jobstats` (Python-based tool) gives a summary of job activity from `sacct`, `squeue`, and `sreport`.
+`jobstats` is a Python-based reporting tool that summarizes job activity using data from `sacct`, `squeue`, and `sreport`.
 
 ```bash
 module load python
 jobstats
 ```
 
-Example:
+Example usage:
 
 ```bash
 jobstats --user elvis --start 2024-06-01 --end 2024-06-13
 ```
 
-To view options:
+To display all options:
 
 ```bash
 jobstats --help
@@ -100,9 +100,9 @@ jobstats --help
 
 ---
 
-## 📮 Email Notifications
+## Email Notifications
 
-Add these lines to your job script to get notified:
+To receive notifications when your job begins, ends, or fails, add the following directives to your Slurm job script:
 
 ```bash
 #SBATCH --mail-type=begin,end,fail
@@ -111,11 +111,11 @@ Add these lines to your job script to get notified:
 
 ---
 
-## 🧠 Logging into Compute Nodes
+## Accessing Compute Nodes During Job Execution
 
-To SSH into a node while your job is running:
+To securely access a compute node while your job is running:
 
-1. Find your job's nodes:
+1. Determine the node list assigned to your job:
 
    ```bash
    scontrol show job <jobid> | grep -oP 'NodeList=nid(\[.+\]|.+)'
@@ -127,38 +127,38 @@ To SSH into a node while your job is running:
    ssh nid000123
    ```
 
-To get the head node:
+To identify the batch host:
 
 ```bash
 scontrol show job <jobid> | grep -oP 'BatchHost=\K\w+'
 ```
 
 !!! note
-    SSH access only works **while the job is running**.
+    You can only SSH into compute nodes while your job is actively running.
 
 ---
 
-## 🧹 Updating or Canceling Jobs
+## Modifying or Canceling Jobs
 
-Cancel job:
+To cancel a job:
 
 ```bash
 scancel 123456
 ```
 
-Cancel multiple jobs:
+To cancel multiple jobs:
 
 ```bash
 scancel 123456 123457
 ```
 
-Cancel all your jobs:
+To cancel all jobs submitted by your user:
 
 ```bash
 scancel -u $USER
 ```
 
-Update job time:
+To update a job’s time limit:
 
 ```bash
 scontrol update jobid=123456 timelimit=02:00:00
@@ -166,9 +166,9 @@ scontrol update jobid=123456 timelimit=02:00:00
 
 ---
 
-## ⛔ Holding or Releasing Jobs
+## Holding, Releasing, and Requeuing Jobs
 
-Hold a job (pause scheduling):
+Place a job on hold (prevent scheduling):
 
 ```bash
 scontrol hold 123456
@@ -180,7 +180,7 @@ Release a held job:
 scontrol release 123456
 ```
 
-Requeue (rerun) a job:
+Requeue a job (e.g., after failure or timeout):
 
 ```bash
 scontrol requeue 123456

@@ -1,10 +1,10 @@
-# 📎 REPACSS Command Cheatsheet
+# REPACSS Command Cheatsheet
 
 Quick reference for commonly used commands and options on REPACSS.
 
 ---
 
-## 🔧 Job Submission
+## Job Submission
 
 ```bash
 sbatch job.sh                    # Submit a batch job
@@ -14,7 +14,7 @@ srun ./program                   # Run a job step
 
 ---
 
-## 📡 Monitoring Jobs
+## Monitoring Jobs
 
 ```bash
 squeue -u $USER                  # Show your jobs
@@ -24,7 +24,7 @@ scontrol show job <jobid>       # Job details
 
 ---
 
-## 🚨 Cancel Jobs
+## Cancel Jobs
 
 ```bash
 scancel <jobid>                  # Cancel specific job
@@ -33,7 +33,7 @@ scancel -u $USER                 # Cancel all your jobs
 
 ---
 
-## 📦 Modules
+## Modules
 
 ```bash
 module avail                     # List available modules
@@ -44,7 +44,7 @@ module unload gcc/12.2.0         # Unload module
 
 ---
 
-## 🧰 Software Setup
+## Software Setup
 
 ```bash
 conda activate myenv             # Activate Python environment
@@ -54,7 +54,7 @@ spack install hdf5               # Install with Spack
 
 ---
 
-## 📁 File Management
+## File Management
 
 ```bash
 ls -lh                           # List files with size
@@ -64,7 +64,7 @@ df -h                            # Check disk usage
 
 ---
 
-## 🧪 Environment Variables
+## Environment Variables
 
 ```bash
 export OMP_NUM_THREADS=8         # Set OpenMP threads
@@ -73,7 +73,7 @@ export SBATCH_ACCOUNT=m1234      # Set default Slurm account
 
 ---
 
-## 📈 Performance
+## Performance
 
 ```bash
 time ./program                   # Quick runtime check
@@ -82,7 +82,7 @@ perf stat ./program              # Performance statistics (Linux)
 
 ---
 
-## 🧾 Help and Docs
+## Help and Docs
 
 ```bash
 man sbatch                       # Manual for sbatch
