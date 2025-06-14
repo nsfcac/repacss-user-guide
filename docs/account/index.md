@@ -21,7 +21,7 @@ If your password is forgotten or compromised, you must contact Texas Tech Univer
 
 ## Support and Issue Resolution
 
-For assistance with account access, credential issues, or related technical matters, contact the REPACSS Support Team via email at [repacss-support@ttu.edu](mailto:repacss-support@ttu.edu). Include your eRaider ID and a detailed description of the issue to expedite resolution.
+For assistance with account access, credential issues, or related technical matters, contact the REPACSS Support Team via email at [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu). Include your eRaider ID and a detailed description of the issue to expedite resolution.
 
 ---
 
