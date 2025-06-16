@@ -57,7 +57,7 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 ## Optimization and Performance Engineering
 
 <!-- - [Profiling and Analysis Tools](performance/profiling-tools.md)   -->
-- [Compiler Optimization Strategies](performance/compiler-flags.md)  
+- [Compiler Flags](performance/compiler-flags.md)  
 <!-- - [Scalability Testing and Benchmarking](performance/scaling-tests.md) -->
 
 ---
@@ -66,7 +66,7 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 
 - [Technical Glossary](reference/glossary.md)  
 - [Error Message Catalog](reference/common-errors.md)  
-- [Printable HPC Command Reference Sheet](reference/cheatsheet.md)
+- [HPC Command Reference Sheet](reference/cheatsheet.md)
 
 ---
 
