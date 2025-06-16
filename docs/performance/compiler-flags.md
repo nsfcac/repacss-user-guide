@@ -1,92 +1,46 @@
 # Compiler Flags
 
 !!! warning
-    This page is currently under development. The following recommendations serve as a preliminary guide. Users are advised to verify the selected compiler options, version compatibility, and resulting performance gains through comprehensive testing.
+    This page is currently under development. The following recommendations serve as a preliminary guide. Users are strongly encouraged to validate compiler flags against their own applications through testing and performance benchmarking.
 
-Appropriate selection of compiler flags can significantly influence the computational performance and efficiency of applications executed on the REPACSS high-performance computing system. The following sections outline recommended practices and commonly used compiler options for different compiler toolchains available on REPACSS.
+Optimizing compilation flags is essential to maximizing application performance on the REPACSS high-performance computing system. The recommended flags below are tailored for the compiler toolchains available via REPACSS environment modules.
 
----
 
-## General Guidelines
+## General Optimization Guidelines
 
-- Utilize optimization flags such as `-O2` or `-O3` to enhance application performance.
-- Leverage architecture-specific options to tailor compiled code for REPACSS compute node hardware.
-- Conduct benchmarking or profiling before and after applying new flags to quantitatively assess the performance impact.
+- Use `-O2` or `-O3` for performance optimization.
+- Enable vectorization and loop unrolling where beneficial.
+- Use architecture-specific flags (e.g., `-march=native`) to generate code optimized for REPACSS hardware.
+- Profile and benchmark performance before and after applying new flags.
+- Use `-fopenmp` to enable multithreading where applicable.
 
----
+## GCC (Version 14.2.0)
 
-## GCC (Version 12.2.0)
-
-Recommended compiler flags for GCC:
+**Recommended Flags:**
 
 ```bash
 -O3 -march=native -funroll-loops -ffast-math -fopenmp
 ```
 
-Flag descriptions:
+**Descriptions:**
 
-- `-O3` activates advanced optimization strategies.
-- `-march=native` targets the local processor’s instruction set architecture.
-- `-funroll-loops` may improve execution speed for loop-intensive code.
-- `-fopenmp` enables support for OpenMP-based parallelism.
+- `-O3`: Enables aggressive optimization.
+- `-march=native`: Targets the specific microarchitecture of the compute node.
+- `-funroll-loops`: Enhances performance for loop-heavy code.
+- `-ffast-math`: Permits faster floating-point operations (may break strict IEEE compliance).
+- `-fopenmp`: Enables OpenMP multithreading.
 
----
+## Example Compilation Command
 
-## Intel OneAPI (Version 2023.0)
-
-Recommended compiler flags for Intel OneAPI compilers:
-
-```bash
--O3 -xHost -qopenmp -fp-model fast=2
-```
-
-Flag descriptions:
-
-- `-xHost` instructs the compiler to optimize for the host system’s maximum instruction set.
-- `-qopenmp` enables multi-threaded parallelization using OpenMP.
-- `-fp-model fast=2` allows the compiler to relax strict IEEE-754 compliance for faster floating-point operations.
-
----
-
-## NVIDIA HPC SDK (Version 23.1)
-
-Recommended compiler flags for NVIDIA's HPC SDK, targeting GPU acceleration:
-
-```bash
--O3 -mp=gpu -gpu=cc90,fastmath -Minfo=accel
-```
-
-Flag descriptions:
-
-- `-mp=gpu` enables GPU acceleration using OpenACC.
-- `-gpu=cc90,fastmath` configures the compiler for CUDA Compute Capability 9.0 (H100 architecture) and enables fast math optimizations.
-- `-Minfo=accel` displays compiler feedback on which sections of code were accelerated.
-
----
-
-## Example Usage
-
-To compile sample applications using various compilers:
-
-GCC Example:
+**GCC Example:**
 
 ```bash
 gcc -O3 -march=native -fopenmp mycode.c -o mycode
 ```
 
-Intel OneAPI Example:
+!!! note
+    For best results, benchmark with realistic datasets and verify correctness after applying aggressive optimizations.
 
-```bash
-icx -O3 -xHost -qopenmp mycode.c -o mycode
-```
-
-NVIDIA HPC SDK Example:
-
-```bash
-nvc -O3 -mp=gpu mycode.c -o mycode
-```
-
----
 
 <!-- ## Additional Resources
 
