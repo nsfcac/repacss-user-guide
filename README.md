@@ -93,7 +93,7 @@ We welcome contributions! If you’d like to:
 - Add a new section
 - Improve examples or formatting
 
-Feel free to [open a pull request](https://github.com/TalkingJupiter/repacss-user-guide/pulls) or file an issue.
+Feel free to [open a pull request](https://github.com/nsfcac/repacss-user-guide/pulls) or file an issue.
 
 ---
 
