@@ -68,7 +68,6 @@ REPACSS includes nine storage nodes that collectively offer approximately 2.94 P
 ## Network Architecture
 
 The network backbone of REPACSS supports high-throughput and low-latency communication among compute and storage nodes.
-
 * **Switching Infrastructure**: Dell PowerSwitch S5248-ON and S5232-ON
 * **Storage Interconnect**: InfiniBand network
 * **Features**:
