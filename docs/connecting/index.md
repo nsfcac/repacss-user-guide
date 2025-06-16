@@ -27,7 +27,8 @@ Access to REPACSS is restricted to users connected to the TTU internal network. 
 
 For assistance configuring VPN access, refer to the following guide:
 
-- [TTU GlobalProtect VPN Setup Guide](https://www.askit.ttu.edu/vpn)
+- [TTU GlobalProtect VPN Setup Guide](mfa.md)
+- [For further assistance please contact **IT Help Central**](https://www.askit.ttu.edu/vpn)
 
 !!! warning "VPN Required"
     All off-campus connections must be tunneled through TTU’s GlobalProtect VPN. Local wireless connections (e.g., TTUnet in some buildings) may also require VPN due to firewall restrictions.
