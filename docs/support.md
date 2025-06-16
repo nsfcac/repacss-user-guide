@@ -1,4 +1,4 @@
-# 📞 Support
+# Support
 
 ## Current Support Channels
 
@@ -12,7 +12,7 @@
 
 ## Getting Help
 
-### 📖 Use the Documentation First
+### Use the Documentation First
 
 Start by reviewing available documentation:
 
@@ -23,13 +23,13 @@ Many questions are already answered in the guides, saving you time and allowing 
 
 ---
 
-### ❓ Check the FAQ
+### Check the FAQ
 
 If you can’t find what you need in the documentation, check the [FAQ](faq.md). It contains quick solutions to commonly reported issues and system behaviors that may seem unclear.
 
 ---
 
-### 🛠 Reaching Out to Support
+### Reaching Out to Support
 
 If you still need assistance:
 
