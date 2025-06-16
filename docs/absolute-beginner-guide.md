@@ -1,6 +1,6 @@
 # Introduction to REPACSS: A Beginner’s Guide
 
-!!! success "About this page"
+!!! info "About this page"
     This document introduces the foundational steps for logging in, navigating storage environments, submitting jobs, and utilizing available software on the REPACSS cluster.
 
 Welcome to REPACSS — Remotely-managed Power Aware Computing Systems and Services at Texas Tech University. This guide is designed for new users, including undergraduate students, graduate researchers, and others who are beginning their journey in high-performance computing (HPC). 

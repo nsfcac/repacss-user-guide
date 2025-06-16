@@ -46,7 +46,6 @@ The more detail you provide, the faster we can help resolve your issue.
 
 ## Related Resources
 
-
 - [FAQ](faq.md)
 - [Contact](support.md)
 <!-- - [System Status](status.md) -->

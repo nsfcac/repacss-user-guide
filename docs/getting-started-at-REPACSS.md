@@ -1,6 +1,6 @@
 # Getting Started at REPACSS
 
-!!! success "About this page"
+!!! info "About this page"
     This page will guide you through the basics of accessing, connecting to, and beginning work on the REPACSS High-Performance Computing (HPC) cluster.
 
 Welcome to REPACSS — Texas Tech University's research and educational platform for advanced computing support services. This guide is tailored to new users who are preparing to run jobs on the cluster for the first time.
@@ -9,7 +9,7 @@ Welcome to REPACSS — Texas Tech University's research and educational platform
 
 ## Account Access
 
-To utilize REPACSS resources, users must have a valid TTU or ACCESS account.
+To utilize REPACSS resources, users must have a valid TTU.
 
 ### TTU Users
 
@@ -17,10 +17,10 @@ To utilize REPACSS resources, users must have a valid TTU or ACCESS account.
 - A valid institutional email address (ending in `ttu.edu`) is required.
 - Provisioning typically takes 2–3 business days after the request is approved.
 
-### ACCESS Users
+<!-- ### ACCESS Users
 
 !!! warning
-    ACCESS users are currently unable to log in to the REPACSS system. This capability is under development.
+    ACCESS users are currently unable to log in to the REPACSS system. This capability is under development. -->
 
 ---
 
@@ -90,7 +90,7 @@ REPACSS employs the SLURM workload manager to schedule jobs.
 #SBATCH --ntasks=1
 #SBATCH --time=00:05:00
 
-hostname
+srun ./my_program
 ```
 
 Submit the job with:
@@ -117,7 +117,7 @@ Resources:
 If assistance is required:
 
 - Visit the [Support Page](support.md)
-- Join the REPACSS user Slack workspace (coming soon)
+<!-- - Join the REPACSS user Slack workspace (coming soon) -->
 
 ---
 
