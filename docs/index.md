@@ -56,9 +56,9 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 
 ## Optimization and Performance Engineering
 
-- [Profiling and Analysis Tools](performance/profiling-tools.md)  
+<!-- - [Profiling and Analysis Tools](performance/profiling-tools.md)   -->
 - [Compiler Optimization Strategies](performance/compiler-flags.md)  
-- [Scalability Testing and Benchmarking](performance/scaling-tests.md)
+<!-- - [Scalability Testing and Benchmarking](performance/scaling-tests.md) -->
 
 ---
 
@@ -70,10 +70,10 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 
 ---
 
-## System Status and User Support
+## <!--System Status and-->User Support
 
-- [Live System Status](status.md)  
-  View real-time information regarding system availability, node load, and queue performance.
+<!-- - [Live System Status](status.md)  
+  View real-time information regarding system availability, node load, and queue performance. -->
 
 - [Technical Support and Contact Information](support.md)  
   Resources for user assistance, including help desk contact methods and ticket submission.

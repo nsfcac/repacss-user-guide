@@ -49,4 +49,4 @@ The more detail you provide, the faster we can help resolve your issue.
 
 - [FAQ](faq.md)
 - [Contact](support.md)
-- [System Status](status.md)
+<!-- - [System Status](status.md) -->

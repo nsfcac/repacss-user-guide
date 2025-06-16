@@ -88,9 +88,9 @@ nvc -O3 -mp=gpu mycode.c -o mycode
 
 ---
 
-## Additional Resources
+<!-- ## Additional Resources
 
 After compilation, it is recommended to consult the following documentation pages to evaluate application performance:
 
 - [Profiling Tools](profiling-tools.md)
-- [Scaling Tests](scaling-tests.md)
+- [Scaling Tests](scaling-tests.md) -->
