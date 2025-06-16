@@ -74,7 +74,8 @@ Prior to installing the VPN client, users must formally request access:
    vpn.ttu.edu
    ```
 3. Authenticate using TTU eRaider credentials and Microsoft MFA
-4. Confirm connection status in the application interface
+4. Confirm connection status in the application interface   
+
 *For more info please see [IT Help Central's official document](https://www.askit.ttu.edu/vpn).*
 
 ---
@@ -108,6 +109,7 @@ sudo dpkg -i GlobalProtect_<version>_amd64.deb
 ```bash
 sudo rpm -i GlobalProtect_<version>_x86_64.rpm
 ```
+
 *For more info please see [IT Help Central's official document](https://www.askit.ttu.edu/vpn).*
 
 ### VPN Connection Procedure
