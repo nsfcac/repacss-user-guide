@@ -1,6 +1,6 @@
 # REPACSS Technical Documentation
 
-The REmotely-managed Power Aware Computing Systems and Services (REPACSS) is a high-performance computing (HPC) and data infrastructure initiative established to support the research mission of Texas Tech University (TTU). REPACSS provides scalable computational resources, secure data storage, and user support to facilitate advanced scientific and academic research. This documentation serves as the official reference for all users seeking to utilize REPACSS systems in accordance with established operational standards, security policies, and best practices.
+The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a high-performance computing (HPC) and data infrastructure initiative established to support the research mission of Texas Tech University (TTU). REPACSS provides scalable computational resources, secure data storage, and user support to facilitate advanced scientific and academic research. This documentation serves as the official reference for all users seeking to utilize REPACSS systems in accordance with established operational standards, security policies, and best practices.
 
 ---
 
