@@ -100,6 +100,6 @@ If software needed for your research or coursework is not listed among available
 For further assistance, please contact:
 
 ```
-REPACSS System Administration
+REPACSS Support
 repacss.support@ttu.edu
 ```
