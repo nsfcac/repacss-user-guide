@@ -61,7 +61,7 @@ REPACSS includes nine storage nodes that collectively offer approximately 2.94 P
 
 * **Home**: Persistent personal storage for user scripts and configuration files.
 * **Scratch**: High-performance temporary storage space subject to periodic purging.
-* **Archive**: Long-term storage for research outputs and finalized datasets.
+* **Work**: Long-term storage for research outputs and work purposes.
 
 ---
 
