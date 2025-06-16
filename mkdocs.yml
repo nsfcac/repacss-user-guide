@@ -46,9 +46,9 @@ nav:
 
   - Understanding Our Systems:
       - Architecture: understanding/repacss-system/architecture.md
-      - Timeline: understanding/repacss-system/timeline.md
-      - Known Issues: understanding/repacss-system/known-issues.md
-      - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
+      # - Timeline: understanding/repacss-system/timeline.md
+      # - Known Issues: understanding/repacss-system/known-issues.md
+      # - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
       - File System:
         - File Transfer: file-transfer.md
         - File Permissions: unix-permissions.md 
@@ -81,15 +81,15 @@ nav:
 
   - Performance:
       - Compiler Flags: performance/compiler-flags.md
-      - Profiling Tools: performance/profiling-tools.md
-      - Scaling Tests: performance/scaling-tests.md
+      # - Profiling Tools: performance/profiling-tools.md
+      # - Scaling Tests: performance/scaling-tests.md
 
   - Reference:
       - Glossary: reference/glossary.md
       - Cheatsheet: reference/cheatsheet.md
       - Common Errors: reference/common-errors.md
       
-  - System Status: status.md
+  # - System Status: status.md
   - Support:
     - Contact Us: support.md
     - FAQ: faq.md
