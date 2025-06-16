@@ -26,7 +26,7 @@ REPACSS supports a broad range of academic and research initiatives at TTU. Thes
 
 - Graduate and undergraduate research programs
 - Laboratory coursework in engineering and computer science
-- Instruction in parallel computing, simulation, and data-intensive methodologies
+- Instruction in parallel computing, simulation, data-intensive methodologies, and machine learning (ML)
 - Faculty-directed technical workshops and high-performance computing bootcamps
 
 ---
