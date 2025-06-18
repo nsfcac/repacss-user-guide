@@ -28,17 +28,17 @@ interactive -c 8 -p h100
 When conducting work that requires access to graphical processing units (GPUs), it is mandatory to specify the required number of GPUs using the `--gpus` option:
 
 ```bash
-salloc --nodes=1 --gpus=4 --time=01:00:00 --partition=h100
+salloc --nodes=1 --gres=gpu:nvidia_h100_nvl:1 --time=01:00:00 --partition=h100
 ```
 
 Within the session, execute applications using the `srun` command with appropriate GPU specifications:
 
 ```bash
-srun --gpus=4 ./my_gpu_program
+srun --gres=gpu:nvidia_h100_nvl:4 ./my_gpu_program
 ```
 
 !!! warning
-    If GPU resources are not explicitly requested with the `--gpus` flag, GPU-based applications such as those relying on CUDA may return an error such as:
+    If GPU resources are not explicitly requested with the `--gres` flag, GPU-based applications such as those relying on CUDA may return an error such as:
 
 ```
 no CUDA-capable device is detected
