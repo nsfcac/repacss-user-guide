@@ -125,27 +125,27 @@ sbatch submit_python_job.sh
 ```
 
 ### GPU Job Script
-!!! warning
-    We are currently trying to make the cuda module available to all of out users. Until it's available please use cuda from your conda enviroment.
+!!! warning  
+    We are currently working to make the CUDA module available system-wide for all users. In the meantime, please use CUDA via a Conda environment as described below.
 
-1. Create your environment with
+1. Create and activate a new Conda environment
 ```bash
 conda create --name cuda-env python=3.10 -y
 conda activate cuda-env
 ```
 
-2. Install CUDA Toolkit + `nvcc` 
+2. Install the CUDA Toolkit with nvcc support
 ```bash
 conda install -c nvidia cuda-toolkit=12.9
 ```
 
-3. Install Compatible GCC ToolChain
+3. Install a compatible GCC toolchain (GCC 11)
 ```bash
 conda install -c conda-forge gxx_linux-64=11
 ```
 
-4. Create your example `gpu_program.cu` file
-```bash
+4. Create a sample CUDA program: gpu_program.cu
+```cpp
 #include <stdio.h>
 #include <cuda_runtime.h>
 
@@ -174,7 +174,7 @@ int main() {
 }
 ```
 
-5. Compile your program
+5. Compile the CUDA program for NVIDIA H100 GPUs (sm_90)
 ```bash
 nvcc -arch=sm_90 \
   -ccbin "$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++" \
@@ -183,7 +183,7 @@ nvcc -arch=sm_90 \
   -o gpu_program gpu_program.cu
 ```
 
-6. Create `gpu_job.slurm` Script
+6. Create the SLURM job script: `gpu_job.slurm`
 ```bash
 #!/bin/bash
 #SBATCH --job-name=gpu_hello
@@ -200,10 +200,12 @@ conda activate cuda-env
 
 ./gpu_program
 ```
-Then submit with
+
+7. Submit the job to SLURM
 ```bash
 sbatch gpu_job.slurm
 ```
+
 
 
 <!-- 1. Create a file named `gpu_program.cu` with the following basic CUDA code: -->
