@@ -2,6 +2,9 @@
 
 This section provides official guidance on initiating interactive sessions on the REPACSS high-performance computing system. Interactive sessions allow users to request computational resources in real time and execute commands directly on compute nodes. This method is particularly suitable for software testing, debugging, exploratory tasks, and graphical application workflows.
 
+!!! warning
+    Interactive sessions should be used exclusively for development and debugging purposes. Once your job is ready for full execution, please submit it using a SLURM batch job.
+
 ---
 
 ## Requesting Interactive Resources
@@ -67,6 +70,9 @@ By default, interactive job requests will time out if resource allocation is not
 # Wait up to 600 seconds (10 minutes) for resources
 salloc --nodes=1 --time=01:00:00 --partition=zen4 --immediate=600
 ```
+
+!!! note
+    If your connection is lost, the interactive session will be terminated and any unsaved results may be lost.
 
 ---
 

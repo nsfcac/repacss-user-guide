@@ -133,26 +133,6 @@ python script.py
 
 ---
 
-## Default Settings
-
-| Option  | Default Value   |
-| ------- | --------------- |
-| nodes   | 1               |
-| time    | 10 minutes      |
-| qos     | debug           |
-| account | default project |
-
-Permanent defaults may be configured via environment variables:
-
-```bash
-export SBATCH_ACCOUNT=m1234
-export SALLOC_ACCOUNT=m1234
-```
-
-!!! warning
-    Users must specify a valid `--constraint` (e.g., `h100`). Omission may result in job rejection.
-
----
 
 ## Submitting GPU Jobs
 

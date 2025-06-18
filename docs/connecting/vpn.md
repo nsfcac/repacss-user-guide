@@ -139,6 +139,19 @@ Status: Connected
 
 ---
 
+## Disconnecting from VPN
+
+**Windows/macOS:**  
+Click the GlobalProtect icon and select **Disconnect**
+
+**Linux:**
+
+```bash
+globalprotect disconnect
+```
+
+---
+
 ## Troubleshooting
 
 ### Authentication Issues
@@ -158,19 +171,6 @@ Status: Connected
 - Ensure administrative privileges are granted
 - Validate that system requirements are met
 - Re-download installer from official TTU source
-
----
-
-## Disconnecting from VPN
-
-**Windows/macOS:**  
-Click the GlobalProtect icon and select **Disconnect**
-
-**Linux:**
-
-```bash
-globalprotect disconnect
-```
 
 ---
 

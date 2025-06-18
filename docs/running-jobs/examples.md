@@ -22,7 +22,7 @@ Jobs on REPACSS can be submitted in two main forms:
 * **Interactive Jobs**: Real-time sessions for testing and debugging.
 
   ```bash
-  salloc -c 8 -p h100
+  interactive -c 8 -p h100
   ```
 
 * **Batch Jobs**: Scheduled jobs submitted via script.
@@ -37,8 +37,29 @@ Jobs on REPACSS can be submitted in two main forms:
 
 ## Script Templates
 
-### Basic Job Script
+### Basic Job Script with C
 
+1. Create a file named `my_program.c` with the following content:
+```bash
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    printf("SLURM job started.\n");
+    printf("Sleeping for 60 seconds to simulate work...\n");
+    sleep(60);
+    printf("Job complete. Goodbye!\n");
+    return 0;
+}
+```
+
+2. Load the GCC module and compile the program:
+```bash
+module load gcc/14.2.0
+gcc my_program.c -o my_program
+```
+
+3. Create a file named `submit_job.sh` with the following contents:
 ```bash
 #!/bin/bash
 #SBATCH --job-name=test
@@ -51,14 +72,31 @@ Jobs on REPACSS can be submitted in two main forms:
 #SBATCH --mem=4G
 
 # Load modules
-module load
+module load gcc/14.2.0
 
 # Run program
 ./my_program
 ```
 
-### Python Job Script
+4. Make the script executable and submit it using `sbatch`:
+```bash
+sbatch submit_job.sh
+```
 
+
+### Python Job Script
+1. Create a Python file named `script.py` with the following example content:
+```bash
+import time
+import platform
+
+print("SLURM Python job started.")
+print("Running on:", platform.node())
+time.sleep(10)  # Simulate workload
+print("Job complete. Goodbye!")
+```
+
+2. Create a file named `submit_python_job.sh` with the following content:
 ```bash
 #!/bin/bash
 #SBATCH --job-name=python_job
@@ -81,8 +119,38 @@ conda activate myenv
 python script.py
 ```
 
-### GPU Job Script
+3. Make the script executable and submit it to SLURM:
+```bash
+sbatch submit_python_job.sh
+```
 
+### GPU Job Script
+1. Create a file named `gpu_program.cu` with the following basic CUDA code:
+```bash
+#include <stdio.h>
+
+__global__ void hello_from_gpu() {
+    printf("Hello from GPU thread %d!\\n", threadIdx.x);
+}
+
+int main() {
+    printf("Starting GPU job...\\n");
+
+    hello_from_gpu<<<1, 8>>>();
+    cudaDeviceSynchronize();
+
+    printf("GPU job finished.\\n");
+    return 0;
+}
+```
+
+2. Load the CUDA module and compile using `nvcc`:
+```bash
+module load cuda
+nvcc gpu_program.cu -o gpu_program
+```
+
+3. Create a file named `submit_gpu_job.sh`
 ```bash
 #!/bin/bash
 #SBATCH --job-name=gpu_test
@@ -99,6 +167,11 @@ module load cuda
 
 # Run program
 ./gpu_program
+```
+
+4. Submit your job:
+```bash
+sbatch submit_gpu_job.sh
 ```
 
 ---

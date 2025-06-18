@@ -9,7 +9,7 @@ Welcome to REPACSS — Texas Tech University's research and educational platform
 
 ## Account Access
 
-To utilize REPACSS resources, users must have a valid TTU.
+To utilize REPACSS resources, users must have a valid TTU account and a [TTUnet VPN access](connecting/vpn.md).
 
 ### TTU Users
 
@@ -79,8 +79,10 @@ Resources:
 
 ## Submitting Your First Job
 
-REPACSS employs the SLURM workload manager to schedule jobs.
+REPACSS employs the SLURM workload manager to schedule jobs.   
 
+!!! tip
+    Interactive sessions should be used exclusively for development and debugging purposes. Once your job is ready for full execution, please submit it using a SLURM batch job.
 ### Sample SLURM Script
 
 ```bash
