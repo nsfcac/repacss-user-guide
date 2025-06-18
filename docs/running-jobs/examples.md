@@ -125,8 +125,89 @@ sbatch submit_python_job.sh
 ```
 
 ### GPU Job Script
-1. Create a file named `gpu_program.cu` with the following basic CUDA code:
+!!! warning
+    We are currently trying to make the cuda module available to all of out users. Until it's available please use cuda from your conda enviroment.
+
+1. Create your environment with
 ```bash
+conda create --name cuda-env python=3.10 -y
+conda activate cuda-env
+```
+
+2. Install CUDA Toolkit + `nvcc` 
+```bash
+conda install -c nvidia cuda-toolkit=12.9
+```
+
+3. Install Compatible GCC ToolChain
+```bash
+conda install -c conda-forge gxx_linux-64=11
+```
+
+4. Create your example `gpu_program.cu` file
+```bash
+#include <stdio.h>
+#include <cuda_runtime.h>
+
+__global__ void hello_from_gpu() {
+    printf("Hello from GPU thread %d!\n", threadIdx.x);
+}
+
+int main() {
+    printf("Starting GPU job...\n");
+    hello_from_gpu<<<1, 64>>>();
+
+    cudaError_t err = cudaGetLastError();
+    if (err != cudaSuccess) {
+        fprintf(stderr, "Kernel launch failed: %s\n", cudaGetErrorString(err));
+        return 1;
+    }
+
+    err = cudaDeviceSynchronize();
+    if (err != cudaSuccess) {
+        fprintf(stderr, "CUDA error after kernel: %s\n", cudaGetErrorString(err));
+        return 1;
+    }
+
+    printf("GPU job finished.\n");
+    return 0;
+}
+```
+
+5. Compile your program
+```bash
+nvcc -arch=sm_90 \
+  -ccbin "$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++" \
+  -I"$CONDA_PREFIX/targets/x86_64-linux/include" \
+  -L"$CONDA_PREFIX/targets/x86_64-linux/lib" \
+  -o gpu_program gpu_program.cu
+```
+
+6. Create `gpu_job.slurm` Script
+```bash
+#!/bin/bash
+#SBATCH --job-name=gpu_hello
+#SBATCH --output=gpu_hello.out
+#SBATCH --error=gpu_hello.err
+#SBATCH --partition=h100
+#SBATCH --gres=gpu:nvidia_h100_nvl:1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=4G
+#SBATCH --time=00:05:00
+
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate cuda-env
+
+./gpu_program
+```
+Then submit with
+```bash
+sbatch gpu_job.slurm
+```
+
+
+<!-- 1. Create a file named `gpu_program.cu` with the following basic CUDA code: -->
+<!-- ```bash
 #include <stdio.h>
 
 __global__ void hello_from_gpu() {
@@ -142,37 +223,15 @@ int main() {
     printf("GPU job finished.\\n");
     return 0;
 }
-```
+``` -->
 
-2. Load the CUDA module and compile using `nvcc`:
-```bash
+<!-- 2. Load the CUDA module and compile using `nvcc`: -->
+<!-- ```bash
 module load cuda
 nvcc gpu_program.cu -o gpu_program
-```
+``` -->
 
-3. Create a file named `submit_gpu_job.sh`
-```bash
-#!/bin/bash
-#SBATCH --job-name=gpu_test
-#SBATCH --output=gpu_test.out
-#SBATCH --error=gpu_test.err
-#SBATCH --time=01:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --gres=gpu:1
-
-# Load modules
-module load cuda
-
-# Run program
-./gpu_program
-```
-
-4. Submit your job:
-```bash
-sbatch submit_gpu_job.sh
-```
+<!-- 3. Create a file named `submit_gpu_job.sh` -->
 
 ---
 
