@@ -3,7 +3,7 @@
 This section provides official guidance on initiating interactive sessions on the REPACSS high-performance computing system. Interactive sessions allow users to request computational resources in real time and execute commands directly on compute nodes. This method is particularly suitable for software testing, debugging, exploratory tasks, and graphical application workflows.
 
 !!! warning
-    Interactive sessions should be used exclusively for development and debugging purposes. Once your job is ready for full execution, please submit it using a SLURM batch job.
+    Interactive sessions should be used exclusively for development and debugging purposes. Once your job is ready for full execution, please submit it using a SLURM batch job and `exit` from the resources.
 
 ---
 
@@ -34,7 +34,7 @@ salloc --nodes=1 --gres=gpu:nvidia_h100_nvl:1 --time=01:00:00 --partition=h100
 Within the session, execute applications using the `srun` command with appropriate GPU specifications:
 
 ```bash
-srun --gres=gpu:nvidia_h100_nvl:4 ./my_gpu_program
+srun --gres=gpu:nvidia_h100_nvl:1 ./my_gpu_program
 ```
 
 !!! warning

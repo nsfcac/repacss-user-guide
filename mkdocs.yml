@@ -55,8 +55,8 @@ nav:
   - Running Jobs:
       - Job Basics: running-jobs/basics.md
       - Job Examples: running-jobs/examples.md
-      - Scheduling: running-jobs/scheduling.md
       - Interactive Sessions: running-jobs/interactive.md
+      - Scheduling: running-jobs/scheduling.md
       - Monitoring: running-jobs/monitoring.md
       - Best Practices: running-jobs/best-practices.md
 
@@ -72,9 +72,9 @@ nav:
   - Getting and Managing Your Account:
       - Overview: account/index.md
       - TTU: account/ttu.md
-      - ACCESS: account/access.md
+      # - ACCESS: account/access.md
       - Passwords: account/passwords.md
-      - Policy: account/policy.md
+      # - Policy: account/policy.md
       
   - Software:
       - Module System: software/module-system.md

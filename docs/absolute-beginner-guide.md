@@ -3,13 +3,22 @@
 !!! info "About this page"
     This document introduces the foundational steps for logging in, navigating storage environments, submitting jobs, and utilizing available software on the REPACSS cluster.
 
-Welcome to REPACSS — Remotely-managed Power Aware Computing Systems and Services at Texas Tech University. This guide is designed for new users, including undergraduate students, graduate researchers, and others who are beginning their journey in high-performance computing (HPC). 
+Welcome to REPACSS — Remotely-managed Power Aware Computing Systems and Services at Texas Tech University. This guide is designed for new users, graduate researchers, including educators and others who are beginning their journey in high-performance computing (HPC). 
 
 ---
 
 ## Accessing the System
 
-Before accessing REPACSS resources, users must be connected to TTUnet.
+Before accessing REPACSS resources, users must be connected to TTUnet.   
+
+!!! info "TTUnet VPN Usage Cases"
+    **On Campus**: Users may connect through wired Ethernet or the TTUnet Wi-Fi network.   
+    **Off Campus**: Access is available through the TTU GlobalProtect Virtual Private Network (VPN). Instructions are available on the [VPN Setup Guide](https://www.depts.ttu.edu/itts/software/vpn.php).   
+    **Authentication**: All system access requires secure login via SSH or authorized web-based interfaces.  
+    <br> 
+    *Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. In such cases, a VPN connection is required to ensure system accessibility.*
+
+
 
 ### SSH Login
 
@@ -22,7 +31,7 @@ ssh <your_username>@repacss.ttu.edu
 During first-time access, the system may prompt you to verify the server’s RSA key fingerprint. Confirm by typing `yes`. You will then be required to enter your password.
 
 !!! note
-    Login nodes are reserved for light activities such as file management and job preparation. Computational tasks must be executed on compute nodes.
+    Login nodes are reserved for light activities such as file management and job preparation. Computational jobs must be executed on compute nodes.
 
 ---
 
@@ -33,20 +42,37 @@ REPACSS offers multiple storage environments optimized for different use cases:
 | Storage Type  | Location              | Environment Variable                            |
 |---------------|-----------------------|--------------------------------------------|
 | Home          | `/mnt/GROUPID/home/USERID`   | $HOME |
-| Scratch       | `/mnt/GROUPID/scratch/USERID`| $WORK |
-| Work          | `/mnt/GROUPID/work/USERID`   | $SCRATCH  |
+| Scratch       | `/mnt/GROUPID/scratch/USERID`| $SCRATCH |
+| Work          | `/mnt/GROUPID/work/USERID`   | $WORK  |
 
+## Checking Quotas
+REPACSS storage space usage is currently organized by the REPACSS group. 
+Use the following command to display your current file usage:
+
+```bash
+$ df -h /mnt/$(id -gn)
+
+Filesystem              Size  Used Avail Use% Mounted on
+10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS
+```
 
 ---
 
-## Submitting Compute Jobs
+## Login vs Compute Nodes
+- **Login Nodes:**
+    Login nodes are meant for lightweight jobs. You can use them to edit files, install modules and submit slurm scripts from here. These nodes are not meant for running heavy jobs.
+- **Compute Nodes:**
+    Compute nodes are where actual jobs run. Any task that requires high performance or long runtime should be done on compute nodes.
+---
 
-Users must submit compute jobs through SLURM job scripts. Direct execution of heavy workloads on login nodes is prohibited.
+<!-- ## Submitting Compute Jobs
 
-### Example: Simple Job Script
+Users must submit compute jobs through SLURM job scripts. Direct execution of heavy workloads on login nodes is prohibited. -->
 
-Create a script file named `hello.sh`:
+<!-- ### Example: Simple Job Script
 
+Create a script file named `hello.sh`: -->
+<!-- 
 ```bash
 #!/bin/bash
 #SBATCH --job-name=hello
@@ -68,8 +94,9 @@ Monitor the job with:
 ```bash
 squeue -u $USER
 ```
-
 ---
+ -->
+
 
 ## Software Access and Modules
 
@@ -87,10 +114,10 @@ module unload gcc       # Unload a module
 Users should include required module commands at the beginning of their job scripts.
 
 !!! example
-    For example, to load Python in a job script:
+    For example, to load gcc in a job script:
 
     ```bash
-    module load python
+    module load gcc
     ```
 
 ---
@@ -104,7 +131,7 @@ If issues arise or assistance is required, users are encouraged to:
 - Visit the [Support Page](support.md)
 
 !!! tip
-    When seeking help, include specific error messages and a description of the attempted task to expedite troubleshooting.
+    When seeking help, include specific error messages and a description of the attempted job to expedite troubleshooting.
 
 ---
 
@@ -112,7 +139,7 @@ If issues arise or assistance is required, users are encouraged to:
 
 As REPACSS is a shared infrastructure, users are expected to adhere to the following guidelines:
 
-- Do not run compute-intensive tasks on login nodes
+- Do not run compute-intensive jobs on login nodes
 - Use the scratch directory for temporary data and clean it periodically
 
 ---

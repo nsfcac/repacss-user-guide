@@ -89,7 +89,7 @@ jobstats
 Example usage:
 
 ```bash
-jobstats --user elvis --start 2024-06-01 --end 2024-06-13
+jobstats --user bsencer --start 2025-06-01 --end 2025-06-13
 ```
 
 To display all options:
@@ -111,7 +111,7 @@ To receive notifications when your job begins, ends, or fails, add the following
 
 ---
 
-## Accessing Compute Nodes During Job Execution
+<!-- ## Accessing Compute Nodes During Job Execution
 
 To securely access a compute node while your job is running:
 
@@ -136,7 +136,7 @@ scontrol show job <jobid> | grep -oP 'BatchHost=\K\w+'
 !!! note
     You can only SSH into compute nodes while your job is actively running.
 
----
+--- -->
 
 ## Modifying or Canceling Jobs
 

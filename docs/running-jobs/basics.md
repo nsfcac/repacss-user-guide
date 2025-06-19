@@ -136,10 +136,14 @@ python script.py
 
 ## Submitting GPU Jobs
 
-To request GPU resources, use the `--gpus` or `--gres` flag:
+!!! warning
+    We are currently in the process of installing the CUDA module on our systems. In the meantime, users are advised to install CUDA via their conda environment to ensure compatibility with GPU workflows.   
+    *For detailed usage examples, please refer to the [Job Examples](examples.md) section.*
+
+To request GPU resources, use the `--gres` flag:
 
 ```bash
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:nvidia_h100_nvl:1
 ```
 
 Ensure required modules such as CUDA are loaded:

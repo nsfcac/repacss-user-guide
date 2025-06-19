@@ -69,11 +69,11 @@ Users may encounter "Permission denied" or "Too many authentication failures" me
 - VPN not active or improperly configured
 - SSH client sending too many private keys
 
-In the case of excessive key attempts, add the following SSH option:
+<!-- In the case of excessive key attempts, add the following SSH option:
 
 ```bash
 ssh -o IdentitiesOnly=yes <your_eRaider_username>@repacss.ttu.edu
-```
+``` -->
 
 ---
 

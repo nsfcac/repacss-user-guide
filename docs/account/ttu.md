@@ -20,18 +20,18 @@ The REPACSS system is physically hosted within TTU's research computing infrastr
 
 ---
 
-## Research and Educational Integration
+<!-- ## Research and Educational Integration
 
 REPACSS supports a broad range of academic and research initiatives at TTU. These include, but are not limited to:
 
-- Graduate and undergraduate research programs
+- Graduate research programs
 - Laboratory coursework in engineering and computer science
 - Instruction in parallel computing, simulation, data-intensive methodologies, and machine learning (ML)
 - Faculty-directed technical workshops and high-performance computing bootcamps
 
----
+--- -->
 
-## Institutional Collaboration
+<!-- ## Institutional Collaboration
 
 Texas Tech University encourages faculty, staff, and students to contribute to the REPACSS platform through:
 
@@ -39,7 +39,7 @@ Texas Tech University encourages faculty, staff, and students to contribute to t
 - Collaborating on curricular enhancements and pilot projects
 - Providing feedback to the REPACSS development and administrative team
 
----
+--- -->
 
 ## Local Support Team
 

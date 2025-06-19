@@ -1,6 +1,15 @@
 # Visual Studio Code
 Visual Studio Code is a modern, lightweight IDE (Integrated Development Environment) that supports remote development through SSH. It is highly customizable and offers a wide range of extensions for languages and workflows common in HPC environments, such as Python, C/C++, Fortran, and more.
 
+!!! warning
+    When using the integrated terminal in Visual Studio Code to connect to the system, the `interactive` alias may not work as expected. Users might encounter issues when attempting to request compute resources through this method.
+
+!!! tip
+    To start an interactive session in VS Code, use the `salloc` command directly instead of relying on the `interactive` alias:
+
+    ```bash
+    salloc --nodes=1 --ntasks=1 --cpus-per-task=8 --time=01:00:00 --partition=zen4
+    ```
 ---
 
 ## Connecting with VSCode Remote SSH

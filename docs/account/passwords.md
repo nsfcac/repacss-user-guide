@@ -30,7 +30,7 @@ If additional assistance is required, contact **TTU IT Help Central**:
 
 ---
 
-### Locally Managed REPACSS Accounts
+<!-- ### Locally Managed REPACSS Accounts
 
 If your account is not tied to TTU's eRaider system:
 
@@ -38,7 +38,7 @@ If your account is not tied to TTU's eRaider system:
 - Include your username and a description of the issue
 - A system administrator will issue a temporary reset token or guide you through the reset process during standard support hours
 
----
+--- -->
 
 ## Changing Your Password
 
@@ -49,15 +49,17 @@ If your account is not tied to TTU's eRaider system:
 3. Select the **Change Password** option
 4. Enter a new password that complies with TTU’s minimum security standards
 
-### For Local REPACSS Accounts
+<!-- ### For Local REPACSS Accounts
 
-Submit a password change request via email to [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu). A system administrator will assist with the secure password reset process.
+Submit a password change request via email to [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu). A system administrator will assist with the secure password reset process. -->
 
 ---
 
 ## Password Policy and Requirements
 
-All REPACSS passwords must adhere to the following standards:
+!!! tip "Password Policy"
+    Since all user accounts are linked to eRaider credentials, the policies and guidelines governing eRaider accounts shall apply. Users are expected to comply with Texas Tech University's eRaider account usage policy at all times when accessing the system.
+<!-- All REPACSS passwords must adhere to the following standards:
 
 | Requirement           | Description                                 |
 |-----------------------|---------------------------------------------|
@@ -67,7 +69,7 @@ All REPACSS passwords must adhere to the following standards:
 | Restrictions          | Avoid using names, dictionary words, or predictable patterns |
 
 !!! tip "Consider Using a Passphrase"
-    Create a strong and memorable password such as: `RedRaider@2024!CloudsGoHigh`
+    Create a strong and memorable password such as: `RedRaider@2024!CloudsGoHigh` -->
 
 ---
 
