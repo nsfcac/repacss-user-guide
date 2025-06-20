@@ -1,12 +1,20 @@
-## Set Up Microsoft Multi-Factor Authentication (MFA)
+## Configuring Microsoft Multi-Factor Authentication (MFA)
 
-To access REPACSS, your TTU account must have Microsoft Multi-Factor Authentication (MFA) enabled.
+Access to REPACSS requires that all users have **Microsoft Multi-Factor Authentication (MFA)** enabled on their TTU eRaider accounts.
 
-To enable or manage MFA, please visit the TTU official support page:
+To configure or manage your MFA settings, please visit the official TTU support portal:
 
-🔗 [Set Up Microsoft MFA at TTU](https://askit.ttu.edu/mfasetup/)
+[Configure Microsoft MFA at Texas Tech University](https://askit.ttu.edu/mfasetup/)
 
-!!! note
-    MFA is required to authenticate through the TTU VPN and must be configured before attempting to connect to REPACSS.
+!!! important
+    Multi-Factor Authentication is **mandatory** for authenticating through the TTU GlobalProtect VPN. Users must complete MFA setup **prior** to attempting to connect to REPACSS.
 
-If you encounter issues with MFA enrollment, contact TTU IT Help Central.
+---
+
+### Support
+
+Users experiencing difficulties with MFA enrollment or authentication should contact **TTU IT Help Central**:
+
+- Email: [ithelpcentral@ttu.edu](mailto:ithelpcentral@ttu.edu)  
+- Phone: 806-742-HELP (4357)  
+- Web: [IT Help Central](https://www.depts.ttu.edu/ithelpcentral/)

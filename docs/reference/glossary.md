@@ -1,4 +1,4 @@
-# 📘 Glossary
+# Glossary
 
 This section defines key terms frequently used throughout the REPACSS documentation.
 

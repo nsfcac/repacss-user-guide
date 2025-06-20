@@ -1,4 +1,4 @@
-# 📈 Scaling Tests
+# Scaling Tests
 
 !!! warning
     This page is under development. Examples and benchmarks for strong/weak scaling will be provided soon.
