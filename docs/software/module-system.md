@@ -12,11 +12,11 @@ To display all software modules currently available on the system, use the follo
 module avail
 ```
 
-To filter results and search for specific software (e.g., Python), use:
+<!-- To filter results and search for specific software (e.g., Python), use: -->
 
-```bash
+<!-- ```bash
 module avail python
-```
+``` -->
 
 ---
 

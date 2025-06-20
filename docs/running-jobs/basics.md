@@ -39,15 +39,18 @@ Submitted batch job 864933
 
 Job scripts should include `#SBATCH` directives and one or more `srun` commands.
 
-### `salloc`
+### `interactive`
 
-Request an interactive session:
+Request an interactive session using the recommended wrapper script:
 
 ```bash
-$ salloc --nodes=1 --time=01:00:00 --partition=standard
+$ interactive -c 8 -p zen4
 ```
 
-An interactive shell is initiated on a compute node.
+!!! tip  
+    The `interactive` command wraps around Slurm's allocation mechanisms and handles additional environment setup required for compute node access. **Avoid using `salloc` directly** — especially in environments like Visual Studio Code — as it may fail to configure session parameters properly.
+
+An interactive shell will be initiated on a compute node once resources are allocated.
 
 ### `srun`
 
@@ -63,17 +66,17 @@ May be used within job scripts or interactive sessions.
 
 ## Commonly Used Options
 
-| Option (long)     | Short | Description                               | sbatch/salloc | srun |
-| ----------------- | ----- | ----------------------------------------- | ------------- | ---- |
-| `--time`          | `-t`  | Maximum wall clock time                   | ✅             | ❌    |
-| `--nodes`         | `-N`  | Number of nodes                           | ✅             | ✅    |
-| `--ntasks`        | `-n`  | Number of parallel tasks (e.g., MPI)      | ✅             | ✅    |
-| `--cpus-per-task` | `-c`  | CPU cores allocated per task              | ✅             | ✅    |
-| `--gpus`          | `-G`  | Number of GPUs requested                  | ✅             | ✅    |
-| `--constraint`    | `-C`  | Specific hardware or node type constraint | ✅             | ❌    |
-| `--qos`           | `-q`  | Quality of Service tier                   | ✅             | ❌    |
-| `--account`       | `-A`  | Project account for usage tracking        | ✅             | ❌    |
-| `--job-name`      | `-J`  | Name assigned to the job                  | ✅             | ❌    |
+| Option (long)     | Short | Description                               | sbatch | srun |
+| ----------------- | ----- | ----------------------------------------- | ------ | ---- |
+| `--time`          | `-t`  | Maximum wall clock time                   | ✅      | ❌    |
+| `--nodes`         | `-N`  | Number of nodes                           | ✅      | ✅    |
+| `--ntasks`        | `-n`  | Number of parallel tasks (e.g., MPI)      | ✅      | ✅    |
+| `--cpus-per-task` | `-c`  | CPU cores allocated per task              | ✅      | ✅    |
+| `--gpus`          | `-G`  | Number of GPUs requested                  | ✅      | ✅    |
+| `--constraint`    | `-C`  | Specific hardware or node type constraint | ✅      | ❌    |
+| `--qos`           | `-q`  | Quality of Service tier                   | ✅      | ❌    |
+| `--account`       | `-A`  | Project account for usage tracking        | ✅      | ❌    |
+| `--job-name`      | `-J`  | Name assigned to the job                  | ✅      | ❌    |
 
 !!! tip
     It is advisable to use long-form flags (e.g., `--nodes=2`) in scripts for clarity and maintainability.
@@ -133,7 +136,6 @@ python script.py
 
 ---
 
-
 ## Submitting GPU Jobs
 
 !!! warning
@@ -184,7 +186,7 @@ sacct -j <job_id>
 
 ## Troubleshooting
 
-* Verify user disk quotas: `quota -s`
+* Verify group disk quotas: `df -h /mnt/$(id -gn)`
 * Ensure job script includes required Slurm options
 * Confirm partition and hardware constraints match available resources
 * Load relevant modules before execution

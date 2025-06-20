@@ -6,8 +6,8 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 
 ## Official Documentation Index
 
-- [Getting Started at REPACSS](getting-started-at-REPACSS.md)  
-  Detailed guidance on account creation, virtual private network (VPN) access, and system login procedures.
+<!-- - [Getting Started at REPACSS](getting-started-at-REPACSS.md)  
+  Detailed guidance on account creation, virtual private network (VPN) access, and system login procedures. -->
 
 - [Absolute Beginner’s Guide](absolute-beginner-guide.md)  
   A high-level introduction to high-performance computing concepts and REPACSS usage for new users.

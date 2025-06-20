@@ -8,9 +8,12 @@ Quick reference for commonly used commands and options on REPACSS.
 
 ```bash
 sbatch job.sh                    # Submit a batch job
-salloc --nodes=1 --time=1:00:00  # Allocate an interactive session
+interactive -c 8 -p zen4         # Start an interactive session (recommended)
 srun ./program                   # Run a job step
 ```
+
+!!! tip  
+    Always use the `interactive` command for starting real-time sessions. It properly configures the environment and avoids common issues that arise when using `salloc` directly.
 
 ---
 

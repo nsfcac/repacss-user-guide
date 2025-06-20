@@ -36,9 +36,9 @@ Follow these steps to enable file transfers using Globus Connect Personal:
    * Set the endpoint to: `REPACSS`
    * Navigate to the appropriate storage paths:
 
-     * Home: `/home/USERID`
-     * Scratch: `/scratch/USERID`
-     * Work: `/work/USERID`
+     * Home: `/mnt/GROUPID/home/USERID`
+     * Scratch: `/mnt/GROUPID/scratch/USERID`
+     * Work: `/mnt/GROUPID/work/USERID`
 
 ---
 

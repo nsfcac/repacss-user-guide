@@ -26,7 +26,16 @@ Prior to submitting large-scale jobs, users must perform validation using short,
 
 After successful execution of a small-scale job, users may scale up their resource requests incrementally. This ensures that production jobs are submitted only after validating the program’s correctness and performance.
 
-For debugging and development purposes, users are advised to utilize interactive sessions initiated through the `salloc` command. A one-hour interactive session using one or two compute nodes is generally sufficient for most diagnostic tasks.
+For debugging and development purposes, users are **strongly encouraged** to initiate interactive sessions using the `interactive` command rather than calling `salloc` directly. The `interactive` command handles additional environment configuration and resource setup critical for successful session initialization.
+
+A one-hour interactive session using one or two compute nodes is generally sufficient for most diagnostic tasks. For example:
+
+```bash
+interactive -c 8 -p zen4
+```
+
+!!! tip  
+    Using the `interactive` command is the officially recommended method for launching temporary, real-time compute jobs. Avoid using `salloc` directly, especially when working through environments like Visual Studio Code or remote shells, as this may bypass necessary setup steps.
 
 Upon completion of any job, users should assess system utilization using tools such as `sacct`, `sstat`, or `jobstats`. This post-job analysis enables performance tuning and resource optimization.
 

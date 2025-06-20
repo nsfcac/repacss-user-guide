@@ -43,7 +43,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started-at-REPACSS.md
+  # - Getting Started: getting-started-at-REPACSS.md
   - Absolute Beginner Guide: absolute-beginner-guide.md
 
   - Connecting to REPACSS:

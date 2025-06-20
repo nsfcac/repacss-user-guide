@@ -55,13 +55,13 @@ scancel -p zen4
 
 ## Storage and Data Management
 
-### What are the default storage quotas for users?
+<!-- ### What are the default storage quotas for users?
 
 The following quota allocations are in effect for REPACSS users:
 
 - Home Directory: 100 GB per user
 - Scratch Space: 1 TB per project group
-- Archive Storage: Assigned on a per-project basis upon request
+- Archive Storage: Assigned on a per-project basis upon request -->
 
 ### How do I transfer files to and from the REPACSS system?
 
