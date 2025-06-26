@@ -10,12 +10,12 @@ Miniforge is a minimal Conda-based Python distribution available for local insta
 
 1. Download the installer:
    ```bash
-   wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+   wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh
    ```
 
 2. Run the installer:
    ```bash
-   bash Miniforge3-Linux-x86_64.sh
+   bash Miniforge3-$(uname)-$(uname -m).sh
    ```
    When prompted, accept the license agreement and install to a directory under `$HOME`, for example `$HOME/miniforge3`.   
    
