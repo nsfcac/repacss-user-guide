@@ -1,7 +1,6 @@
 # VPN Setup Guide for REPACSS
 
-!!! info "Purpose"
-    This document outlines the procedure for configuring and utilizing the GlobalProtect VPN client to securely access the REPACSS high-performance computing (HPC) infrastructure at Texas Tech University (TTU).
+This document outlines the procedure for configuring and utilizing the GlobalProtect VPN client to securely access the REPACSS high-performance computing (HPC) infrastructure at Texas Tech University (TTU).
 
 ---
 
