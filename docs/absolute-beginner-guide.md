@@ -1,3 +1,16 @@
+---
+title: Introduction to REPACSS
+description: Beginner onboarding guide for logging in, navigating storage, and running jobs on the REPACSS HPC cluster.
+tags:
+  - onboarding
+  - login
+  - ssh
+  - storage
+  - slurm
+  - modules
+  - cluster usage
+---
+
 # Introduction to REPACSS: A Beginner’s Guide
 
 !!! info "About this page"
@@ -8,7 +21,6 @@ Welcome to REPACSS — Remotely-managed Power Aware Computing Systems and Servic
 ---
 
 ## Accessing the System
-
 Before accessing REPACSS resources, users must be connected to TTUnet.   
 
 !!! info "TTUnet VPN Usage Cases"
@@ -56,13 +68,32 @@ Filesystem              Size  Used Avail Use% Mounted on
 10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS
 ```
 
----
 
-## Login vs Compute Nodes
-- **Login Nodes:**
-    Login nodes are meant for lightweight jobs. You can use them to edit files, install modules and submit slurm scripts from here. These nodes are not meant for running heavy jobs.
-- **Compute Nodes:**
-    Compute nodes are where actual jobs run. Any task that requires high performance or long runtime should be done on compute nodes.
+---
+## Node Types
+### Login Node
+
+Login node is intended for **lightweight tasks** only. Users should use it to:
+
+- Edit and manage files  
+- Install user-level software or modules  
+- Compile code (if lightweight)  
+- Submit SLURM job scripts  
+
+!!! note
+    Do not run compute-intensive applications or parallel jobs on the login node.
+
+
+### Compute Nodes
+
+All computational jobs should be submitted to the **compute nodes** via SLURM. The system includes:
+
+- **110 CPU worker nodes** for general-purpose parallel and serial computing  
+- **8 GPU worker nodes** for accelerated workloads (e.g., deep learning, GPU-based simulations)  
+- **1 GPU build node** for compiling and testing GPU applications in a controlled environment
+
+Any workload requiring high performance, extended runtime, or parallel execution should be run on these compute nodes.
+
 ---
 
 <!-- ## Submitting Compute Jobs
