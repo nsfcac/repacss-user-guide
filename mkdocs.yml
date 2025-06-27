@@ -87,12 +87,10 @@ nav:
       # - Profiling Tools: performance/profiling-tools.md
       # - Scaling Tests: performance/scaling-tests.md
 
-  - Reference:
+  - Resources:
       - Glossary: reference/glossary.md
       - Cheatsheet: reference/cheatsheet.md
       - Common Errors: reference/common-errors.md
+      - FAQ: faq.md
+      - Contact Us: support.md
       
-  # - System Status: status.md
-  - Support:
-    - Contact Us: support.md
-    - FAQ: faq.md
