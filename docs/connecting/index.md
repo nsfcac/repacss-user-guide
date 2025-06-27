@@ -1,7 +1,6 @@
 # Establishing Connections to REPACSS
 
-!!! info "Purpose of this Page"
-    This document provides detailed instructions on establishing secure remote connections to the REPACSS high-performance computing system at Texas Tech University.
+This document provides detailed instructions on establishing secure remote connections to the REPACSS high-performance computing system at Texas Tech University.
 
 ---
 
@@ -13,25 +12,33 @@ Before attempting to connect to the REPACSS environment, users must confirm the 
 - A properly configured password and Multi-Factor Authentication (MFA)
 - A secure connection to the Texas Tech University (TTU) network, either via wired Ethernet or the GlobalProtect VPN
 
-The fully qualified domain name (FQDN) of the system is:
+<!-- The fully qualified domain name (FQDN) of the system is: -->
 
-```
+<!-- ```
 repacss.ttu.edu
-```
+``` -->
 
 ---
 
-## TTU Network Access and VPN Requirement
+## TTUnet & VPN Requirement
 
-Access to REPACSS is restricted to users connected to the TTU internal network. Off-campus users, and users in buildings with known network limitations (e.g., the Computer Science Department), must use the **GlobalProtect VPN**.
+Access to REPACSS is restricted to users connected to the TTUnet network. Off-campus users, and users in buildings with known network limitations (e.g., the Computer Science Department), must use the **GlobalProtect VPN**.
 
 For assistance configuring VPN access, refer to the following guide:
 
 - [TTU GlobalProtect VPN Setup Guide](vpn.md)
-- [For further assistance please contact **IT Help Central**](https://www.askit.ttu.edu/vpn)
+- For further assistance please contact [**IT Help Central**](https://www.askit.ttu.edu/vpn)
 
 !!! warning "VPN Required"
-    All off-campus connections must be tunneled through TTU’s GlobalProtect VPN. Local wireless connections (e.g., TTUnet in some buildings) may also require VPN due to firewall restrictions.
+    **On Campus**:   
+        **-** You must be connected to **TTUnet**, either via wired Ethernet or the TTUnet Wi-Fi network.    
+        **-** Other networks on campus (such as TTUguest or EduRoam) are not supported for direct access.  
+    **Off Campus**:   
+        **-** If you are connecting from any other network, including TTUguest, EduRoam, or external internet connections, you must use the TTU GlobalProtect Virtual Private Network (VPN).   
+        **-** Instructions are available on the [VPN Setup Guide](connecting/vpn.md).   
+    **Authentication**: All system access requires secure login via SSH or authorized web-based interfaces.  
+    <br> 
+    *Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. If you encounter connectivity issues, connect via wired Ethernet or enable the VPN to ensure uninterrupted access.*
 
 ---
 
@@ -46,6 +53,8 @@ For users operating Microsoft Windows, it is recommended to install and configur
    - **Remote Host**: `repacss.ttu.edu`
    - **Username**: Your TTU eRaider username
 3. Save and initiate the connection
+
+---
 
 ### Instructions for macOS and Linux Users
 
