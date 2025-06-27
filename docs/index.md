@@ -4,7 +4,7 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 
 ---
 
-## Official Documentation Index
+## Documentation Overview
 
 <!-- - [Getting Started at REPACSS](getting-started-at-REPACSS.md)  
   Detailed guidance on account creation, virtual private network (VPN) access, and system login procedures. -->
@@ -22,7 +22,7 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
   Step-by-step overview of SLURM commands, job queues, and execution workflows.
 
 - [File Transfer Protocols and Utilities](file-transfer.md)  
-  Guidance on secure and efficient data transfers via Globus, `rsync`, and `scp`.
+  Guidance on secure and efficient data transfers via Globus.
 
 - [UNIX File Access and Permissions](unix-permissions.md)  
   Overview of file ownership, group collaboration, and secure file access in a shared computing environment.
