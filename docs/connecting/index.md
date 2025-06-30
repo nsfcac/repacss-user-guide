@@ -35,7 +35,7 @@ For assistance configuring VPN access, refer to the following guide:
         **-** Other networks on campus (such as TTUguest or EduRoam) are not supported for direct access.  
     **Off Campus**:   
         **-** If you are connecting from any other network, including TTUguest, EduRoam, or external internet connections, you must use the TTU GlobalProtect Virtual Private Network (VPN).   
-        **-** Instructions are available on the [VPN Setup Guide](connecting/vpn.md).   
+        **-** Instructions are available on the [VPN Setup Guide](vpn.md).   
     **Authentication**: All system access requires secure login via SSH or authorized web-based interfaces.  
     <br> 
     *Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. If you encounter connectivity issues, connect via wired Ethernet or enable the VPN to ensure uninterrupted access.*
