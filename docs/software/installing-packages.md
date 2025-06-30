@@ -62,6 +62,10 @@ conda deactivate
 conda remove --name myenv --all
 ```
 
+??? example "Installing Cuda"
+   conda install cudatoolkit=12.x -c conda-forge, conda install cudatoolkit=12.x -c nvidia 
+   *Note: x is the minor version you would like to specify*
+ 
 ---
 
 <!-- ### Installing Packages Using Pip
