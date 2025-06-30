@@ -25,6 +25,7 @@ theme:
   favicon: assets/images/Favicon.svg
   features:
     - search.suggest
+    - content.footer.last-updated
 plugins:
   - search
   - git-revision-date-localized:
@@ -32,7 +33,7 @@ plugins:
       enable_creation_date: false
       timezone: America/Chicago
       locale: en
-
+      
 extra_css:
   - assets/stylesheets/extra.css
 
