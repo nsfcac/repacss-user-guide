@@ -62,10 +62,20 @@ conda deactivate
 conda remove --name myenv --all
 ```
 
-??? example "Installing Cuda"
-   conda install cudatoolkit=12.x -c conda-forge, conda install cudatoolkit=12.x -c nvidia 
-   *Note: x is the minor version you would like to specify*
- 
+!!! example "Installing CUDA"
+
+    You can install the CUDA Toolkit from either conda-forge or NVIDIA channels.  
+    Replace `x` with the minor version you need (e.g., `12.2`).
+
+    ```bash
+    # Install from conda-forge
+    conda install cudatoolkit=12.x -c conda-forge
+
+    # OR install from NVIDIA channel
+    conda install cudatoolkit=12.x -c nvidia
+    ```
+
+
 ---
 
 <!-- ### Installing Packages Using Pip
