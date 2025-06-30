@@ -25,6 +25,14 @@ theme:
   favicon: assets/images/Favicon.svg
   features:
     - search.suggest
+plugins:
+  - search
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      enable_creation_date: false
+      timezone: America/Chicago
+      locale: en
+
 extra_css:
   - assets/stylesheets/extra.css
 
