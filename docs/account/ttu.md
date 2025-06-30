@@ -54,4 +54,3 @@ Users requiring technical assistance or consultation may contact the local suppo
 
 ---
 
-_Last updated: June 2025_

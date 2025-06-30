@@ -97,4 +97,3 @@ The network backbone of REPACSS supports high-throughput and low-latency communi
 
 ---
 
-*Last updated: June 2025*

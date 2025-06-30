@@ -25,4 +25,3 @@ For assistance with account access, credential issues, or related technical matt
 
 ---
 
-_Last updated: June 2025_

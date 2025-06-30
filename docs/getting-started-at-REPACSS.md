@@ -123,4 +123,3 @@ If assistance is required:
 
 ---
 
-_Last updated: June, 2025_

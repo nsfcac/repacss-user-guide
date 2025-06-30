@@ -103,4 +103,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ---
 
-_Last updated: June 2025_

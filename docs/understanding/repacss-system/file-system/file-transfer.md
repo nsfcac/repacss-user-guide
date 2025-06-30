@@ -65,4 +65,3 @@ Many academic and research institutions have established Globus endpoints. To tr
 
 ---
 
-*Last updated: June 2025*

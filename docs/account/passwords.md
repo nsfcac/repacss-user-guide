@@ -94,4 +94,3 @@ For account assistance or additional help:
 
 ---
 
-_Last updated: June 2025_

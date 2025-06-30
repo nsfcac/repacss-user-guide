@@ -249,4 +249,3 @@ With these steps, new users are now equipped with the foundational knowledge to:
 
 Users are encouraged to explore the extended documentation to deepen their understanding and optimize their use of REPACSS resources. -->
 
-_Last updated: June, 2025_

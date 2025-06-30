@@ -180,4 +180,3 @@ globalprotect disconnect
 
 ---
 
-_Last revised: June, 2025_

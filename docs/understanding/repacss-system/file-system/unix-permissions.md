@@ -144,4 +144,3 @@ chmod 600 sensitive_file
 This ensures exclusive read/write access to the owner and denies access to all other users.
 
 ---
-_Last updated: June 2025_

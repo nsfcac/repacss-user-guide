@@ -78,4 +78,3 @@ Proper citation ensures continued support and funding for REPACSS and reflects t
 
 ---
 
-_Last updated: June 2025_

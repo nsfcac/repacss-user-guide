@@ -92,4 +92,3 @@ Contributions, corrections, and feedback may be submitted via
 
 ---
 
-_Last official revision: June 2025_
