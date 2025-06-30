@@ -36,7 +36,7 @@ getfacl filename
 # owner: bsencer
 # group: discl
 user::rw-
-user:alice:rw-
+user:userid:rw-
 group::r--
 mask::rw-
 other::---
@@ -47,7 +47,7 @@ other::---
 | Field        | Description                                                |
 |--------------|------------------------------------------------------------|
 | user::       | Permissions for the file owner                            |
-| user:alice   | Permissions granted to user `alice`                       |
+| user:userid   | Permissions granted to user `userid`                       |
 | group::      | Permissions for the owning group                          |
 | mask::       | Maximum effective permissions for named users and groups  |
 | other::      | Permissions for all other users                           |
@@ -68,7 +68,7 @@ ACLs are modified using the `setfacl` command.
 To grant read and write access to a specific user:
 
 ```bash
-setfacl -m u:alice:rw filename
+setfacl -m u:userid:rw filename
 ```
 
 **Options:**
@@ -97,7 +97,7 @@ setfacl -m u:alice:rw filename
 To remove permissions granted to a user:
 
 ```bash
-setfacl -x u:alice filename
+setfacl -x u:userid filename
 ```
 
 To remove group permissions:
@@ -114,16 +114,16 @@ Default ACLs apply automatically to new files and directories created within a d
 
 **Example:**
 
-Grant default read and write access to user `alice` for all new files in `project_data`:
+Grant default read and write access to user `userid` for all new files in `project_data`:
 
 ```bash
-setfacl -d -m u:alice:rw project_data/
+setfacl -d -m u:userid:rw project_data/
 ```
 
 > **Tip:** Use `-R` to apply ACLs recursively to all existing files and directories:
 
 ```bash
-setfacl -R -m u:alice:rw project_data/
+setfacl -R -m u:userid:rw project_data/
 ```
 
 ---
