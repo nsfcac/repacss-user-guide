@@ -55,6 +55,7 @@ nav:
   - Running Jobs:
       - Job Basics: running-jobs/basics.md
       - Job Examples: running-jobs/examples.md
+      - Determine Resource Needs: running-jobs/determining-resource-requirements.md
       - Interactive Sessions: running-jobs/interactive.md
       - Scheduling: running-jobs/scheduling.md
       - Monitoring: running-jobs/monitoring.md
