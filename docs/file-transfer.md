@@ -44,20 +44,22 @@ Follow these steps to enable file transfers using Globus Connect Personal:
 
 ## Transferring Data Between Sites
 
-Many academic and research institutions have established Globus endpoints. To transfer data between REPACSS and other sites:
+Many academic and research institutions have established Globus endpoints. To transfer data between REPACSS and other sites or to your own machine:
 
-1. Identify the remote institution’s Globus endpoint name.
-2. Use the [Globus Web Interface](https://app.globus.org/file-manager) to configure transfers.
-3. Select the source and destination endpoints:
-
+<!-- 0. Identify the remote institution’s Globus endpoint name. -->
+1. Use the [Globus Web Interface](https://app.globus.org/file-manager) to configure transfers.
+2. Specify the collection to be used:
    * **REPACSS Endpoint**: `REPACSS`
-   * **Remote Endpoint**: Enter the name provided by the collaborating site
+3. Locate and select the file(s) you intend to transfer, then click the `Transfer or Sync to...` button.
+4. Select your destination collection.
+5. Specify the target file path and click Start to initiate the transfer.
+
 
 ---
 
 ## Best Practices
 
-* Ensure VPN access is active if required by your home network.
+<!-- * Ensure VPN access is active if required by your home network. -->
 * Always verify file integrity post-transfer.
 * Monitor job completion using the Globus web interface.
 
