@@ -67,8 +67,9 @@ nav:
       # - Known Issues: understanding/repacss-system/known-issues.md
       # - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
       - File System:
-        - File Transfer: file-transfer.md
-        - File Permissions: unix-permissions.md 
+        - File Transfer: understanding/repacss-system/file-system/file-transfer.md
+        - File Permissions: understanding/repacss-system/file-system/unix-permissions.md 
+        - Sharing File Access: understanding/repacss-system/file-system/ACL.md
 
   - Getting and Managing Your Account:
       - Overview: account/index.md

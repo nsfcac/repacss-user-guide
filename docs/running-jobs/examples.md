@@ -77,7 +77,7 @@ module load gcc/14.2.0
 # Run program
 ./my_program
 ```
-<small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
 
 4. Make the script executable and submit it using `sbatch`:
 ```bash
@@ -119,7 +119,7 @@ conda activate myenv
 # Run Python script
 python script.py
 ```
-<small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
 
 3. Make the script executable and submit it to SLURM:
 ```bash
@@ -202,7 +202,7 @@ conda activate cuda-env
 
 ./gpu_program
 ```
-<small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
 
 7. Submit the job to SLURM
 ```bash

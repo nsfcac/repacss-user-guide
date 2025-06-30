@@ -21,11 +21,14 @@ The Remotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 - [Core Job Submission Procedures](running-jobs/basics.md)  
   Step-by-step overview of SLURM commands, job queues, and execution workflows.
 
-- [File Transfer Protocols and Utilities](file-transfer.md)  
+- [File Transfer Protocols and Utilities](understanding/repacss-system/file-system/file-transfer.md)  
   Guidance on secure and efficient data transfers via Globus.
 
-- [UNIX File Access and Permissions](unix-permissions.md)  
+- [UNIX File Access and Permissions](understanding/repacss-system/file-system/unix-permissions.md)  
   Overview of file ownership, group collaboration, and secure file access in a shared computing environment.
+
+- [Sharing File Access with Others](understanding/repacss-system/file-system/ACL.md)  
+  Guidence on how to share your files with others.
 
 - [Multi-Factor Authentication (MFA) Procedures](connecting/mfa.md)  
   Official process for securing access to REPACSS resources using two-factor authentication.
