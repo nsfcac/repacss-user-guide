@@ -167,7 +167,7 @@ Anaconda, Inc. enforces licensing terms on their default channels and tools. Usa
 
 To avoid licensing complications and ensure access to current packages, we recommend avoiding the Anaconda defaults and using MiniForge + conda-forge.
 
-> **Warning**  
-> REPACSS does not cover licensing costs related to Anaconda. Users are responsible for any commercial usage compliance.
+!!! Warning
+    REPACSS does not cover licensing costs related to Anaconda. Users are responsible for any commercial usage compliance.
 
 For more details, see: [Anaconda Terms of Service](https://www.anaconda.com/terms-of-service)
