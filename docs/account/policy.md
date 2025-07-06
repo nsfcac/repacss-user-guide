@@ -69,7 +69,7 @@ Upon deactivation:
 
 ### Acknowledgment Text
 
-> *This research used resources of the REPACSS high-performance computing system at Texas Tech University, supported in part by the National Science Foundation under NSF Award No. 2404438 and Texas Tech’s High Performance Computing Center (HPCC).*
+> *This research used resources of the REPACSS high-performance computing system at Texas Tech University, supported in part by the National Science Foundation under NSF Award No. 2404438 and Texas Tech’s High-Performance Computing Center (HPCC).*
 
 Proper citation ensures continued support and funding for REPACSS and reflects the scientific value of computational infrastructure.
 

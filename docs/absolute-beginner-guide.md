@@ -72,7 +72,7 @@ All computational jobs should be submitted to the **compute nodes** via SLURM. T
 - **8 GPU worker nodes** for accelerated workloads (e.g., deep learning, GPU-based simulations)  
 - **1 GPU build node** for compiling and testing GPU applications in a controlled environment
 
-Any workload requiring high performance, extended runtime, or parallel execution should be run on these compute nodes.
+Any workload requiring high-performance, extended runtime, or parallel execution should be run on these compute nodes.
 
 ### System Specifications Summary Table
 

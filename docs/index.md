@@ -28,7 +28,7 @@ The REmotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
   Overview of file ownership, group collaboration, and secure file access in a shared computing environment.
 
 - [Sharing File Access with Others](understanding/repacss-system/file-system/ACL.md)  
-  Guidence on how to share your files with others.
+  Guidance on how to share your files with others.
 
 - [Multi-Factor Authentication (MFA) Procedures](connecting/mfa.md)  
   Official process for securing access to REPACSS resources using two-factor authentication.

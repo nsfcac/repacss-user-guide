@@ -12,7 +12,7 @@ Software modules are organized within predefined repository paths. The following
 
 - `fftw/3.3.10`  
   *Fast Fourier Transform library used in signal and image processing applications.*
-sss
+
 - `hdf5/1.10.11`  
   *Hierarchical Data Format library for managing large and complex data collections.*
 
