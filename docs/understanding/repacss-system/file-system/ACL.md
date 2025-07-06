@@ -52,8 +52,7 @@ other::---
 | mask::       | Maximum effective permissions for named users and groups  |
 | other::      | Permissions for all other users                           |
 
-!!! note
-The `mask` acts as an upper limit. For example, if a user has `rwx` permissions but the mask is `rw-`, the effective permissions are `rw-`.
+!!! note The `mask` acts as an upper limit. For example, if a user has `rwx` permissions but the mask is `rw-`, the effective permissions are `rw-`.
 
 ---
 
@@ -120,8 +119,7 @@ Grant default read and write access to user `userid` for all new files in `proje
 setfacl -d -m u:userid:rw project_data/
 ```
 
-!!! tip
-Use `-R` to apply ACLs recursively to all existing files and directories:
+!!! tip Use `-R` to apply ACLs recursively to all existing files and directories:
 
 ```bash
 setfacl -R -m u:userid:rw project_data/
