@@ -41,7 +41,7 @@ If you are unsure of your job’s memory or disk usage, you have two main option
 ---
 
 ### Observing Memory Usage Locally
-!!! warning **"Important:"** Do **not** execute computationally intensive jobs on shared login nodes. Use your personal workstation or a designated test environment to avoid interfering with other users.
+!!! warning "Important:" Do **not** execute computationally intensive jobs on shared login nodes. Use your personal workstation or a designated test environment to avoid interfering with other users.
 
 On macOS or Windows, you can monitor processes using Activity Monitor or Task Manager. On Linux, the `ps` and `top` utilities can help track memory usage.
 
