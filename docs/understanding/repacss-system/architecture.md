@@ -1,6 +1,6 @@
 # REPACSS Architecture
 
-This document provides a comprehensive overview of the REPACSS (Remotely-managed Power Aware Computing Systems and Services) high-performance computing (HPC) infrastructure at Texas Tech University. The system is designed to support computationally intensive and data-driven research and is powered by renewable energy sources. REPACSS supports a wide range of scientific workloads, including simulations, artificial intelligence (AI), and large-scale data analytics.
+This document provides a comprehensive overview of the REPACSS (REmotely-managed Power Aware Computing Systems and Services) high-performance computing (HPC) infrastructure at Texas Tech University. The system is designed to support computationally intensive and data-driven research and is powered by renewable energy sources. REPACSS supports a wide range of scientific workloads, including simulations, artificial intelligence (AI), and large-scale data analytics.
 
 ---
 
