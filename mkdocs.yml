@@ -1,10 +1,12 @@
 site_name: REPACSS User Guide
-site_url: https://nsfcac.github.io/repacss-user-guide/
+site_url: https://talkingjupiter.github.io/repacss-user-guide/
+use_directory_urls: false # This is for only TalkingJupiter's fork
 site_description: Official documentation for the REPACSS HPC cluster at Texas Tech University
 site_author: REPACSS Team
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
   palette:
     - scheme: default
@@ -23,6 +25,15 @@ theme:
   favicon: assets/images/Favicon.svg
   features:
     - search.suggest
+    - content.footer.last-updated
+plugins:
+  - search
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      enable_creation_date: false
+      timezone: America/Chicago
+      locale: en
+      
 extra_css:
   - assets/stylesheets/extra.css
 
@@ -41,24 +52,8 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started-at-REPACSS.md
+  # - Getting Started: getting-started-at-REPACSS.md
   - Absolute Beginner Guide: absolute-beginner-guide.md
-
-  - Understanding Our Systems:
-      - Architecture: understanding/repacss-system/architecture.md
-      - Timeline: understanding/repacss-system/timeline.md
-      - Known Issues: understanding/repacss-system/known-issues.md
-      - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
-      - File System:
-        - File Transfer: file-transfer.md
-        - File Permissions: unix-permissions.md 
-
-  - Getting and Managing Your Account:
-      - Overview: account/index.md
-      - TTU: account/ttu.md
-      - ACCESS: account/access.md
-      - Passwords: account/passwords.md
-      - Policy: account/policy.md
 
   - Connecting to REPACSS:
       - Overview: connecting/index.md
@@ -69,29 +64,44 @@ nav:
   - Running Jobs:
       - Job Basics: running-jobs/basics.md
       - Job Examples: running-jobs/examples.md
-      - Queues: running-jobs/queues-charges.md
-      - Scheduling: running-jobs/scheduling.md
+      - Determine Resource Needs: running-jobs/determining-resource-requirements.md
       - Interactive Sessions: running-jobs/interactive.md
+      - Scheduling: running-jobs/scheduling.md
       - Monitoring: running-jobs/monitoring.md
       - Best Practices: running-jobs/best-practices.md
 
+  - Understanding Our Systems:
+      - Architecture: understanding/repacss-system/architecture.md
+      # - Timeline: understanding/repacss-system/timeline.md
+      # - Known Issues: understanding/repacss-system/known-issues.md
+      # - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
+      - File System:
+        - File Transfer: understanding/repacss-system/file-system/file-transfer.md
+        - File Permissions: understanding/repacss-system/file-system/unix-permissions.md 
+        - Sharing File Access: understanding/repacss-system/file-system/ACL.md
+
+  - Getting and Managing Your Account:
+      - Overview: account/index.md
+      - TTU: account/ttu.md
+      # - ACCESS: account/access.md
+      - Passwords: account/passwords.md
+      # - Policy: account/policy.md
+      
   - Software:
       - Module System: software/module-system.md
       - Available Software: software/available-software.md
       - Installing Packages: software/installing-packages.md
-      - Setting-up Python Env: software/python.md
+      - Conda: software/conda.md
 
   - Performance:
       - Compiler Flags: performance/compiler-flags.md
-      - Profiling Tools: performance/profiling-tools.md
-      - Scaling Tests: performance/scaling-tests.md
+      # - Profiling Tools: performance/profiling-tools.md
+      # - Scaling Tests: performance/scaling-tests.md
 
-  - Reference:
+  - Resources:
       - Glossary: reference/glossary.md
       - Cheatsheet: reference/cheatsheet.md
       - Common Errors: reference/common-errors.md
+      - FAQ: faq.md
+      - Contact Us: support.md
       
-  - System Status: status.md
-  - Support:
-    - Contact Us: support.md
-    - FAQ: faq.md

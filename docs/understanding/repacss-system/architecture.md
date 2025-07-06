@@ -1,117 +1,99 @@
 # REPACSS Architecture
 
-Welcome to the architectural overview of REPACSS — the Research and Educational Platform for Advanced Computing Support Services at Texas Tech University. This document will guide you through the compute, storage, and networking resources available on the REPACSS cluster.
+This document provides a comprehensive overview of the REPACSS (Remotely-managed Power Aware Computing Systems and Services) high-performance computing (HPC) infrastructure at Texas Tech University. The system is designed to support computationally intensive and data-driven research and is powered by renewable energy sources. REPACSS supports a wide range of scientific workloads, including simulations, artificial intelligence (AI), and large-scale data analytics.
 
 ---
 
-## 🧠 Compute Resources
+## Access Requirements
 
-REPACSS is a heterogeneous high-performance computing system optimized for both traditional CPU workloads and modern GPU-accelerated applications.
+To utilize REPACSS resources, users must meet the following prerequisites:
+
+* A valid TTU eRaider account (for current users)
+* Access to the GlobalProtect VPN
+* Basic familiarity with HPC concepts
+* Competence with Linux command-line environments
+
+---
+
+## Compute Resources
+
+REPACSS consists of a heterogeneous cluster of compute resources optimized for both CPU-intensive and GPU-accelerated workloads.
 
 ### CPU Compute Nodes
 
-The majority of REPACSS's compute capacity comes from high-core-count AMD EPYC CPUs, suitable for large parallel jobs and memory-intensive simulations.
-
-- 110 CPU nodes
-- Dual AMD EPYC 9754 processors
-- 256 total cores per node
-- 1.5 TB DDR5 memory
-- 1.92 TB local NVMe SSD
+* **Total Nodes**: 110
+* **Processor**: Dual AMD EPYC 9754
+* **Cores per Node**: 256
+* **Memory per Node**: 1.5 TB DDR5
+* **Storage per Node**: 1.92 TB NVMe SSD
 
 ### GPU Compute Nodes
 
-GPU resources are designed for machine learning, data analytics, and other massively parallel applications.
-
-- 8 GPU nodes
-- Dual Intel Xeon Gold 6448Y CPUs (64 cores)
-- 512 GB RAM per node
-- 4 × NVIDIA H100 NVL GPUs (94 GB HBM each)
-- 1.92 TB local SSD
+* **Total Nodes**: 8
+* **Processor**: Dual Intel Xeon Gold 6448Y
+* **Cores per Node**: 64
+* **Memory per Node**: 512 GB
+* **GPUs per Node**: 4 × NVIDIA H100 NVL (94 GB HBM per GPU)
+* **Storage per Node**: 1.92 TB SSD
 
 ### Login Nodes
 
-Users interact with the system through login nodes, where editing, compiling, and job submissions take place.
-
-- 3 login nodes
-- Dual AMD EPYC 9254 CPUs (48 cores)
-- 256 GB RAM
-- 1.92 TB NVMe SSD
-
----
-
-## 💾 Storage Resources
-
-REPACSS has nearly **3 PB** of storage capacity distributed across multiple tiers optimized for different use cases.
-
-### Tiered Storage Overview
-
-- **Home**: Persistent personal storage for source code and config files.
-- **Scratch**: High-performance temporary storage for active simulations. Subject to purge policy.
-- **Archive**: Long-term storage for research results and finalized datasets.
-
-### Storage Node Hardware
-
-| Node Type     | CPU Model         | Cores | RAM      | Local Storage     |
-|---------------|------------------|-------|----------|-------------------|
-| Storage-01    | Intel Xeon Gold 6238 | 44    | 512 GB   | 212.4 TB          |
-| Storage-02    | Intel Xeon Gold 6226 | 24    | 512 GB   | 218.6 TB          |
-| Storage-03    | Intel Xeon Gold 6346 | 32    | 1 TB     | 277.8 TB          |
-| Storage-04    | Intel Xeon Gold 6346 | 32    | 1 TB     | 583.7 TB          |
-| Storage-05    | Intel Xeon Gold 6338 | 32    | 1 TB     | 216.4 TB          |
-| Storage-06    | Intel Xeon Gold 6338 | 32    | 1 TB     | 270.4 TB          |
-| Storage-07    | Intel Xeon Gold 6338 | 32    | 1 TB     | 232.4 TB          |
-| Storage-08    | Intel Xeon Gold 5317 | 8     | 512 GB   | 229.2 TB          |
-| Storage-09    | Intel Xeon Gold 5317 | 8     | 512 GB   | 25.6 TB           |
+* **Total Nodes**: 3
+* **Processor**: Dual AMD EPYC 9254
+* **Cores per Node**: 48
+* **Memory per Node**: 256 GB
+* **Storage per Node**: 1.92 TB NVMe SSD
 
 ---
 
-## 🌐 Network Architecture
+## Storage Infrastructure
 
-The REPACSS network architecture is designed to deliver high bandwidth and low latency for compute and storage operations.
+REPACSS includes nine storage nodes that collectively offer approximately 2.94 PB of multi-tiered storage. These systems utilize both high-speed NVMe drives and large-capacity HDDs to accommodate various storage requirements.
 
-- Core interconnect: Dell PowerSwitch S5248-ON and S5232-ON
-- Storage network: Dedicated high-throughput fabric
-- High-speed NICs support multi-node parallelism and MPI workloads
+### Storage Node Summary
 
-The network topology ensures:
-- Efficient data movement between compute and storage
-- Minimized I/O bottlenecks during job execution
-- Reliable system access for remote users
+* **Processors**: Intel Xeon Gold (varied models)
+* **Cores per Node**: 8 to 32
+* **Memory per Node**: 512 GB to 1 TB
+* **Storage per Node**: 25.6 TB to 583.68 TB
 
----
+### Storage Tiers
 
-## ⚙️ System Summary
-
-| Component     | Count | Key Specs                                      |
-|---------------|-------|-----------------------------------------------|
-| CPU Nodes     | 110   | 256 cores, 1.5 TB RAM, NVMe SSD               |
-| GPU Nodes     | 8     | 64 cores, 512 GB RAM, 4× NVIDIA H100 NVL      |
-| Login Nodes   | 3     | 48 cores, 256 GB RAM, NVMe SSD                |
-| Storage Nodes | 9     | 8–44 cores, 512 GB–1 TB RAM, up to 583 TB     |
+* **Home**: Persistent personal storage for user scripts and configuration files.
+* **Scratch**: High-performance temporary storage space subject to periodic purging.
+* **Work**: Long-term storage for research outputs and work purposes.
 
 ---
 
-## 🗃 Storage Best Practices
+## Network Architecture
 
-- Use `$HOME` for configs, scripts, and small files
-- Use `$SCRATCH` for intermediate output and I/O-heavy workloads
-- Archive finalized results in the long-term storage pool
-
-!!! tip "Need more performance?"
-    Running I/O intensive jobs? Always use `$SCRATCH` to avoid hitting I/O bottlenecks.
-
-!!! warning "Don't forget to archive!"
-    Scratch space is periodically purged. Move important data to long-term storage to avoid data loss.
+The network backbone of REPACSS supports high-throughput and low-latency communication among compute and storage nodes.
+* **Switching Infrastructure**: Dell PowerSwitch S5248-ON and S5232-ON
+* **Storage Interconnect**: InfiniBand network
+* **Features**:
+    * Reliable and fast data movement
+    * Efficient support for multi-node parallel processing (MPI)
+    * Secure remote access capabilities
 
 ---
 
-## 🔗 Related Pages
+## System Specifications Summary
 
-- [Running Jobs](../../running-jobs/basics.md)
-- [Available Software](../../software/available-software.md)
-- [Using GPUs on REPACSS](../../running-jobs/interactive.md)
-- [Monitoring and Troubleshooting](../../running-jobs/monitoring.md)
+| Node Type     | Total Nodes | CPU Model                | CPUs/Node | Cores/Node | Memory/Node | Storage/Node   | GPUs/Node | GPU Model                   |
+| ------------- | ----------- | ------------------------ | --------- | ---------- | ----------- | -------------- | --------- | --------------------------- |
+| CPU Nodes     | 110         | AMD EPYC 9754            | 2         | 256        | 1.5 TB DDR5 | 1.92 TB NVMe   | -         | -                           |
+| GPU Nodes     | 8           | Intel Xeon Gold 6448Y    | 2         | 64         | 512 GB      | 1.92 TB SSD    | 4         | NVIDIA H100 NVL (94 GB HBM) |
+| Login Nodes   | 3           | AMD EPYC 9254            | 2         | 48         | 256 GB      | 1.92 TB NVMe   | -         | -                           |
+| Storage Nodes | 9           | Intel Xeon Gold (varied) | 2         | 8–32       | 512 GB–1 TB | 25.6–583.68 TB | -         | -                           |
 
 ---
 
-_Last updated: June 2025_
+## Additional Resources
+
+* [Running Jobs](../../running-jobs/basics.md)
+* [Available Software](../../software/available-software.md)
+* [GPU Job Submission](../../running-jobs/interactive.md)
+* [Monitoring and Troubleshooting](../../running-jobs/monitoring.md)
+
+---
+

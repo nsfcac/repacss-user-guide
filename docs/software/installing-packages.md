@@ -1,92 +1,146 @@
-# 📦 Installing Packages
+# Installing User-Level Software Packages
 
-This page provides guidance for installing additional software or Python packages in the REPACSS environment. Users can install packages in their own workspace without administrative privileges.
+This document provides guidance for installing additional software packages, particularly Python libraries, within the REPACSS computing environment. Users are permitted to install software in their own workspace without requiring administrative privileges, provided installations are performed in designated directories such as `$HOME` or `$WORK`.
 
 ---
 
-## 🐍 Python Packages
+## Installing Miniforge (Python 3.11)
 
-Python 3.11 is available via **Miniforge** and supports both `conda` and `pip` for managing packages.
+Miniforge is a minimal Conda-based Python distribution available for local installation. To install Miniforge in your home directory:
 
-### ✅ Activate Miniforge
+1. Download the installer:
+   ```bash
+   wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh
+   ```
 
-First, activate your base Python environment:
+2. Run the installer:
+   ```bash
+   bash Miniforge3-$(uname)-$(uname -m).sh
+   ```
+   When prompted, accept the license agreement and install to a directory under `$HOME`, for example `$HOME/miniforge3`.   
+   
+3. Initialize Conda:
+   ```bash
+   source ~/miniforge3/etc/profile.d/conda.sh
+   conda init
+   ```
 
-```bash
-source ~/miniforge3/etc/profile.d/conda.sh
-conda activate base
-```
+4. Restart your shell or manually activate Conda:
+   ```bash
+   source ~/.bashrc    # or ~/.zshrc
+   conda activate base
+   ```
 
-If `conda` is not found, ensure Miniforge is installed in your home directory. Contact support if not available.
+---
 
-### 📥 Installing with Conda
+## Python Package Management
 
-Install packages into a named environment:
+Miniforge provides Python 3.11 and supports isolated environments using `conda`.
+
+---
+
+### Creating and Managing Environments
+
+To create a new conda environment with selected packages:
 
 ```bash
 conda create -n myenv numpy scipy matplotlib
 conda activate myenv
 ```
 
-To add more packages later:
+To install more packages into an existing environment:
 
 ```bash
+conda activate myenv
 conda install pandas scikit-learn
 ```
 
-### 📥 Installing with Pip
+To deactivate or remove an environment:
 
-If your package is not available via conda:
+```bash
+conda deactivate
+conda remove --name myenv --all
+```
+
+!!! example "Installing CUDA"
+
+    You can install the CUDA Toolkit from either conda-forge or NVIDIA channels.  
+    Replace `x` with the minor version you need (e.g., `12.2`).
+
+    ```bash
+    # Install from conda-forge
+    conda install cudatoolkit=12.x -c conda-forge
+
+    # OR install from NVIDIA channel
+    conda install cudatoolkit=12.x -c nvidia
+    ```
+
+
+---
+
+<!-- ### Installing Packages Using Pip
+
+In cases where a package is unavailable via `conda`, the `pip` utility may be used within an activated environment:
 
 ```bash
 pip install somepackage
 ```
 
-You can install from a `requirements.txt` file:
+To install from a `requirements.txt` file:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+It is strongly recommended that `pip` be used only inside an activated conda or virtual environment to prevent unintended modifications to the base environment.
 
-## 💻 C/C++ or Fortran Libraries
+--- -->
+<!-- 
+## C, C++, and Fortran Library Installation
 
-If you need to install custom libraries (e.g., building from source):
+For users developing or compiling C, C++, or Fortran libraries from source, the following procedure is advised:
 
-1. Load the appropriate modules:
+1. Load required compiler and MPI modules: -->
 
-```bash
-module load gcc/12.2.0 openmpi/4.1.5
-```
+<!-- ```bash
+module load gcc/14.2.0 openmpi/4.1.6
+``` -->
 
-2. Build and install:
+<!-- 2. Build and install the library locally: -->
 
-```bash
+<!-- ```bash
 ./configure --prefix=$HOME/mylibs
 make -j
 make install
-```
+``` -->
 
-Add your installation path to the environment:
+<!-- 3. Add the installation directory to the environment: -->
 
-```bash
+<!-- ```bash
 export PATH="$HOME/mylibs/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/mylibs/lib:$LD_LIBRARY_PATH"
+``` -->
+
+<!-- --- -->
+
+## Best Practices and Guidelines
+
+- All software should be installed to user-controlled directories such as `$HOME` or `$WORK`. Installation to system directories is not permitted.
+- Use `conda` environments or `venv` for managing dependencies and improving reproducibility.
+- For large-scale or portable workflows, consider encapsulating environments using containers (e.g., Apptainer/Singularity).
+- Maintain separate environments for distinct projects to prevent dependency conflicts.
+
+---
+
+## Additional Resources
+
+For further configuration or software access guidance, refer to the following documentation:
+
+- [Module System](module-system.md)
+- [Available Software](available-software.md)
+
+For additional support or to request software installation at the system level, please contact:
+
 ```
-
----
-
-## ⚠️ Tips
-
-* Avoid installing packages system-wide. Use local directories (e.g., `$HOME`, `$WORK`) for all custom installs.
-* Use conda environments to keep package dependencies isolated and manageable.
-* Consider using virtual environments or containers (e.g., conda, venv, or Apptainer) for reproducibility.
-
----
-
-## 📚 Related Pages
-
-* [Module System](module-system.md)
-* [Available Software](available-software.md)
-* [Python Environment Setup](python.md)
+repacss.support@ttu.edu
+```

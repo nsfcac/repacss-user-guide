@@ -1,41 +1,43 @@
-# 🎮 Interactive Sessions
+# Interactive Sessions
 
-Interactive sessions allow users to allocate resources in real time to run commands directly on compute nodes. This is useful for debugging, exploratory work, or running graphical applications. REPACSS supports interactive job allocation via the Slurm `salloc` command.
+This section provides official guidance on initiating interactive sessions on the REPACSS high-performance computing system. Interactive sessions allow users to request computational resources in real time and execute commands directly on compute nodes. This method is particularly suitable for software testing, debugging, exploratory tasks, and graphical application workflows.
+
+!!! warning  
+    Interactive sessions should be used exclusively for development and debugging purposes. Once your job is ready for full execution, please submit it using a SLURM batch job and `exit` from the resources.
 
 ---
 
-## 🚀 Allocating Resources
+## Requesting Interactive Resources
 
-Use `salloc` to request an interactive session. This launches a shell on a compute node with the requested resources.
-
-```bash
-salloc --nodes=1 --ntasks=1 --cpus-per-task=8 --time=01:00:00 --partition=zen4
-```
-
-Or use the shortcut alias available on REPACSS:
+To start an interactive session, use the `interactive` command. This command wraps around the resource request process, performs additional setup, and launches a shell on a compute node once resources are allocated.
 
 ```bash
 interactive -c 8 -p h100
 ```
 
+This method is the **recommended** way to start interactive sessions on REPACSS.
+
+!!! tip  
+    Do not call `salloc` directly unless instructed otherwise. The `interactive` command performs important environment configuration steps that `salloc` alone does not handle.
+
 ---
 
-## 🎛️ Interactive Jobs on GPU Nodes
+## Interactive Sessions on GPU Nodes
 
-When working with GPU nodes, make sure to specify GPU resources:
-
-```bash
-salloc --nodes=1 --gpus=4 --time=01:00:00 --partition=h100
-```
-
-Then, within the session, use `srun` with GPU flags:
+When working with graphical processing units (GPUs), use the `interactive` command with the appropriate GPU partition and core count. For example:
 
 ```bash
-srun --gpus=4 ./my_gpu_program
+interactive -c 8 -p h100
 ```
 
-!!! warning
-    If you do not request GPUs with `--gpus`, CUDA applications may fail with errors like:
+Within the session, use `srun` to launch your GPU applications:
+
+```bash
+srun --gres=gpu:nvidia_h100_nvl:1 ./my_gpu_program
+```
+
+!!! warning  
+    If GPU resources are not explicitly requested, applications relying on GPU acceleration (e.g., CUDA) may fail with an error such as:
 
 ```
 no CUDA-capable device is detected
@@ -43,15 +45,15 @@ no CUDA-capable device is detected
 
 ---
 
-## 🖥️ Interactive Jobs on CPU Nodes
+## Interactive Sessions on CPU-Only Nodes
 
-To run on a CPU-only partition:
+For CPU-only workloads, use the `interactive` command with a CPU-only partition such as `zen4`:
 
 ```bash
-salloc --nodes=1 --ntasks=1 --cpus-per-task=8 --time=01:00:00 --partition=zen4
+interactive -c 8 -p zen4
 ```
 
-Use the shell to run commands interactively or launch parallel tasks with `srun`:
+Once the session begins, you can run programs directly or use `srun` for launching parallel tasks:
 
 ```bash
 srun ./my_cpu_program
@@ -59,27 +61,31 @@ srun ./my_cpu_program
 
 ---
 
-## ⏱️ Wait Limits and Timeout
+## Resource Allocation Timeout and Immediate Scheduling
 
-Interactive jobs will be canceled if resources are not allocated within 6 minutes. To change this behavior, use the `--immediate` flag:
+By default, interactive job requests will time out if resource allocation is not completed within six (6) minutes. If needed, a custom wait limit can be applied using:
 
 ```bash
-# Wait up to 10 minutes (600 seconds) for resources
-salloc --nodes=1 --time=01:00:00 --partition=zen4 --immediate=600
+interactive -c 8 -p zen4 --immediate=600
 ```
 
----
+This example waits up to 600 seconds (10 minutes) for compute resources.
 
-## ⚠️ Common Errors
-
-* **Missing GPUs in `srun`**: Always specify GPU count in both `salloc` and `srun`.
-* **Account Errors**: Ensure you have a valid default account or specify one with `--account=<project>`.
-* **No Resources Available**: Try a different partition or reduce requested time/nodes.
+!!! note  
+    If your connection is lost, the interactive session will terminate and any unsaved progress may be lost.
 
 ---
 
-## 📚 Related Pages
+## Common Issues and Resolutions
 
-* [Running Jobs](basics.md)
-* [Queues](queues-charges.md)
-* [Example Job Scripts](examples.md)
+- **GPU Execution Errors**: Confirm that GPU resources are requested in the interactive session and in any `srun` commands.
+- **Invalid Account Settings**: Contact [REPACSS Support](../support.md).
+- **Unavailable Resources**: If nodes are unavailable, consider lowering resource requests or choosing a less busy partition.
+
+---
+
+## Additional Documentation
+
+- [Running Jobs](basics.md)  
+- [Job Queues and Scheduling](scheduling.md)  
+- [Example Job Scripts](examples.md)

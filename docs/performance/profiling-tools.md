@@ -1,4 +1,4 @@
-# 🧪 Profiling Tools
+# Profiling Tools
 
 !!! warning
     This page is under development. Details about performance analysis tools will be added soon.

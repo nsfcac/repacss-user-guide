@@ -1,357 +1,281 @@
-# 📄 Example Job Scripts
+# Example Job Scripts
 
-This page contains structured job script examples tailored for REPACSS. For terminology and scheduler behavior, refer to the [Job Basics](basics.md) page. These examples are adapted for REPACSS CPU and GPU partitions like `zen4`, `h100`, and `standard`.
+This page provides structured job script examples adapted for REPACSS. For definitions and scheduler behavior, refer to the [Job Basics](basics.md) page. These examples are designed for CPU and GPU partitions such as `zen4`, `h100`, and `standard`.
 
 ---
 
 !!! tip
-    On REPACSS, `interactive` jobs in GPU partitions get scheduling priority.
+    Interactive jobs in GPU partitions are granted scheduling priority on REPACSS.
 
 !!! warning
-    Each Slurm "cpu" is a hyperthread. Use `--cpu-bind=cores` to pin OpenMP threads to physical cores.
+    Each Slurm CPU is a hyperthread. To bind OpenMP threads to physical cores, use `--cpu-bind=cores`.
 
 !!! note
-    Use `&` to run jobs in parallel and `wait` to synchronize.
+    To run jobs in parallel, use `&`, and use `wait` to synchronize them.
 
 ---
 
-## 💡 Basic MPI Batch Job (CPU)
+## Job Types
 
-Use this script to launch a standard MPI-based application across multiple nodes, where each node runs many MPI ranks.
+Jobs on REPACSS can be submitted in two main forms:
 
-<details>
-<summary>Show Script</summary>
+* **Interactive Jobs**: Real-time sessions for testing and debugging.
 
+  ```bash
+  interactive -c 8 -p h100
+  ```
+
+* **Batch Jobs**: Scheduled jobs submitted via script.
+
+  ```bash
+  sbatch job.sh
+  sbatch -p zen4 job.sh
+  sbatch -p h100 job.sh
+  ```
+
+---
+
+## Script Templates
+
+### Basic Job Script with C
+
+1. Create a file named `my_program.c` with the following content:
 ```bash
-#!/bin/bash
-#SBATCH --time=00:05:00
-#SBATCH --nodes=2
-#SBATCH --ntasks-per-node=128
-#SBATCH --constraint=zen4
+#include <stdio.h>
+#include <unistd.h>
 
-srun ./mpi_app
+int main() {
+    printf("SLURM job started.\n");
+    printf("Sleeping for 60 seconds to simulate work...\n");
+    sleep(60);
+    printf("Job complete. Goodbye!\n");
+    return 0;
+}
 ```
 
-</details>
+2. Load the GCC module and compile the program:
+```bash
+module load gcc/14.2.0
+gcc my_program.c -o my_program
+```
 
----
-
-## 🔧 Hybrid MPI + OpenMP Job
-
-Hybrid jobs use both MPI for inter-node communication and OpenMP for intra-node threading. Useful for scaling efficiently across sockets.
-
-<details>
-<summary>Show Script</summary>
-
+3. Create a file named `submit_job.sh` with the following contents:
 ```bash
 #!/bin/bash
+#SBATCH --job-name=test
+#SBATCH --output=test.out
+#SBATCH --error=test.err
+#SBATCH --time=01:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=2
-#SBATCH --cpus-per-task=64
-#SBATCH --constraint=zen4
-#SBATCH --time=01:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4G
 
-export OMP_NUM_THREADS=64
-srun --cpu-bind=cores ./hybrid_app
+# Load modules
+module load gcc/14.2.0
+
+# Run program
+./my_program
+```
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
+
+4. Make the script executable and submit it using `sbatch`:
+```bash
+sbatch submit_job.sh
 ```
 
+
+### Python Job Script
+1. Create a Python file named `script.py` with the following example content:
+```bash
+import time
+import platform
+
+print("SLURM Python job started.")
+print("Running on:", platform.node())
+time.sleep(10)  # Simulate workload
+print("Job complete. Goodbye!")
+```
+
+2. Create a file named `submit_python_job.sh` with the following content:
 ```bash
 #!/bin/bash
+#SBATCH --job-name=python_job
+#SBATCH --output=python_job.out
+#SBATCH --error=python_job.err
+#SBATCH --time=01:00:00
 #SBATCH --nodes=1
-#SBATCH --ntasks=28
-#SBATCH --cpus-per-task=32
-#SBATCH --constraint=zen4
-#SBATCH --time=02:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
 
-export OMP_NUM_THREADS=32
-srun --cpu-bind=cores ./hybrid_app
+# Load required modules
+module load gcc
+
+# Activate conda environment
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate myenv
+
+# Run Python script
+python script.py
 ```
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
 
-</details>
-
----
-
-## 🪄 Interactive Jobs
-
-Interactive jobs let you test and debug applications live in a shell on a compute node. Great for prototyping and short runs.
-
-<details>
-<summary>Show Script</summary>
-
+3. Make the script executable and submit it to SLURM:
 ```bash
-salloc --nodes=1 --ntasks=1 --cpus-per-task=8 --time=01:00:00 --partition=h100
+sbatch submit_python_job.sh
 ```
 
-</details>
+### GPU Job Script
+!!! warning  
+    We are currently working to make the CUDA module available system-wide for all users. In the meantime, please use CUDA via a Conda environment as described below.
 
----
-
-## 🔀 Sequential Parallel Jobs
-
-This script runs several parallel jobs one after the other. Useful for workflows that require multiple independent steps.
-
-<details>
-<summary>Show Script</summary>
-
+1. Create and activate a new Conda environment
 ```bash
-#!/bin/bash
-#SBATCH --nodes=4
-#SBATCH --time=01:00:00
-#SBATCH --constraint=zen4
-
-srun -N 1 ./job1
-srun -N 1 ./job2
-srun -N 1 ./job3
+conda create --name cuda-env python=3.10 -y
+conda activate cuda-env
 ```
 
-</details>
-
----
-
-## ⬆️ Simultaneous Parallel Jobs
-
-Run several parallel jobs at the same time using background execution. Useful for maximizing resource usage in workflows.
-
-<details>
-<summary>Show Script</summary>
-
+2. Install the CUDA Toolkit with nvcc support
 ```bash
-#!/bin/bash
-#SBATCH --nodes=8
-#SBATCH --time=01:00:00
-#SBATCH --constraint=zen4
-
-srun -N 2 -n 176 -c 1 --cpu-bind=cores ./a.out &
-srun -N 4 -n 432 -c 1 --cpu-bind=cores ./b.out &
-srun -N 2 -n 160 -c 1 --cpu-bind=cores ./c.out &
-wait
+conda install -c nvidia cuda-toolkit=12.9
 ```
 
-</details>
-
----
-
-## 🚀 GPU Power Capping
-
-Use this script to reduce GPU power usage. Great for energy-aware experiments and optimizing efficiency.
-
-<details>
-<summary>Show Script</summary>
-
+3. Install a compatible GCC toolchain (GCC 11)
 ```bash
-#!/bin/bash
-#SBATCH --gres=gpu:1
-#SBATCH --constraint=h100
-#SBATCH --time=01:00:00
-
-nvidia-smi -pl 200
-srun ./gpu_app
+conda install -c conda-forge gxx_linux-64=11
 ```
 
-</details>
+4. Create a sample CUDA program: gpu_program.cu
+```cpp
+#include <stdio.h>
+#include <cuda_runtime.h>
 
----
+__global__ void hello_from_gpu() {
+    printf("Hello from GPU thread %d!\n", threadIdx.x);
+}
 
-## 📆 Job Arrays
+int main() {
+    printf("Starting GPU job...\n");
+    hello_from_gpu<<<1, 64>>>();
 
-Submit many similar jobs at once using a single script. Ideal for parameter sweeps and embarrassingly parallel workloads.
+    cudaError_t err = cudaGetLastError();
+    if (err != cudaSuccess) {
+        fprintf(stderr, "Kernel launch failed: %s\n", cudaGetErrorString(err));
+        return 1;
+    }
 
-<details>
-<summary>Show Script</summary>
+    err = cudaDeviceSynchronize();
+    if (err != cudaSuccess) {
+        fprintf(stderr, "CUDA error after kernel: %s\n", cudaGetErrorString(err));
+        return 1;
+    }
 
+    printf("GPU job finished.\n");
+    return 0;
+}
+```
+
+5. Compile the CUDA program for NVIDIA H100 GPUs (sm_90)
+```bash
+nvcc -arch=sm_90 \
+  -ccbin "$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++" \
+  -I"$CONDA_PREFIX/targets/x86_64-linux/include" \
+  -L"$CONDA_PREFIX/targets/x86_64-linux/lib" \
+  -o gpu_program gpu_program.cu
+```
+
+6. Create the SLURM job script: `gpu_job.slurm`
 ```bash
 #!/bin/bash
-#SBATCH --array=0-2
-#SBATCH --nodes=1
-#SBATCH --constraint=zen4
-#SBATCH --time=00:02:00
-
-echo "Running task ID: $SLURM_ARRAY_TASK_ID"
-```
-
-</details>
-
----
-
-## ⚠️ Job Dependencies
-
-Chain jobs together so one starts after another completes successfully. Useful for pipelining stages.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-jobid=$(sbatch --parsable job1.sh)
-sbatch --dependency=afterok:$jobid job2.sh
-```
-
-</details>
-
----
-
-## 📉 Shared Node Example
-
-Use this when your job doesn’t need an entire node. Helps reduce queue time and resource waste.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-#!/bin/bash
-#SBATCH --constraint=zen4
-#SBATCH --ntasks=2
+#SBATCH --job-name=gpu_hello
+#SBATCH --output=gpu_hello.out
+#SBATCH --error=gpu_hello.err
+#SBATCH --partition=h100
+#SBATCH --gres=gpu:nvidia_h100_nvl:1
 #SBATCH --cpus-per-task=2
+#SBATCH --mem=4G
 #SBATCH --time=00:05:00
 
-srun --cpu-bind=cores ./a.out
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate cuda-env
+
+./gpu_program
+```
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
+
+7. Submit the job to SLURM
+```bash
+sbatch gpu_job.slurm
 ```
 
-</details>
+
+
+<!-- 1. Create a file named `gpu_program.cu` with the following basic CUDA code: -->
+<!-- ```bash
+#include <stdio.h>
+
+__global__ void hello_from_gpu() {
+    printf("Hello from GPU thread %d!\\n", threadIdx.x);
+}
+
+int main() {
+    printf("Starting GPU job...\\n");
+
+    hello_from_gpu<<<1, 8>>>();
+    cudaDeviceSynchronize();
+
+    printf("GPU job finished.\\n");
+    return 0;
+}
+``` -->
+
+<!-- 2. Load the CUDA module and compile using `nvcc`: -->
+<!-- ```bash
+module load cuda
+nvcc gpu_program.cu -o gpu_program
+``` -->
+
+<!-- 3. Create a file named `submit_gpu_job.sh` -->
 
 ---
 
-## 💻 Open MPI Example
+## Job Management
 
-Use Open MPI via `srun` after loading the appropriate module. Ensure compatibility with your compiled binaries.
-
-<details>
-<summary>Show Script</summary>
+### Submission
 
 ```bash
-#!/bin/bash
-#SBATCH --nodes=2
-#SBATCH --constraint=zen4
-#SBATCH --time=01:00:00
-
-module load openmpi
-srun ./openmpi_program
+sbatch job.sh                       # Submit job
+sbatch --array=1-10 job.sh          # Submit job array
+sbatch --dependency=afterok:12345 job.sh  # Submit with dependency
 ```
 
-</details>
+### Monitoring
+
+```bash
+squeue -u $USER           # View user's jobs
+squeue -p zen4            # View jobs on zen4 partition
+squeue -p h100            # View jobs on h100 partition
+```
+
+### Control
+
+```bash
+scancel 12345             # Cancel a specific job
+scancel -u $USER          # Cancel all user's jobs
+scancel -p zen4           # Cancel all jobs in zen4 partition
+```
 
 ---
 
-## ⏳ Preemptible Job
+## Resource Requests
 
-This type of job can be interrupted and restarted. Suitable for workflows that can checkpoint or tolerate interruptions.
+* **CPU Jobs**: Specify `--nodes`, `--ntasks`, `--cpus-per-task`, and `--mem`
+* **GPU Jobs**: Include `--gres=gpu:1` or more as needed
+* **Python Jobs**:
 
-<details>
-<summary>Show Script</summary>
+  * See Python environment setup
+  * Use `--cpus-per-task` for multi-threading
+  * Set `--mem` appropriately for data requirements
 
-```bash
-#!/bin/bash
-#SBATCH -C zen4
-#SBATCH -N 1
-#SBATCH --time=24:00:00
-#SBATCH --signal=USR1@60 
-#SBATCH --requeue
-
-srun ./payload.sh
-sleep 120
-```
-
-</details>
-
----
-
-## 🔄 MPMD Example
-
-Run multiple executables under the same job using different resource allocations. Used in coupled or multi-app workflows.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-#!/bin/bash
-#SBATCH --nodes=3
-#SBATCH --constraint=zen4
-#SBATCH --time=01:00:00
-
-srun -N 1 -n 64 ./a.out : -N 2 -n 32 ./b.out
-```
-
-</details>
-
----
-
-## 📅 Job Arrays with Dependencies
-
-Combine job arrays with dependencies for more advanced control over batch workflows.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-jobid1=$(sbatch --parsable job1.sh)
-jobid2=$(sbatch --parsable --dependency=afterok:$jobid1 job2.sh)
-jobid3=$(sbatch --parsable --dependency=afterok:$jobid1 job3.sh)
-sbatch --dependency=afterok:$jobid2,afterok:$jobid3 final_job.sh
-```
-
-</details>
-
----
-
-## 🤝 Real-Time Job
-
-Submit jobs that need low-latency turnaround, often linked to live experiments or external instruments.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-#!/bin/bash
-#SBATCH --constraint=zen4
-#SBATCH --nodes=2
-#SBATCH --ntasks-per-node=128
-#SBATCH --time=01:00:00
-
-srun ./mycode.exe
-```
-
-</details>
-
----
-
-## 📂 Heterogeneous Job
-
-Use this format to request different node types (e.g., CPU + GPU) in a single job.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-#!/bin/bash
-#SBATCH --time=05:00:00
-
-#SBATCH --constraint=zen4
-#SBATCH --nodes=2
-#SBATCH hetjob
-#SBATCH --constraint=h100
-#SBATCH --nodes=1
-
-srun --het-group=0 ./cpu_task.sh
-srun --het-group=1 ./gpu_task.sh
-```
-
-</details>
-
----
-
-## ❌ Overrun Job
-
-Submit a job using the overrun allocation when your project has exceeded its quota. Supports preemption.
-
-<details>
-<summary>Show Script</summary>
-
-```bash
-#!/bin/bash
-#SBATCH --constraint=zen4
-#SBATCH --time=04:00:00
-#SBATCH --time-min=01:30:00
-
-srun ./final_job.sh
-```
-
-</details>
+For additional guidance, consult [Slurm Documentation](https://slurm.schedmd.com/documentation.html) and REPACSS-specific resources.

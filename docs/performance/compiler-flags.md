@@ -1,79 +1,50 @@
-# ⚙️ Compiler Flags
+# Compiler Flags
 
 !!! warning
-    This page is still under development. Use these recommendations as a starting point and verify the compiler, versions and performance improvements through testing.
+    This page is currently under development. The following recommendations serve as a preliminary guide. Users are strongly encouraged to validate compiler flags against their own applications through testing and performance benchmarking.
 
-Choosing the right compiler flags can significantly impact the performance of your applications on REPACSS. This page provides guidance for commonly used compilers.
+Optimizing compilation flags is essential to maximizing application performance on the REPACSS high-performance computing system. The recommended flags below are tailored for the compiler toolchains available via REPACSS environment modules.
 
----
 
-## 🧵 General Tips
+## General Optimization Guidelines
 
-* Always use optimization flags (e.g., `-O2` or `-O3`) for performance.
-* Use architecture-specific flags to take advantage of REPACSS hardware.
-* Profile before and after applying flags to measure impact.
+- Use `-O2` or `-O3` for performance optimization.
+- Enable vectorization and loop unrolling where beneficial.
+- Use architecture-specific flags (e.g., `-march=native`) to generate code optimized for REPACSS hardware.
+- Profile and benchmark performance before and after applying new flags.
+- Use `-fopenmp` to enable multithreading where applicable.
 
----
+## GCC (Version 14.2.0)
 
-## 🧰 GCC (12.2.0)
+**Recommended Flags:**
 
 ```bash
 -O3 -march=native -funroll-loops -ffast-math -fopenmp
 ```
 
-* `-O3` enables aggressive optimizations.
-* `-march=native` targets the local CPU architecture.
-* `-funroll-loops` can improve performance in some loops.
-* `-fopenmp` enables OpenMP support.
+**Descriptions:**
 
----
+- `-O3`: Enables aggressive optimization.
+- `-march=native`: Targets the specific microarchitecture of the compute node.
+- `-funroll-loops`: Enhances performance for loop-heavy code.
+- `-ffast-math`: Permits faster floating-point operations (may break strict IEEE compliance).
+- `-fopenmp`: Enables OpenMP multithreading.
 
-## 💡 Intel OneAPI (2023.0)
+## Example Compilation Command
 
-```bash
--O3 -xHost -qopenmp -fp-model fast=2
-```
-
-* `-xHost` optimizes for the highest instruction set available on the host.
-* `-qopenmp` enables OpenMP parallelism.
-* `-fp-model fast=2` relaxes IEEE compliance for faster math.
-
----
-
-## 🚀 NVIDIA HPC SDK (23.1)
-
-```bash
--O3 -mp=gpu -gpu=cc90,fastmath -Minfo=accel
-```
-
-* `-mp=gpu` enables GPU acceleration with OpenACC.
-* `-gpu=cc90,fastmath` targets H100 (CUDA compute capability 9.0).
-* `-Minfo=accel` reports what loops are offloaded.
-
----
-
-## 🧪 Example Usage
-
-GCC:
+**GCC Example:**
 
 ```bash
 gcc -O3 -march=native -fopenmp mycode.c -o mycode
 ```
 
-Intel:
+!!! note
+    For best results, benchmark with realistic datasets and verify correctness after applying aggressive optimizations.
 
-```bash
-icx -O3 -xHost -qopenmp mycode.c -o mycode
-```
 
-NVIDIA:
+<!-- ## Additional Resources
 
-```bash
-nvc -O3 -mp=gpu mycode.c -o mycode
-```
+After compilation, it is recommended to consult the following documentation pages to evaluate application performance:
 
----
-
-## 🧭 Next Steps
-
-After compiling, use [Profiling Tools](profiling-tools.md) and [Scaling Tests](scaling-tests.md) to evaluate performance.
+- [Profiling Tools](profiling-tools.md)
+- [Scaling Tests](scaling-tests.md) -->

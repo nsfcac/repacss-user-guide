@@ -1,46 +1,56 @@
-# Texas Tech University (TTU) 🏫🐘
+# Texas Tech University (TTU)
 
-!!! info "About this Section 📘"
-    This section outlines the role of Texas Tech University in hosting and supporting the REPACSS platform, including local access details and infrastructure support.
+!!! info "Section Purpose"
+    This section outlines Texas Tech University’s role in hosting and supporting the REPACSS computing platform, including details on network access, research engagement, and local technical support.
 
-## On-Campus Access 🧑‍🏫📶
+---
 
-REPACSS is physically hosted on TTU’s research infrastructure and can be accessed:
+## On-Campus and Remote Access
 
-- 📍 **On campus** using wired Ethernet or TTUnet Wi-Fi  
-- 🌐 **Off campus** via TTU VPN ([VPN Setup Guide](https://www.depts.ttu.edu/itts/software/vpn.php))  
-- 🔒 Securely through SSH or web interfaces where applicable  
+The REPACSS system is physically hosted within TTU's research computing infrastructure and may be accessed via the following methods:
 
-!!! warning "VPN Required for All Users"
-    **All users must be connected to the TTU network to access REPACSS.**  
-    This is typically achieved by using **GlobalProtect VPN** when off-campus.  
-    🧭 However, users in the **Computer Science Department building** may experience access issues even when connected to TTUnet (campus Wi-Fi).  
-    ✅ In such cases, it is recommended to **use GlobalProtect VPN** as a workaround to ensure proper access.
+- **On Campus**: Users may connect through wired Ethernet or the TTUnet Wi-Fi network.
+- **Off Campus**: Access is available through the TTU GlobalProtect Virtual Private Network (VPN). Instructions are available on the [VPN Setup Guide](https://www.depts.ttu.edu/itts/software/vpn.php).
+- **Authentication**: All system access requires secure login via SSH or authorized web-based interfaces.
 
-## Research & Training Support 🧪📚
+!!! warning "VPN Requirement"
+    All users must be connected to the Texas Tech University network to access REPACSS resources. This requirement applies both on and off campus. <br> 
 
-REPACSS supports a wide range of computational research and student training programs at TTU, including:
+    Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. In such cases, a VPN connection is required to ensure system accessibility.
 
-- 👩‍🔬 Graduate & Undergraduate Research Projects  
-- 🧰 Engineering and Computer Science Labs  
-- 🖥️ Parallel programming, simulation, and modeling coursework  
-- 🧑‍🏫 Faculty-led workshops and technical bootcamps  
+---
 
-## Collaboration Opportunities 🤝
+<!-- ## Research and Educational Integration
 
-Faculty and students at TTU are encouraged to contribute to the development and expansion of REPACSS:
+REPACSS supports a broad range of academic and research initiatives at TTU. These include, but are not limited to:
 
-- 📬 Propose feature enhancements via [GitHub](https://github.com/nsfcac/repacss-user-guide/issues)  
-- 🧪 Pilot new curriculum modules  
-- 💬 Share feedback with REPACSS maintainers and developers  
+- Graduate research programs
+- Laboratory coursework in engineering and computer science
+- Instruction in parallel computing, simulation, data-intensive methodologies, and machine learning (ML)
+- Faculty-directed technical workshops and high-performance computing bootcamps
 
-## Local Support Team 🛠️
+--- -->
 
-Have a question or need technical assistance? The TTU REPACSS team is here to help!
+<!-- ## Institutional Collaboration
 
-- 📧 Email: [repacss-support@ttu.edu](mailto:repacss-support@ttu.edu)  
-- 📍 Location: Engineering Center (EC), TTU Campus  
-- 🧑‍💻 Office Hours: Available by appointment — reach out to schedule one!
+Texas Tech University encourages faculty, staff, and students to contribute to the REPACSS platform through:
 
-!!! tip "TTU Student?"
-    Make sure you're logged in with your **@ttu.edu** account when accessing internal tools or attending training events!
+- Submitting feature or documentation requests via the [official GitHub issue tracker](https://github.com/nsfcac/repacss-user-guide/issues)
+- Collaborating on curricular enhancements and pilot projects
+- Providing feedback to the REPACSS development and administrative team
+
+--- -->
+
+## Local Support Team
+
+Users requiring technical assistance or consultation may contact the local support team:
+
+- **Email**: [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu)
+- **Location**: Engineering Center (EC), Texas Tech University
+- **Availability**: Office hours by appointment — please email to schedule
+
+!!! tip "For TTU Students"
+    Ensure that you are logged in using your official `@ttu.edu` account when accessing internal services or participating in REPACSS-hosted events.
+
+---
+

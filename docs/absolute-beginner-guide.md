@@ -1,142 +1,251 @@
-# Welcome Home: A Beginner’s Guide to Using REPACSS
+---
+title: Introduction to REPACSS
+description: Beginner onboarding guide for logging in, navigating storage, and running jobs on the REPACSS HPC cluster.
+tags:
+  - onboarding
+  - login
+  - ssh
+  - storage
+  - slurm
+  - modules
+  - cluster usage
+---
 
-Welcome to REPACSS! Whether you’re an undergraduate student, a new graduate researcher, or just someone eager to get started with high-performance computing, this guide is for you. Our goal is to walk you through the basics of using the REPACSS cluster — from logging in to running your first job.
+# Introduction to REPACSS: A Beginner’s Guide
 
-To make things easier to understand, we’ll use the analogy of a house. REPACSS is like a shared home. You enter through the front door (logging in), have your own room for small items (your home directory), a few common areas like closets and garages for larger items (project and scratch storage), and a kitchen (compute nodes) where the real work happens.
+!!! info "About this page"
+    This document introduces the foundational steps for logging in, navigating storage environments, submitting jobs, and utilizing available software on the REPACSS cluster.
+
+Welcome to REPACSS — Remotely-managed Power Aware Computing Systems and Services at Texas Tech University. This guide is designed for new users, graduate researchers, including educators and others who are beginning their journey in high-performance computing (HPC). 
 
 ---
 
-## 🔑 Unlocking the Front Door: Logging In
+## Accessing the System
+Before accessing REPACSS resources, users must be connected to TTUnet or TTUnet VPN.   
 
-Before you can start working on REPACSS, you need to log in to the system using SSH.
+!!! tip "TTUnet VPN Usage Cases"
+    **On Campus**:   
+        **-** You must be connected to **TTUnet**, either via wired Ethernet or the TTUnet Wi-Fi network.    
+        **-** Other networks on campus (such as TTUguest or EduRoam) are not supported for direct access.  
+    **Off Campus**:   
+        **-** If you are connecting from any other network, including TTUguest, EduRoam, or external internet connections, you must use the TTU GlobalProtect Virtual Private Network (VPN).   
+        **-** Instructions are available on the [VPN Setup Guide](connecting/vpn.md).   
+    **Authentication**: All system access requires secure login via SSH or authorized web-based interfaces.  
+    <br> 
+    *Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. If you encounter connectivity issues, connect via wired Ethernet or enable the VPN to ensure uninterrupted access.*
 
-### SSH Login (The Front Door)
 
-To log in from your local terminal:
+
+### SSH Login
+
+To initiate a session:
 
 ```bash
-ssh <your_username>@repacss.hpcc.ttu.edu
+ssh <your_username>@repacss.ttu.edu
 ```
 
-If this is your first time connecting, you'll likely be prompted to verify the server's RSA key fingerprint. Type `yes` to continue. You’ll then enter your password and any additional multi-factor authentication code if your account has MFA enabled.
+During first-time access, the system may prompt you to verify the server’s RSA key fingerprint. Confirm by typing `yes`. You will then be required to enter your password.
 
-!!! note 
-    Login nodes are for setup and light work only — like standing in your foyer. Heavy lifting (computation) should always be done on the compute nodes.
+!!! note
+    Login nodes are reserved for light activities such as file management and job preparation. Computational jobs must be executed on compute nodes.
 
 ---
+## System Overview
+### Login Node
 
-## 🗄 This House Has Closets: Navigating Storage
+Login node is intended for **lightweight tasks** only. Users should use it to:
 
-REPACSS provides different types of storage spaces based on what you’re doing.
-
-| Storage Type  | Location              | Purpose                                |
-|---------------|-----------------------|----------------------------------------|
-| Home          | `/home/$USER`         | Permanent space for small files/scripts |
-| Scratch       | `/scratch/$USER`      | Fast temporary storage during jobs     |
-| Project/Group | `/project/<group>`    | Shared space for team/project data     |
-
-Your home directory is like your room. Keep only essentials here — it’s backed up and secure. Scratch is like the garage: great for big, messy projects in progress, but regularly cleaned out. Project storage is your shared closet with teammates.
+- Edit and manage files  
+- Install user-level software or modules  
+- Compile code (if lightweight)  
+- Submit SLURM job scripts  
 
 !!! warning
-    Files in `/scratch` may be automatically deleted if left inactive for too long. Always back up important work!
+    Do not run compute-intensive applications or parallel jobs on the login node.
+
+
+### Compute Nodes
+
+All computational jobs should be submitted to the **compute nodes** via SLURM. The system includes:
+
+- **110 CPU worker nodes** for general-purpose parallel and serial computing  
+- **8 GPU worker nodes** for accelerated workloads (e.g., deep learning, GPU-based simulations)  
+- **1 GPU build node** for compiling and testing GPU applications in a controlled environment
+
+Any workload requiring high performance, extended runtime, or parallel execution should be run on these compute nodes.
+
+### System Specifications Summary Table
+
+| Node Type     | Total Nodes | CPU Model                | CPUs/Node | Cores/Node | Memory/Node | Storage/Node   | GPUs/Node | GPU Model                   |
+| ------------- | ----------- | ------------------------ | --------- | ---------- | ----------- | -------------- | --------- | --------------------------- |
+| CPU Nodes     | 110         | AMD EPYC 9754            | 2         | 256        | 1.5 TB DDR5 | 1.92 TB NVMe   | -         | -                           |
+| GPU Nodes     | 8           | Intel Xeon Gold 6448Y    | 2         | 64         | 512 GB      | 1.92 TB SSD    | 4         | NVIDIA H100 NVL (94 GB HBM) |
+| Login Nodes   | 3           | AMD EPYC 9254            | 2         | 48         | 256 GB      | 1.92 TB NVMe   | -         | -                           |
+| Storage Nodes | 9           | Intel Xeon Gold (varied) | 2         | 8–32       | 512 GB–1 TB | 25.6–583.68 TB | -         | -                           |
 
 ---
 
-## 🍳 Cooking with Fire: Running Jobs
+### Storage System
 
-Now that you’re inside the house, it’s time to use the kitchen — the compute nodes.
+REPACSS offers multiple storage environments optimized for different use cases:
 
-You can’t just start computing from the login node. Instead, you must write and submit a **job script** to run your program on compute nodes.
+| Storage Type  | Location              | Environment Variable                            |
+|---------------|-----------------------|--------------------------------------------|
+| Home          | `/mnt/GROUPID/home/USERID`   | $HOME |
+| Scratch       | `/mnt/GROUPID/scratch/USERID`| $SCRATCH |
+| Work          | `/mnt/GROUPID/work/USERID`   | $WORK  |
 
-### Example: A Simple Job Script
+### Checking Quotas
+REPACSS storage space usage is currently organized by the REPACSS group. 
+Use the following command to display your current file usage:
 
-Create a file called `hello.sh`:
+```bash
+$ df -h /mnt/$(id -gn)
 
+Filesystem              Size  Used Avail Use% Mounted on
+10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS
+```
+
+
+---
+
+
+<!-- ## Submitting Compute Jobs
+
+Users must submit compute jobs through SLURM job scripts. Direct execution of heavy workloads on login nodes is prohibited. -->
+
+<!-- ### Example: Simple Job Script
+
+Create a script file named `hello.sh`: -->
+<!-- 
 ```bash
 #!/bin/bash
 #SBATCH --job-name=hello
 #SBATCH --output=hello.out
 #SBATCH --time=00:05:00
 #SBATCH --ntasks=1
-#SBATCH --partition=standard
 
 echo "Hello from REPACSS!"
 ```
 
-Submit it with:
+Submit the script using:
 
 ```bash
 sbatch hello.sh
 ```
 
-Check its status with:
+Monitor the job with:
 
 ```bash
 squeue -u $USER
 ```
-
-!!! tip
-    The `--partition` flag selects which group of compute nodes to use. Common options include `standard`, `gpu`, and `debug`.
-
 ---
+ -->
 
-## 📦 Recipe Book: Software and Modules
 
-REPACSS uses a **module system** to manage software packages. Instead of installing everything yourself, just load what you need!
+## Software Access and Modules
+
+REPACSS provides software access via the environment module system. This system allows users to load and unload software packages as needed.
 
 ### Common Module Commands
 
 ```bash
-module avail            # See available software
-module load gcc         # Load a module
-module list             # View currently loaded modules
+module avail            # List available software modules
+module load gcc         # Load a specific module
+module list             # View loaded modules
 module unload gcc       # Unload a module
 ```
 
-If your job needs specific software, include the `module load` commands at the top of your job script.
+Users should include required module commands at the beginning of their job scripts.
 
-!!! example
-    To use Python in a job, your script might start with:
+??? example "Load GCC module"
+    For example, to load gcc in a job script:
 
     ```bash
-    module load python
+    module load gcc
+    ```
+<small>*For additonal details, refer to the [Module System](software/module-system.md) documentation.*</small>
+
+---
+## Job Submission with C Program
+
+This example demonstrates the procedure for compiling and executing a basic C program using a SLURM batch script.
+
+### Create your source code
+```c
+#include <stdio.h>
+
+int main(){
+    printf("Hello from my SLURM job.\n");
+    return 0;
+}
+```
+
+### Create your Batch Script(`run_hello.sh`)
+```bash
+#!/bin/bash
+#SBATCH --job-name=hello_job
+#SBATCH --output=hello_output.out
+#SBATCH --error=hello_error.err
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+
+module load gcc
+
+gcc hello.c -o hello
+
+./hello
+```
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
+
+### Submit Your Job
+To submit the batch script to the SLURM workload manager, execute the following command:
+```bash
+sbatch run_hello.sh
+```
+
+!!! tip "How to monitor the job status?"
+    To monitor the status of the submitted job, use:
+    ```bash
+    squeue --me
     ```
 
+<small>*For additonal details, refer to the [Job Examples](running-jobs/examples.md) documentation.*</small>
+
 ---
 
-## 🧠 Helpful Hints and Where to Get Help
+## Support and Resources
 
-Everyone starts somewhere — and nobody knows everything. If you run into trouble:
+If issues arise or assistance is required, users are encouraged to:
 
-- Check this user guide
-- Ask your PI, research group, or lab manager
-- Visit [Support](support.md) to contact the REPACSS team
+- Refer to this user guide
+- Consult with their research advisor or lab administrator
+- Visit the [Support Page](support.md)
 
 !!! tip
-    When asking for help, include error messages and describe what you were trying to do. The more detail, the better!
+    When seeking help, include specific error messages and a description of the attempted job to expedite troubleshooting.
+
+<!-- ---
+
+## Best Practices
+
+As REPACSS is a shared infrastructure, users are expected to adhere to the following guidelines:
+
+- Do not run compute-intensive jobs on login nodes
+- Use the scratch directory for temporary data and clean it periodically
 
 ---
 
-## 🧹 House Rules: Good HPC Citizenship
+## Conclusion
 
-Because REPACSS is a shared resource, there are a few best practices to follow:
+With these steps, new users are now equipped with the foundational knowledge to:
 
-- **Don’t compute on the login node.**
-- **Use scratch for temporary work**, but clean it regularly.
-- **Keep jobs short in the `debug` partition**; use `standard` for production runs.
-- **Be respectful of shared storage**; avoid hoarding large files.
+- Establish a secure login
+- Navigate the storage architecture
+- Utilize the module system
+- Submit and monitor jobs on the cluster
 
----
+Users are encouraged to explore the extended documentation to deepen their understanding and optimize their use of REPACSS resources. -->
 
-## 🏁 Make Yourself at Home
-
-Congratulations! You now understand the basics of REPACSS:
-
-- You’ve logged in
-- Learned the storage layout
-- Loaded software
-- Written and submitted a job
-
-This is just the beginning — explore more detailed topics in the rest of the documentation as you grow comfortable.
-
-Happy computing — and welcome to the cluster!
