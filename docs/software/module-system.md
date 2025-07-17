@@ -1,36 +1,178 @@
-# Module System
+# Using Software Modules on REPACSS
 
-The REPACSS high-performance computing system utilizes the **Lmod environment module system** to manage access to installed software packages. This mechanism allows users to dynamically modify their shell environment, facilitating the configuration of compilers, libraries, and applications as needed for research and instructional activities.
+REPACSS offers a wide selection of research and instructional software using the Lmod environment module system. This guide shows you how to find, load, and manage software modules, and provides an up-to-date summary of available software environments.
 
 ---
 
-## Listing Available Modules
+## Available Software Modules
 
-To display all software modules currently available on the system, use the following command:
+Software modules are grouped by repository path and hardware partition. You can load any module on any partition, but only GPU-enabled packages can utilize GPU resources when running on the GPU (h100) partition. Some modules (such as MPI libraries) are available in both partitions, but with different capabilities.
+
+### zen4 Partition
+
+#### `/opt/apps/nfs/modules/zen4/rocky9.4/Core`
+
+| Module                | Version        | Description                                                      |
+|-----------------------|---------------|------------------------------------------------------------------|
+| boost                 | 1.86.0        | C++ libraries for tasks and structures                           |
+| bwa                   | 0.7.17        | Burrows-Wheeler Aligner for sequence alignment                   |
+| eigen                 | 3.4.0         | C++ template library for linear algebra                          |
+| gdal                  | 3.10.0        | Geospatial Data Abstraction Library                              |
+| geos                  | 3.13.0        | Geometry Engine - Open Source                                    |
+| gcc                   | 14.2.0        | GNU Compiler Collection (C, C++, Fortran)                        |
+| gsl                   | 2.8           | GNU Scientific Library                                           |
+| gnuplot               | 6.0.0         | Portable command-line driven graphing utility                    |
+| htop                  | 3.3.0         | Interactive process viewer                                       |
+| imagemagick           | 7.1.1-39      | Image manipulation tools                                         |
+| intel-oneapi-mkl      | 2024.2.2      | Intel Math Kernel Library                                        |
+| intel-oneapi-mpi      | 2021.4.0      | Intel MPI Library                                                |
+| metis                 | 5.1.0         | Serial graph partitioning and fill-reducing matrix ordering      |
+| **mpich**             | 4.1.2         | MPI implementation (default)                                     |
+| ninja                 | 1.12.1        | Small build system with a focus on speed                         |
+| openblas              | 0.3.28        | Optimized BLAS library                                           |
+| **openmpi**           | 4.1.6         | High-performance MPI (default)                                   |
+| proj                  | 9.4.1         | Cartographic projections and coordinate transformations          |
+| python                | 3.10.10       | Python programming language                                      |
+| **python**            | 3.12.5        | Python programming language (default)                            |
+| r                     | 4.4.1         | Statistical computing and graphics                               |
+| samtools              | 1.19.2        | Tools for manipulating next-generation sequencing data           |
+| sparsehash            | 2.0.4         | Memory-efficient hash map implementation                         |
+| swig                  | 4.1.0-fortran | Simplified Wrapper and Interface Generator for Fortran           |
+| tmux                  | 3.4           | Terminal multiplexer                                             |
+
+#### `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`
+!!! note
+    These modules are only available after loading the `mpich` module (default in zen4). Run:
+    
+    ```bash
+    module load mpich
+    ```
+    Make sure you are loading the default zen4 mpich, not the h100 mpich. After loading, check the module path with:
+    
+    ```bash
+    module show mpich
+    ```
+    The path should include `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`.
+    
+    before using any of these packages.
+
+| Module                | Version        | Description                                                      |
+|-----------------------|---------------|------------------------------------------------------------------|
+| fftw                  | 3.3.10        | Fast Fourier Transform library used in signal and image processing|
+| hdf5                  | 1.14.5        | Hierarchical Data Format library for large/complex data           |
+| lammps                | 20240829.1    | Molecular dynamics simulator                                     |
+| netcdf-c              | 4.9.2         | Data format for array-oriented scientific data                    |
+| p3dfft3               | 3.0.0         | Parallel 3D FFT library                                          |
+| quantum-espresso      | 7.4           | Electronic-structure and materials modeling suite                 |
+| scotch                | 7.0.4         | Graph partitioning, static mapping, and clustering library        |
+| wrf                   | 4.6.1         | Weather Research and Forecasting Model                           |
+| wps                   | 4.5           | WRF Preprocessing System                                         |
+
+
+
+### h100 (GPU Partition)
+
+#### `/opt/apps/nfs/modules/h100/rocky9.4/Core`
+
+These modules are GPU-enabled. To access them, prepend the h100 path to your MODULEPATH (see MPI section below):
+
+| Module   | Version        | Description                                 |
+|----------|---------------|---------------------------------------------|
+| cuda     | 12.6.2        | NVIDIA CUDA Toolkit                         |
+| cudnn    | 9.2.0.82-12   | NVIDIA CUDA Deep Neural Network library     |
+| mpich    | 4.1.2         | MPI implementation (GPU-enabled)            |
+| nccl     | 2.22.3-1      | NVIDIA Collective Communications Library    |
+| openmpi  | 4.1.6         | High-performance implementation of MPI (GPU-enabled)      |
+
+---
+
+## MPI Implementations and Usage Guidance
+
+### Overview
+
+Two MPI implementations are available: **OpenMPI** and **MPICH**. Each is provided for both CPU (zen4) and GPU (h100) partitions. The h100 versions are CUDA-enabled for GPU workloads.
+
+- **zen4**: CPU-only MPI modules (default: mpich, openmpi)
+- **h100**: GPU-enabled MPI modules (mpich, openmpi)
+
+### Using MPI-Dependent Packages
+
+Some software (e.g., `fftw`, `hdf5`, `lammps`, etc.) in the zen4 partition (see the [table above](#optappsnfsmoduleszen4rocky94mpich412-a5xh3gecore)) requires the `mpich` module to be loaded first. To do this, run:
+
+```bash
+module load mpich
+```
+
+Make sure you are loading the default zen4 mpich, not the h100 mpich. You can verify this with:
+
+```bash
+module show mpich
+```
+
+The output should reference `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`.
+
+This ensures the correct MPI environment for these libraries.
+
+### Accessing GPU-Enabled MPI Modules
+
+To use CUDA-enabled `mpich` or `openmpi` in the GPU (h100) partition:
+1. Prepend the h100 module path to your MODULEPATH:
+   ```bash
+   module use /opt/apps/nfs/modules/h100/rocky9.4/Core
+   ```
+2. Load the desired MPI module (e.g., `mpich` or `openmpi`).
+
+### Switching Between MPI Implementations
+
+To switch from one MPI implementation to another, use:
+```bash
+module swap mpich openmpi
+```
+This unloads the current MPI module and loads the new one, updating your environment automatically.
+
+---
+
+## How to Use Modules
+
+### List Available Modules
+
+Show all modules you can load:
 
 ```bash
 module avail
 ```
 
-<!-- To filter results and search for specific software (e.g., Python), use: -->
+Show only default modules:
 
-<!-- ```bash
-module avail python
-``` -->
+```bash
+module --default avail
+# or
+ml -d av
+```
 
----
+See module categories and counts:
 
-## Searching with `module spider`
+```bash
+module overview
+# or
+ml ov
+```
 
-The `module spider` command enables advanced search functionality. It is particularly useful for identifying available versions and any associated dependencies or prerequisites.
+### Search for Modules
 
-To locate all modules related to a specific keyword:
+Find all available software and extensions:
+
+```bash
+module spider
+```
+
+Search for a specific module or keyword:
 
 ```bash
 module spider python
 ```
 
-To obtain detailed information for a specific module version:
+Get details for a specific version:
 
 ```bash
 module spider python/3.11.0
@@ -38,26 +180,22 @@ module spider python/3.11.0
 
 ---
 
-## Loading Modules
+## Loading and Unloading Modules
 
-To configure the environment for use with a specific software package, load its module using:
+Load a module to use its software:
 
 ```bash
 module load gcc/14.2.0
 module load openmpi/4.1.6
 ```
 
-Multiple modules may be loaded simultaneously:
+You can load multiple modules at once:
 
 ```bash
 module load gcc/14.2.0 cuda/12.0
 ```
 
-It is strongly recommended to specify exact version numbers to ensure consistency across computational workflows.
-
----
-
-## Unloading Modules
+Specifying exact versions is recommended for reproducibility.
 
 To remove a specific software module from the current environment:
 
@@ -73,45 +211,39 @@ module purge
 
 ---
 
-## Viewing Module Details
+## Viewing Module Details and Loaded Modules
 
-To review the environment modifications introduced by a specific module:
+See what a module changes in your environment:
 
 ```bash
 module show hdf5
 ```
 
-This command will display paths, environment variables, and any dependencies configured upon loading.
-
----
-
-## Listing Active Modules
-
-To view all software modules currently loaded in your session:
+List all modules currently loaded:
 
 ```bash
 module list
 ```
 
-This is useful for troubleshooting and for documenting your computational environment.
+This helps with troubleshooting and documenting your environment.
 
 ---
 
-## Recommendations for Use in Job Scripts
+## Best Practices for Job Scripts
 
-1. Begin job scripts with `module purge` to ensure a clean environment.
-2. Load only the required modules for the task at hand.
-3. Document loaded modules as part of your reproducibility best practices.
+- Start job scripts with `module purge` for a clean environment.
+- Load only the modules you need.
+- Record loaded modules for reproducibility.
 
 ---
 
-## Additional Information
+## More Information and Support
 
-For a comprehensive list of software packages available on REPACSS, refer to the [Available Software](available-software.md) documentation.
+For a full list of available software, see the tables above.
 
-Users working in Python environments should also consult the [Installing Packages](installing-packages.md) guide for additional configuration instructions.
+For Python-specific help, see the [Installing Packages](installing-packages.md) guide.
 
-For support inquiries, contact the REPACSS administration team at:
+Need help? Contact REPACSS support:
 
 ```
 repacss.support@ttu.edu
