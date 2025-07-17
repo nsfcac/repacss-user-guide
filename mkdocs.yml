@@ -89,7 +89,7 @@ nav:
       
   - Software:
       - Module System: software/module-system.md
-      - Available Software: software/available-software.md
+      # - Available Software: software/available-software.md
       - Installing Packages: software/installing-packages.md
       - Conda: software/conda.md
 

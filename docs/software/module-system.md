@@ -47,14 +47,15 @@ Software modules are grouped by repository path and hardware partition. You can 
     ```bash
     module load mpich
     ```
-    Make sure you are loading the default zen4 mpich, not the h100 mpich. After loading, check the module path with:
+    before using any of these packages.
+    To make sure you are loading the default zen4 mpich, not the h100 mpich. After loading, check the module path with:
     
     ```bash
     module show mpich
     ```
     The path should include `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`.
     
-    before using any of these packages.
+    
 
 | Module                | Version        | Description                                                      |
 |-----------------------|---------------|------------------------------------------------------------------|
@@ -103,7 +104,7 @@ Some software (e.g., `fftw`, `hdf5`, `lammps`, etc.) in the zen4 partition (see 
 module load mpich
 ```
 
-Make sure you are loading the default zen4 mpich, not the h100 mpich. You can verify this with:
+To make sure you are loading the default zen4 mpich, not the h100 mpich. You can verify this with:
 
 ```bash
 module show mpich
