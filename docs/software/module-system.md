@@ -17,6 +17,7 @@ Software modules are grouped by repository path and hardware partition. You can 
 | boost                 | 1.86.0        | C++ libraries for tasks and structures                           |
 | bwa                   | 0.7.17        | Burrows-Wheeler Aligner for sequence alignment                   |
 | eigen                 | 3.4.0         | C++ template library for linear algebra                          |
+| ffmpeg                | 6.1.1         | Audio and video processing tools                                 |
 | gdal                  | 3.10.0        | Geospatial Data Abstraction Library                              |
 | geos                  | 3.13.0        | Geometry Engine - Open Source                                    |
 | gcc                   | 14.2.0        | GNU Compiler Collection (C, C++, Fortran)                        |
