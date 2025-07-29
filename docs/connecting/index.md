@@ -29,6 +29,9 @@ For assistance configuring VPN access, refer to the following guide:
 - [TTU GlobalProtect VPN Setup Guide](vpn.md)
 - For further assistance please contact [**IT Help Central**](https://www.askit.ttu.edu/vpn)
 
+!!! note "DNS Configuration Requirement"
+    We noticed a common issue reported by many on-campus users. Even if you connect to TTUnet, please ensure your DNS is set to the default one rather than providers like Google (8.8.8.8). Otherwise, connecting to `repacss.ttu.edu` will fail, probably because it is not registered in public DNS.
+
 !!! warning "VPN Required"
     **On Campus**:   
         **-** You must be connected to **TTUnet**, either via wired Ethernet or the TTUnet Wi-Fi network.    
