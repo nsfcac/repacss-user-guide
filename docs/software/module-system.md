@@ -25,13 +25,12 @@ Software modules are grouped by repository path and hardware partition. You can 
 | gnuplot               | 6.0.0         | Portable command-line driven graphing utility                    |
 | htop                  | 3.3.0         | Interactive process viewer                                       |
 | imagemagick           | 7.1.1-39      | Image manipulation tools                                         |
-| intel-oneapi-mkl      | 2024.2.2      | Intel Math Kernel Library                                        |
-| intel-oneapi-mpi      | 2021.4.0      | Intel MPI Library                                                |
+| intel-oneapi-compilers| 2023.0.0      | Intel OneAPI Compilers (C++, Fortran)                           |
 | metis                 | 5.1.0         | Serial graph partitioning and fill-reducing matrix ordering      |
 | **mpich**             | 4.1.2         | MPI implementation (default)                                     |
 | ninja                 | 1.12.1        | Small build system with a focus on speed                         |
 | openblas              | 0.3.28        | Optimized BLAS library                                           |
-| **openmpi**           | 4.1.6         | High-performance MPI (default)                                   |
+| **openmpi**           | 5.0.4         | High-performance MPI (default)                                   |
 | proj                  | 9.4.1         | Cartographic projections and coordinate transformations          |
 | python                | 3.10.10       | Python programming language                                      |
 | **python**            | 3.12.5        | Python programming language (default)                            |
@@ -64,13 +63,40 @@ Software modules are grouped by repository path and hardware partition. You can 
 | hdf5                  | 1.14.5        | Hierarchical Data Format library for large/complex data           |
 | lammps                | 20240829.1    | Molecular dynamics simulator                                     |
 | netcdf-c              | 4.9.2         | Data format for array-oriented scientific data                    |
+| openfoam              | 2312          | Open source computational fluid dynamics toolbox                  |
 | p3dfft3               | 3.0.0         | Parallel 3D FFT library                                          |
 | quantum-espresso      | 7.4           | Electronic-structure and materials modeling suite                 |
 | scotch                | 7.0.4         | Graph partitioning, static mapping, and clustering library        |
 | wrf                   | 4.6.1         | Weather Research and Forecasting Model                           |
 | wps                   | 4.5           | WRF Preprocessing System                                         |
 
+#### `/opt/apps/nfs/modules/zen4/rocky9.4/oneapi/2023.0.0`
+!!! note
+    These modules are only available after loading the `intel-oneapi-compilers` module. Run:
+    
+    ```bash
+    module load intel-oneapi-compilers
+    ```
+    before using any of these packages.
 
+| Module                | Version        | Description                                                      |
+|-----------------------|---------------|------------------------------------------------------------------|
+| intel-oneapi-mkl      | 2024.2.2      | Intel Math Kernel Library                                        |
+| intel-oneapi-mpi      | 2021.4.0      | Intel MPI Library                                                |
+
+#### `/opt/apps/nfs/modules/zen4/rocky9.4/intel-oneapi-mpi/2021.4.0-5ksoj4d/oneapi/2023.0.0`
+!!! note
+    These modules are only available after loading the `intel-oneapi-mpi` module. Run:
+    
+    ```bash
+    module load intel-oneapi-mpi
+    ```
+    before using any of these packages.
+
+| Module                | Version        | Description                                                      |
+|-----------------------|---------------|------------------------------------------------------------------|
+| fftw                  | 3.3.10        | Fast Fourier Transform library used in signal and image processing|
+| hdf5                  | 1.14.5        | Hierarchical Data Format library for large/complex data           |
 
 ### h100 (GPU Partition)
 
@@ -84,7 +110,7 @@ These modules are GPU-enabled. To access them, prepend the h100 path to your MOD
 | cudnn    | 9.2.0.82-12   | NVIDIA CUDA Deep Neural Network library     |
 | mpich    | 4.1.2         | MPI implementation (GPU-enabled)            |
 | nccl     | 2.22.3-1      | NVIDIA Collective Communications Library    |
-| openmpi  | 4.1.6         | High-performance implementation of MPI (GPU-enabled)      |
+| openmpi  | 5.0.4         | High-performance implementation of MPI (GPU-enabled)      |
 
 ---
 
@@ -92,20 +118,24 @@ These modules are GPU-enabled. To access them, prepend the h100 path to your MOD
 
 ### Overview
 
-Two MPI implementations are available: **OpenMPI** and **MPICH**. Each is provided for both CPU (zen4) and GPU (h100) partitions. The h100 versions are CUDA-enabled for GPU workloads.
+Three MPI implementations are available: **OpenMPI**, **MPICH**, and **Intel MPI**. OpenMPI and MPICH are provided for both CPU (zen4) and GPU (h100) partitions, while Intel MPI is only available in the CPU (zen4) partition. The h100 versions are CUDA-enabled for GPU workloads.
 
-- **zen4**: CPU-only MPI modules (default: mpich, openmpi)
+- **zen4**: CPU-only MPI modules (default: mpich, openmpi) + Intel MPI (after loading intel-oneapi-compilers)
 - **h100**: GPU-enabled MPI modules (mpich, openmpi)
 
 ### Using MPI-Dependent Packages
 
-Some software (e.g., `fftw`, `hdf5`, `lammps`, etc.) in the zen4 partition (see the [table above](#optappsnfsmoduleszen4rocky94mpich412-a5xh3gecore)) requires the `mpich` module to be loaded first. To do this, run:
+Some software packages in the zen4 partition require specific MPI modules to be loaded first. Two sets of MPI-dependent packages are available:
+
+#### MPICH-Dependent Packages
+
+Software packages like `fftw`, `hdf5`, `lammps`, `openfoam`, `quantum-espresso`, `wrf`, etc. (see the [MPICH table above](#optappsnfsmoduleszen4rocky94mpich412-a5xh3gecore)) require the `mpich` module to be loaded first:
 
 ```bash
 module load mpich
 ```
 
-To make sure you are loading the default zen4 mpich, not the h100 mpich. You can verify this with:
+To make sure you are loading the default zen4 mpich, not the h100 mpich, verify with:
 
 ```bash
 module show mpich
@@ -113,7 +143,32 @@ module show mpich
 
 The output should reference `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`.
 
-This ensures the correct MPI environment for these libraries.
+#### Intel MPI-Dependent Packages
+
+Software packages like `fftw` and `hdf5` (see the [Intel MPI table above](#optappsnfsmoduleszen4rocky94intel-oneapi-mpi202140-5ksoj4doneapi202300)) require the Intel MPI environment to be loaded first:
+
+```bash
+module load intel-oneapi-compilers
+module load intel-oneapi-mpi
+```
+
+### Running MPI Applications
+
+When running MPI applications, use the appropriate launcher for your MPI implementation:
+
+- **For OpenMPI and MPICH**: Use `srun` (SLURM's native launcher)
+  ```bash
+  srun -n 4 ./your_mpi_program
+  ```
+
+- **For Intel MPI**: Use `mpirun` (Intel MPI's launcher)
+  ```bash
+  mpirun -np 4 ./your_mpi_program
+  ```
+
+This ensures optimal performance and compatibility with each MPI implementation.
+
+
 
 ### Accessing GPU-Enabled MPI Modules
 
