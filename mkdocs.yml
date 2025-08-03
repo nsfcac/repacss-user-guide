@@ -92,7 +92,8 @@ nav:
       # - Available Software: software/available-software.md
       - Installing Packages: software/installing-packages.md
       - Conda: software/conda.md
-
+      - Running Ollama: software/running-ollama.md
+      
   - Performance:
       - Compiler Flags: performance/compiler-flags.md
       # - Profiling Tools: performance/profiling-tools.md
