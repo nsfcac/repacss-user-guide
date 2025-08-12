@@ -1,6 +1,6 @@
 # Using Containers on REPACSS
 
-This guide covers using Apptainer/Singularity containers for running pre-built applications and complex software stacks on REPACSS.
+This guide covers using Apptainer/Singularity containers for running **user-installed** pre-built applications and complex software stacks on REPACSS.
 
 ## 🎯 When to Use Containers
 
@@ -188,7 +188,7 @@ apptainer pull docker://jupyter/datascience-notebook:latest
 
 For trending AI applications like Ollama, see our dedicated guide:
 
-- [Running Ollama](running-ollama.md) - Comprehensive guide for running Ollama using containers
+- [Running Ollama](running-ollama.md) - Example of using containers for AI applications
 
 
 

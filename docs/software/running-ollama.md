@@ -6,11 +6,17 @@ A comprehensive guide for running Ollama (local LLM inference) on REPACSS GPU cl
 
 Ollama is a popular AI application for running large language models locally. This guide shows you how to deploy Ollama using containers on REPACSS GPU nodes.
 
-**This is a trending AI application that uses containers for installation.** For general container usage, see [Using Containers](containers.md).
+The REPACSS team provides a repository with pre-configured scripts (`https://github.com/nsfcac/ollama_repacss.git`) that includes:
+- Helper scripts for easy setup
+- Example Python scripts for testing
+- Jupyter notebook tutorials
+- Pre-configured environment settings
+
+**This is an example of using containers (user-installed) for AI applications.** For general container usage, see [Using Containers](containers.md).
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -18,21 +24,69 @@ Ollama is a popular AI application for running large language models locally. Th
 - `apptainer` module available
 - Sufficient memory (64GB+ recommended)
 
-### Step 1: Request GPU Resources
+### Basic Setup
+
+```bash
+# 1. Request GPU resources
+interactive -p h100 -t 02:00:00 -g 1
+
+# 2. Clone the repository
+cd $HOME
+git clone https://github.com/nsfcac/ollama_repacss.git
+cd ollama_repacss
+
+# 3. Pull Ollama container
+apptainer pull ollama.sif docker://ollama/ollama:0.6.8
+
+# 4. Set environment and source wrapper
+export SCRATCH_BASE=/mnt/<Your Group Name>/home/$USER
+source ollama.sh
+
+# 5. Start Ollama server
+ollama serve &
+
+# 6. List and use available models
+ollama list
+ollama run falcon3:1b
+```
+
+---
+
+## 📦 Installation Methods
+
+### Using REPACSS Repository (Recommended)
+
+The REPACSS team provides a repository with pre-configured scripts for easy setup. This method includes helper scripts and examples.
+
+#### Step 1: Request GPU Resources
 
 ```bash
 # Request interactive session with GPU
 interactive -p h100 -t 02:00:00 -g 1
 ```
 
-### Step 2: Set Up Ollama Environment
+#### Step 2: Clone the Ollama Repository
+
+Clone the REPACSS Ollama repository which contains pre-written scripts for convenient setup:
 
 ```bash
-# Create project directory
 cd $HOME
-mkdir ollama-project
-cd ollama-project
+cd <your_project>
+git clone https://github.com/nsfcac/ollama_repacss.git
+cd ollama_repacss
+```
 
+This repository contains:
+- **`ollama.sh`**: A helper script to launch and manage the Ollama server
+- **`test.py`**: An example Python script to verify your Ollama server is working
+- **`tutorial.ipynb`**: A Jupyter notebook that connects to your Ollama server
+- **`requirements.txt`**: Python libraries needed to run the notebook
+
+#### Step 3: Download Ollama and Configure Environment
+
+Download the Ollama container (we recommend version 0.6.8 for REPACSS) and set up the environment:
+
+```bash
 # Pull Ollama container (version 0.6.8 recommended)
 apptainer pull ollama.sif docker://ollama/ollama:0.6.8
 
@@ -40,61 +94,64 @@ apptainer pull ollama.sif docker://ollama/ollama:0.6.8
 export SCRATCH_BASE=/mnt/<Your Group Name>/home/$USER
 ```
 
-### Step 3: Launch Ollama Server
+#### Step 4: Source the Ollama Wrapper
+
+This sets up a wrapper function to easily start the Ollama server and issue commands:
 
 ```bash
-# Start Ollama server in background
+source ollama.sh
+```
+
+#### Step 5: Launch Ollama Server
+
+Ollama server has been launched in the background:
+
+```bash
 ollama serve &
 ```
 
-### Step 4: Use Available Models
+#### Step 6: Use Available Models
+
+REPACSS provides a shared LLM directory. Check available models first:
 
 ```bash
 # List available models
 ollama list
 
-# Run a model (example with falcon3:1b)
+# Use existing models (example with falcon3:1b)
 ollama run falcon3:1b
 ```
 
-### Step 5: Test Inference
+If you want to use a new model, choose a model supported by Ollama and pull it:
 
 ```bash
-# Test with a simple prompt
+# Pull a new model
+ollama pull llama3.1:8b
+```
+
+#### Step 7: Test Inference
+
+Test the model directly with a simple prompt:
+
+```bash
 ollama run llama3.1:8b
 >>> What is the capital of Texas?
 ```
 
----
+### Step 8: Verify Server Status from Login Node
 
-## 📦 Installation Methods
-
-### Method 1: Using Apptainer Container (Recommended)
+From login node (repacs.ttu.edu), check if the Ollama server is running:
 
 ```bash
-# Pull the official Ollama container
-apptainer pull ollama.sif docker://ollama/ollama:0.6.8
-
-# Run Ollama from container
-./ollama.sif serve &
+curl http://<hostname>:<port>
 ```
+You can find a host.txt and port.txt in your ~/ollama folder/ Replace <hostname> with your GPU node's hostname and <port> with your Ollama server's port number. 
 
-### Method 2: Direct Installation
+You should see:
 
-```bash
-# Download Ollama binary
-cd ~
-mkdir ollama-0.9.2
-cd ollama-0.9.2
-
-# Download specific version for CUDA compatibility
-wget https://ollama.com/download/ollama-linux-amd64.tgz?version=0.9.2 -O ollama-linux-amd64.tgz
-
-# Extract and run
-tar -zxvf ollama-linux-amd64.tgz
-./ollama serve &
 ```
-
+Ollama is running
+```
 ---
 
 ## 🔧 Advanced Configuration
@@ -188,28 +245,35 @@ pkill ollama
 
 ### From Login Node
 
-Check server status from a login node:
+From a login node (not the GPU node), check if the Ollama server is running:
 
 ```bash
-# Check if server is running
 curl http://<hostname>:<port>
+```
 
-# You should see: "Ollama is running"
+You can find a `host.txt` and `port.txt` in your `~/ollama` folder. Replace `<hostname>` with your GPU node's hostname and `<port>` with your Ollama server's port number.
+
+You should see:
+
+```
+Ollama is running
 ```
 
 ### Using Jupyter Notebook
 
-From any node, launch Jupyter to interact with Ollama:
+From a login node (not the GPU node), or any other nodes, you can run:
 
 ```bash
-# Start Jupyter
 jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
-
-# Set up SSH tunnel from local machine
-# ssh -L 8081:127.0.0.1:8081 -l <your_account> -fN repacss.ttu.edu
 ```
 
-Then access `127.0.0.1:8081` in your browser to use the tutorial notebook.
+Then on your terminal of local machine:
+
+```bash
+ssh -L 8081:127.0.0.1:8081 -l <your_account> -fN repacss.ttu.edu
+```
+
+Then you can explore the `tutorial.ipynb` in your browser (`127.0.0.1:8081`).
 
 ---
 
@@ -292,6 +356,7 @@ tail -f ollama.err
 - [Software Management Overview](index.md) - General software management
 - [Using Containers](containers.md) - General container usage
 - [Module System](module-system.md) - System software via modules
+- [Running Jupyter Notebook](jupyter-notebook.md) - Another trending application
 - [Running Jobs](../running-jobs/basics.md) - Job submission and management
 
 ---

@@ -5,20 +5,24 @@ This section covers all aspects of software management on REPACSS, organized by 
 ## 🎯 Software Management Categories
 
 ### 1. **HPC Applications & System Software** → Spack + Module System
-For HPC applications, compilers, libraries, and system-level software managed through Spack and loaded via the Lmod environment module system.
+**System-provided software** - Users simply load what they need.
+
+For HPC applications, compilers, libraries, and system-level software managed through Spack and loaded via the Lmod environment module system. **No installation required** - just load the modules you need.
 
 **Start here:** [Module System](module-system.md)
 
 ### 2. **Data Science Applications** → Conda/MiniForge
-For Python/R-based data science, machine learning, and scientific computing packages using MiniForge (conda) environments. This includes applications like Jupyter Notebook for interactive development.
+**User-installed software** - Users install locally, then add packages.
+
+For Python/R-based data science, machine learning, and scientific computing packages using MiniForge (conda) environments. **Requires local installation** of MiniForge, then install packages like [Jupyter Notebook](jupyter-notebook.md) for interactive development.
 
 **Start here:** [Getting Started with MiniForge](miniforge.md)
 
 ### 3. **User Self-Installed Software** → Custom Solutions
-For software not available through the above methods, users can install their own software using:
+**User-installed software** - Users install their own software using:
 
 #### 3.1 **Containers (Apptainer)** → Pre-built Binaries
-For pre-built applications, complex software stacks, and reproducible environments.
+For pre-built applications, complex software stacks, and reproducible environments. Examples include [Ollama](running-ollama.md) for AI applications.
 
 **Start here:** [Using Containers](containers.md)
 
@@ -27,43 +31,56 @@ For software that needs to be compiled from source code with specific configurat
 
 **Start here:** [Building from Source](building-from-source.md)
 
-#### 3.3 **Trending AI Applications** → Specialized AI Tools
-For popular AI applications that use containers for deployment.
+---
 
-**Start here:** [Running Ollama](running-ollama.md)
+## 🚀 Example Applications
+
+### **Trending Applications** → Real-World Examples
+Popular applications that demonstrate how to use the package management methods above:
+
+- **[Running Jupyter Notebook](jupyter-notebook.md)** - Example of using conda (category 2) for interactive development
+- **[Running Ollama](running-ollama.md)** - Example of using containers (category 3.1) for AI applications
 
 ---
 
 ## 📋 Quick Reference
 
-| Category | Use Case | Solution | Documentation |
-|----------|----------|----------|---------------|
-| HPC Applications | Compilers, MPI, scientific libraries | Module system | [Module System](module-system.md) |
-| Data Science | Python/R packages, ML frameworks, Jupyter | MiniForge (conda) | [Getting Started with MiniForge](miniforge.md) |
-| Pre-built Applications | Complex software stacks | Apptainer containers | [Using Containers](containers.md) |
-| Custom Software | Source compilation, specialized tools | Build from source | [Building from Source](building-from-source.md) |
-| AI Applications | LLM models, trending AI tools | Containers + specialized guides | [Running Ollama](running-ollama.md) |
+| Category | Installation Type | Use Case | Solution | Documentation |
+|----------|-------------------|----------|----------|---------------|
+| HPC Applications | **System-provided** | Compilers, MPI, scientific libraries | Module system | [Module System](module-system.md) |
+| Data Science | **User-installed** | Python/R packages, ML frameworks | MiniForge (conda) | [Getting Started with MiniForge](miniforge.md) |
+| Pre-built Applications | **User-installed** | Complex software stacks | Apptainer containers | [Using Containers](containers.md) |
+| Custom Software | **User-installed** | Source compilation, specialized tools | Build from source | [Building from Source](building-from-source.md) |
+
+### Example Applications
+| Application | Package Management Method | Installation Type | Documentation |
+|-------------|---------------------------|-------------------|---------------|
+| Jupyter Notebook | Conda (Data Science) | User-installed | [Running Jupyter Notebook](jupyter-notebook.md) |
+| Ollama | Containers (User Self-Install) | User-installed | [Running Ollama](running-ollama.md) |
 
 ---
 
 ## 🚀 Getting Started
 
-1. **HPC applications?** Check available modules: `module avail`
-2. **Data science work?** Set up MiniForge: See [Getting Started with MiniForge](miniforge.md)
-3. **Custom software?** Choose containers or source build based on your needs
+1. **HPC applications?** Check available modules: `module avail` (system-provided)
+2. **Data science work?** Set up MiniForge: See [Getting Started with MiniForge](miniforge.md) (user-installed)
+3. **Custom software?** Choose containers or source build based on your needs (user-installed)
+4. **Want examples?** See how others use these methods: [Example Applications](#trending-applications--real-world-examples)
 
 ---
 
 ## 📚 Documentation Structure
 
-### Core Package Managers
-- [Module System](module-system.md) - HPC applications via Spack + Lmod
-- [Getting Started with MiniForge](miniforge.md) - Data science with conda (includes Jupyter)
+### Package Management Methods
+- [Module System](module-system.md) - **System-provided** HPC applications via Spack + Lmod
+- [Getting Started with MiniForge](miniforge.md) - **User-installed** data science with conda
+- [Using Containers](containers.md) - **User-installed** Apptainer/Singularity containers
+- [Building from Source](building-from-source.md) - **User-installed** source compilation
+- [Advanced Installation](advanced-installation.md) - General installation guidance
 
-### User Self-Installation
-- [Using Containers](containers.md) - Apptainer/Singularity containers
-- [Building from Source](building-from-source.md) - Source compilation
-- [Running Ollama](running-ollama.md) - Trending AI application using containers
+### Example Applications
+- [Running Jupyter Notebook](jupyter-notebook.md) - Using conda for interactive development
+- [Running Ollama](running-ollama.md) - Using containers for AI applications
 
 ---
 

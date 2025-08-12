@@ -1,6 +1,6 @@
 # Building Software from Source
 
-This guide covers compiling and installing software from source code on REPACSS when pre-built packages are not available or don't meet your requirements.
+This guide covers compiling and installing **user-installed** software from source code on REPACSS when pre-built packages are not available or don't meet your requirements.
 
 ## 🎯 When to Build from Source
 
