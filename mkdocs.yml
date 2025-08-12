@@ -88,11 +88,15 @@ nav:
       # - Policy: account/policy.md
       
   - Software:
-      - Module System: software/module-system.md
-      # - Available Software: software/available-software.md
-      - Installing Packages: software/installing-packages.md
-      - Conda: software/conda.md
-      - Running Ollama: software/running-ollama.md
+      - Overview: software/index.md
+      - HPC Applications (Module System): software/module-system.md
+      - Data Science (MiniForge): software/miniforge.md
+      - User Self-Installation:
+          - Containers: software/containers.md
+          - Building from Source: software/building-from-source.md
+          - Advanced Installation: software/advanced-installation.md
+      - Trending AI Applications:
+          - Running Ollama: software/running-ollama.md
       
   - Performance:
       - Compiler Flags: performance/compiler-flags.md

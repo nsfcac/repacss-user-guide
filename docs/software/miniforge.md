@@ -1,12 +1,27 @@
-# Getting Started with Conda at REPACSS
+# Getting Started with MiniForge at REPACSS
 
 ## Introduction
 
-It is often useful to set up a fully customized set of software packages including Python and many other utility tools using the MiniForge package manager. For performance, consistency, and licensing flexibility, we recommend using **MiniForge** instead of tools distributed by Anaconda, Inc. such as Anaconda or Miniconda.
+This guide covers setting up and using **MiniForge** (a minimal conda distribution) for **data science applications** on REPACSS. MiniForge is recommended over Anaconda/Miniconda for its community-driven approach, faster package resolution, and licensing clarity.
 
-While Anaconda provides a broad suite of tools, it uses proprietary channels that can lead to outdated or restricted packages. MiniForge is a minimal, community-maintained Conda distribution that defaults to the **conda-forge** channel, providing access to the latest packages without commercial licensing concerns. MiniForge also includes the **Mamba** backend for faster environment solving and installation.
+**This covers Python-based data science, machine learning, and scientific computing packages.** For HPC applications, see [Module System](module-system.md).
 
-This guide explains the benefits of using MiniForge on REPACSS and provides step-by-step instructions for setup and environment management.
+**Why MiniForge?**
+- Uses conda-forge as the default channel (community-maintained)
+- Includes Mamba for faster package solving
+- No commercial licensing restrictions
+- Minimal footprint - install only what you need
+
+---
+
+## 🚀 Quick Start
+
+If you just want to get started quickly:
+
+1. **Install MiniForge**: See [Installing MiniForge](#installing-miniforge) section
+2. **Create an environment**: `conda create -n myenv python=3.11`
+3. **Activate it**: `conda activate myenv`
+4. **Install packages**: `conda install numpy scipy matplotlib`
 
 ---
 
@@ -171,3 +186,69 @@ To avoid licensing complications and ensure access to current packages, we recom
     REPACSS does not cover licensing costs related to Anaconda. Users are responsible for any commercial usage compliance.
 
 For more details, see: [Anaconda Terms of Service](https://www.anaconda.com/terms-of-service)
+
+---
+
+---
+
+## 🧪 Interactive Development with Jupyter Notebook
+
+Jupyter Notebook is a popular application for interactive Python development that can be installed in your conda environments.
+
+### Installing Jupyter in Your Environment
+
+```bash
+# Activate your environment
+conda activate myenv
+
+# Install Jupyter
+conda install jupyter notebook ipykernel
+```
+
+### Launching Jupyter Notebook
+
+```bash
+# Start Jupyter on login node
+jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
+```
+
+### Accessing Jupyter Remotely
+
+If you're running Jupyter on a remote server, set up an SSH tunnel from your local machine:
+
+```bash
+ssh -L 8081:127.0.0.1:8081 -l <your_username> -fN repacss.ttu.edu
+```
+
+Then open `http://127.0.0.1:8081/` in your local browser.
+
+### Running Jupyter on GPU Nodes
+
+For GPU-accelerated work:
+
+```bash
+# Request GPU resources
+interactive -p h100 -t 02:00:00 -g 1
+
+# Set up SSH tunnel to GPU node
+ssh -L 8081:rpg-93-1:8081 -l <username> -fN repacss.ttu.edu
+
+# Launch Jupyter
+jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
+```
+
+### Stopping Jupyter
+
+```bash
+# In the terminal where Jupyter is running
+Ctrl + C
+# Then type 'y' to confirm shutdown
+```
+
+---
+
+## 📚 Related Documentation
+
+- [Advanced Installation](advanced-installation.md) - For packages not available in conda
+- [Module System](module-system.md) - For system-level software
+- [Using Containers](containers.md) - For container-based applications

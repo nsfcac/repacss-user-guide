@@ -1,6 +1,8 @@
 # Using Software Modules on REPACSS
 
-REPACSS offers a wide selection of research and instructional software using the Lmod environment module system. This guide shows you how to find, load, and manage software modules, and provides an up-to-date summary of available software environments.
+REPACSS offers a wide selection of research and instructional software using the **Spack package manager** and **Lmod environment module system**. This guide shows you how to find, load, and manage software modules, and provides an up-to-date summary of available software environments.
+
+**This covers HPC applications, compilers, and system software managed through Spack.** For data science applications, see [Getting Started with MiniForge](miniforge.md) next.
 
 ---
 

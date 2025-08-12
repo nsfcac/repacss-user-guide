@@ -1,121 +1,160 @@
 # Running Ollama on REPACSS
 
-This guide provides instructions for running the Ollama large language model (LLM) management server on the REPACSS cluster in a batch or interactive session. A couple of variations are included below for you to experiment with. Please choose the minimum amount of resources if you use this program, as described below, as it is resource-intensive and other cluster account holders may also be in contention for these resources.
+A comprehensive guide for running Ollama (local LLM inference) on REPACSS GPU clusters using containers.
 
-**Important: A session on the h100 GPU partition is required for most models.** Although it is technically possible to run on one of the CPU partitions (zen4), performance will be very slow for all except the smallest models, even with a full node request in terms of the number of cores. The h100 partition has multiple GPUs per node, and availability varies by usage, so to minimize contention, we suggest that you minimize long-term intensive use or long interactive sessions to keep these resources available for as many people as possible. **If using an interactive session, please exit as soon as you are done and do not leave the session idle.**
+## 🎯 Overview
 
-**The current version of CUDA on the h100 partition is 12.6.2. The most recent version of Ollama that supports this version of CUDA in the prebuilt tarball is 0.9.2 and the instructions below are set up for this version only. You can replace this with any previous version but until the h100 partition has been upgraded, please do not exceed this version.**
+Ollama is a popular AI application for running large language models locally. This guide shows you how to deploy Ollama using containers on REPACSS GPU nodes.
+
+**This is a trending AI application that uses containers for installation.** For general container usage, see [Using Containers](containers.md).
 
 ---
 
-## Step by Step Guide
+## 🚀 Quick Start Guide
 
-### 1. Preparation (Can be done on login nodes)
+### Prerequisites
 
-Create a directory called ollama in your home area and cd into it:
+- Access to REPACSS GPU nodes (h100 partition)
+- `apptainer` module available
+- Sufficient memory (64GB+ recommended)
+
+### Step 1: Request GPU Resources
 
 ```bash
+# Request interactive session with GPU
+interactive -p h100 -t 02:00:00 -g 1
+```
+
+### Step 2: Set Up Ollama Environment
+
+```bash
+# Create project directory
+cd $HOME
+mkdir ollama-project
+cd ollama-project
+
+# Pull Ollama container (version 0.6.8 recommended)
+apptainer pull ollama.sif docker://ollama/ollama:0.6.8
+
+# Set scratch directory for models
+export SCRATCH_BASE=/mnt/<Your Group Name>/home/$USER
+```
+
+### Step 3: Launch Ollama Server
+
+```bash
+# Start Ollama server in background
+ollama serve &
+```
+
+### Step 4: Use Available Models
+
+```bash
+# List available models
+ollama list
+
+# Run a model (example with falcon3:1b)
+ollama run falcon3:1b
+```
+
+### Step 5: Test Inference
+
+```bash
+# Test with a simple prompt
+ollama run llama3.1:8b
+>>> What is the capital of Texas?
+```
+
+---
+
+## 📦 Installation Methods
+
+### Method 1: Using Apptainer Container (Recommended)
+
+```bash
+# Pull the official Ollama container
+apptainer pull ollama.sif docker://ollama/ollama:0.6.8
+
+# Run Ollama from container
+./ollama.sif serve &
+```
+
+### Method 2: Direct Installation
+
+```bash
+# Download Ollama binary
 cd ~
 mkdir ollama-0.9.2
 cd ollama-0.9.2
-```
 
-Download the latest AMD64 architecture tarball from the GitHub web site for ollama ([https://github.com/ollama/ollama/releases](https://github.com/ollama/ollama/releases)). For example, the current one can be fetched with the command:
-
-```bash
+# Download specific version for CUDA compatibility
 wget https://ollama.com/download/ollama-linux-amd64.tgz?version=0.9.2 -O ollama-linux-amd64.tgz
-```
 
-Then unpack this in your ollama directory with:
-
-```bash
+# Extract and run
 tar -zxvf ollama-linux-amd64.tgz
-```
-
-### 2. Requesting Resources
-
-For most problems you will want to run ollama with GPU assistance. For each interactive or batch session on h100, you can request either one or two GPUs and a suitable number of CPUs. You can choose any number from 1 to 20 CPUs for a single GPU job or from 1 to 40 CPUs for a 2-GPU job. For further information, see our [Job Submission Guide](../running-jobs/basics.md).
-
-For example, if trying this interactively, the commands would be either:
-
-```bash
-# for a 1-GPU interactive job, use the command below
-srun --pty --partition=h100 --gres=gpu:1 --cpus-per-task=20 --mem=64G bash
-```
-
-or
-
-```bash
-# for a 2-GPU job, same considerations as above
-srun --pty --partition=h100 --gres=gpu:2 --cpus-per-task=40 --mem=128G bash
-```
-
-You can check the number of GPUs in your session with the **nvidia-smi** command. The default memory allocations made by the scheduler in each case should be fine.
-
-### 3. Loading Required Modules
-
-Once you have an interactive session on the h100 partition, load the CUDA module:
-
-```bash
-module load cuda/12.6.2
-```
-
-You can verify the CUDA installation with:
-
-```bash
-nvcc --version
-```
-
-### 4. Running Ollama
-
-The commands below can be used in either the run script for a batch or in an interactive session.
-
-Get a free port number and start an instance of the ollama server on it in the background as follows:
-
-```bash
-export OLPORT=$(python -c "import socket; s = socket.socket(); s.bind(('', 0));print(s.getsockname()[1]);s.close()");
-export OLLAMA_HOST=127.0.0.1:$OLPORT;
-export OLLAMA_BASE_URL="http://localhost:$OLPORT";
-~/ollama-0.9.2/bin/ollama serve >ollama_$OLPORT.log 2>ollama_$OLPORT.err &
-```
-
-Within that same session, you should be able to connect to the running ollama server on that node and port using the command:
-
-```bash
-~/ollama-0.9.2/bin/ollama
-```
-
-For example, the command below should work to start an instance of the llama3.2 model running on that particular ollama server in the background. This is just an example; you should be able to choose any of the available models from the ollama library. The "--verbose" flag is optional but will allow you to see the speed of the responses to your prompts. If further information is needed, you can add "export OLLAMA_DEBUG=1" to the commands issued before starting the server above.
-
-```bash
-~/ollama-0.9.2/bin/ollama run llama3.2 --verbose
-```
-
-**The startup for this command may take several seconds if the model has already been downloaded, or longer if the model is being fetched for the first time.** Once the session starts, response will depend on the complexity of your prompt, the model chosen, and other factors.
-
-Optionally, you could add the ~/ollama/bin directory to your PATH to avoid having to type that part in explicitly:
-
-```bash
-export PATH=~/ollama-0.9.2/bin:$PATH
-```
-
-To check that this is finding your Ollama executable, issue the command:
-
-```bash
-which ollama
+./ollama serve &
 ```
 
 ---
 
-## Batch Job Example
+## 🔧 Advanced Configuration
 
-Running any production studies once your code is working is best done in batch jobs. This approach is preferable once you have your planned commands worked out for the set of work you would like to do, since this will not require waiting for an interactive session to open up. Details on how to set up a batch job are described in the [Job Submission Guide](../running-jobs/basics.md).
+### Using Shared Model Directory
 
-Here's an example batch script for running Ollama:
+REPACSS provides a shared LLM directory. Check available models first:
+
+```bash
+# List available models
+ollama list
+
+# Use existing models
+ollama run falcon3:1b
+```
+
+### Pulling New Models
+
+```bash
+# Pull a new model
+ollama pull llama3.1:8b
+
+# Verify model is available
+ollama list
+```
+
+### Environment Variables
+
+```bash
+# Set up port and host
+export OLPORT=$(python -c "import socket; s = socket.socket(); s.bind(('', 0));print(s.getsockname()[1]);s.close()");
+export OLLAMA_HOST=127.0.0.1:$OLPORT;
+export OLLAMA_BASE_URL="http://localhost:$OLPORT";
+```
+
+---
+
+## 🚀 Running Ollama in Different Modes
+
+### Interactive Session
+
+```bash
+# Request GPU resources
+srun --pty --partition=h100 --gres=gpu:1 --cpus-per-task=20 --mem=64G bash
+
+# Load CUDA module
+module load cuda/12.6.2
+
+# Start Ollama server
+ollama serve >ollama.log 2>ollama.err &
+
+# Run models
+ollama run llama3.2 --verbose
+```
+
+### Batch Job
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=ollama-test
+#SBATCH --job-name=ollama-inference
 #SBATCH --partition=h100
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=20
@@ -128,19 +167,14 @@ Here's an example batch script for running Ollama:
 module purge
 module load cuda/12.6.2
 
-# Set up Ollama environment
-export OLPORT=$(python -c "import socket; s = socket.socket(); s.bind(('', 0));print(s.getsockname()[1]);s.close()");
-export OLLAMA_HOST=127.0.0.1:$OLPORT;
-export OLLAMA_BASE_URL="http://localhost:$OLPORT";
-
 # Start Ollama server
-~/ollama-0.9.2/bin/ollama serve >ollama_$OLPORT.log 2>ollama_$OLPORT.err &
+ollama serve >ollama.log 2>ollama.err &
 
 # Wait for server to start
 sleep 10
 
-# Run your Ollama commands here
-~/ollama-0.9.2/bin/ollama run llama3.2 --verbose << EOF
+# Run inference
+ollama run llama3.1:8b << EOF
 What is the capital of France?
 EOF
 
@@ -150,63 +184,121 @@ pkill ollama
 
 ---
 
-## Overall Information
+## 🌐 Remote Access
 
-The session you are in should pick up and respect the OLLAMA_HOST and OLLAMA_BASE environmental variables defined above, which will point the client command to the right server instance. If running in batch, you may wish to feed the prompt(s) you want to the ollama client. There are several ways to do this, including either feeding the prompt in the ollama run command, skipping the client entirely and simply interacting with the running ollama instance on that port using curl, etc., so you can tune this step towards a useful batch workflow depending on your needs.
+### From Login Node
 
-The ollama server background session will terminate automatically when you sign out of the interactive session or when your batch job terminates. This procedure should keep separate instances from colliding with each other in simultaneous interactive or batch jobs, even if other REPACSS account holders run this or similar programs on the same nodes up to their batch resource limits.
+Check server status from a login node:
 
-You can experiment with the number of CPUs in your session, though since there are multiple GPUs in each h100 node, there is usually no harm in asking for the number of CPUs that corresponds to your GPU request as above, and with either running two separate ollama client/server instances using only one GPU at a time per session as above, or with using both GPUs in a single session to see if this will result in faster processing of your prompts.
+```bash
+# Check if server is running
+curl http://<hostname>:<port>
 
-One final note: availability of the h100 partition varies greatly. You may need to wait for some time for an interactive session if the partition is busy, or for a batch job to start, especially if you have been making a lot of use of the partition, depending on the current activity and your recent history of usage. This is why we recommend setting your work up to run as batch jobs if possible.
+# You should see: "Ollama is running"
+```
+
+### Using Jupyter Notebook
+
+From any node, launch Jupyter to interact with Ollama:
+
+```bash
+# Start Jupyter
+jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
+
+# Set up SSH tunnel from local machine
+# ssh -L 8081:127.0.0.1:8081 -l <your_account> -fN repacss.ttu.edu
+```
+
+Then access `127.0.0.1:8081` in your browser to use the tutorial notebook.
 
 ---
 
-## Troubleshooting
+## 🎯 Best Practices
+
+### Resource Management
+
+- **Use appropriate GPU resources** - Start with 1 GPU, scale as needed
+- **Monitor memory usage** - Large models require significant RAM
+- **Exit sessions promptly** - Don't leave GPU sessions idle
+- **Use batch jobs** for long-running inference
+
+### Model Selection
+
+- **Start with smaller models** (1B-3B parameters) for testing
+- **Use shared models** when available to save download time
+- **Consider model requirements** - Some models need specific CUDA versions
+
+### Performance Optimization
+
+- **Use appropriate batch sizes** for your GPU memory
+- **Monitor GPU utilization** with `nvidia-smi`
+- **Consider model quantization** for faster inference
+
+---
+
+## 🛠️ Troubleshooting
 
 ### Common Issues
 
-1. **CUDA not found**: Make sure you've loaded the CUDA module:
+1. **CUDA not found**
    ```bash
+   # Load CUDA module
    module load cuda/12.6.2
    ```
 
-2. **Port already in use**: The script automatically finds a free port, but if you encounter issues, you can manually specify a port:
+2. **Port conflicts**
    ```bash
-   export OLPORT=12345
+   # Use dynamic port allocation
+   export OLPORT=$(python -c "import socket; s = socket.socket(); s.bind(('', 0));print(s.getsockname()[1]);s.close()")
    ```
 
-3. **Model download issues**: Some models are large and may take time to download. Check the log files for progress:
+3. **Memory issues**
    ```bash
-   tail -f ollama_$OLPORT.log
+   # Reduce CPU count or use smaller models
+   # Check available memory
+   free -h
    ```
 
-4. **Memory issues**: If you encounter memory problems, try reducing the number of CPUs or using a smaller model.
+4. **Model download problems**
+   ```bash
+   # Check network connectivity
+   # Use shared models when available
+   ollama list
+   ```
 
-### Debugging
+### Debug Mode
 
-To enable debug output, add this before starting the server:
+Enable debug output for troubleshooting:
 
 ```bash
 export OLLAMA_DEBUG=1
+ollama serve
 ```
 
-Check the log files for detailed information:
+### Log Files
+
+Check log files for detailed information:
 
 ```bash
-cat ollama_$OLPORT.log
-cat ollama_$OLPORT.err
+# Check server logs
+tail -f ollama.log
+tail -f ollama.err
 ```
 
 ---
 
-## More Information and Support
+## 📚 Related Documentation
 
-For a full list of available software modules, see the [Module System](module-system.md) guide.
+- [Software Management Overview](index.md) - General software management
+- [Using Containers](containers.md) - General container usage
+- [Module System](module-system.md) - System software via modules
+- [Running Jobs](../running-jobs/basics.md) - Job submission and management
 
-For job submission help, see the [Running Jobs](../running-jobs/basics.md) guide.
+---
 
-Need help? Contact REPACSS support:
+## 🆘 Support
+
+For Ollama-specific issues or assistance, contact:
 
 ```
 repacss.support@ttu.edu
