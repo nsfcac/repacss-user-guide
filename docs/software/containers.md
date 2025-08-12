@@ -18,42 +18,43 @@ Use containers when you need:
 
 ### Check Apptainer Availability
 
-Apptainer is available on REPACSS. Verify it's working:
+Apptainer is **system-wide installed** on REPACSS. Verify it's working:
 
 ```bash
-apptainer --version
+repacss:$ apptainer --version
+apptainer version 1.4.0-1.el9
 ```
+
+**No installation required** - Apptainer is already available on all REPACSS nodes.
 
 ### Basic Container Operations
 
 #### Pull a Container
 
 ```bash
-# Pull from Docker Hub
-apptainer pull docker://ubuntu:latest
-
-# Pull from Singularity Hub
-apptainer pull shub://vsoch/hello-world
+# Pull a specific application (example: Ollama)
+apptainer pull ollama.sif docker://ollama/ollama:0.6.8
 
 # Pull from a specific registry
-apptainer pull docker://registry.example.com/myapp:latest
+apptainer pull myapp.sif docker://registry.example.com/myapp:latest
 ```
 
 #### Run a Container
 
 ```bash
 # Execute a command in a container
-apptainer exec ubuntu_latest.sif bash
+apptainer exec ollama.sif ollama list
 
 # Run a container as an application
-apptainer run ubuntu_latest.sif
+apptainer run ollama.sif
 
 # Shell into a container
-apptainer shell ubuntu_latest.sif
+apptainer shell ollama.sif
 ```
 
 ---
 
+<!-- 
 ## 🔧 Building Custom Containers
 
 ### Creating Definition Files
@@ -63,11 +64,11 @@ Create a definition file for your custom container:
 ```bash
 cat > myapp.def << EOF
 Bootstrap: docker
-From: ubuntu:20.04
+From: rockylinux:9
 
 %post
-    apt-get update
-    apt-get install -y python3 python3-pip
+    dnf update -y
+    dnf install -y python3 python3-pip
     pip3 install numpy scipy matplotlib jupyter
 
 %environment
@@ -93,7 +94,9 @@ apptainer build myapp.sif myapp.def
 apptainer build --cache-dir /tmp/singularity-cache myapp.sif myapp.def
 ```
 
+
 ---
+-->
 
 ## 📁 Working with Data
 
@@ -112,14 +115,14 @@ apptainer exec -B /path/to/data:/data,/path/to/results:/results myapp.sif bash
 apptainer exec -B $HOME myapp.sif bash
 ```
 
-### Example: Data Analysis Workflow
+### Example: AI Application Workflow
 
 ```bash
 # Create a working directory
-mkdir -p ~/container-work
+mkdir -p ~/ollama-work
 
-# Run analysis in container with data mounted
-apptainer exec -B ~/container-work:/work myapp.sif python3 /work/analysis.py
+# Run Ollama in container with data mounted
+apptainer exec -B ~/ollama-work:/work ollama.sif ollama run llama3.1:8b
 ```
 
 ---
@@ -130,13 +133,13 @@ apptainer exec -B ~/container-work:/work myapp.sif python3 /work/analysis.py
 
 ```bash
 # Request an interactive session
-srun --pty --partition=zen4 --cpus-per-task=4 --mem=8G bash
+interactive -p h100 -c 4 -m 8G
 
 # Load any required modules
 module load cuda/12.6.2  # if using GPU
 
 # Run your container
-apptainer exec myapp.sif python3 my_script.py
+apptainer exec ollama.sif ollama run llama3.1:8b
 ```
 
 ### Batch Jobs
@@ -145,19 +148,20 @@ Create a job script for batch execution:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=container-job
-#SBATCH --partition=zen4
+#SBATCH --job-name=ollama-job
+#SBATCH --partition=h100
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=8G
+#SBATCH --gres=gpu:1
 #SBATCH --time=02:00:00
-#SBATCH --output=container_%j.out
-#SBATCH --error=container_%j.err
+#SBATCH --output=ollama_%j.out
+#SBATCH --error=ollama_%j.err
 
 # Load modules if needed
 module load cuda/12.6.2
 
 # Run container with data binding
-apptainer exec -B $HOME:/home/user myapp.sif python3 /home/user/my_analysis.py
+apptainer exec -B $HOME:/home/user ollama.sif ollama run llama3.1:8b
 ```
 
 ---
@@ -166,8 +170,7 @@ apptainer exec -B $HOME:/home/user myapp.sif python3 /home/user/my_analysis.py
 
 ### Popular Container Sources
 
-- **Docker Hub**: `docker://library/ubuntu`
-- **Singularity Hub**: `shub://vsoch/hello-world`
+- **Docker Hub**: `docker://ollama/ollama:0.6.8`
 - **NGC (NVIDIA)**: `docker://nvcr.io/nvidia/pytorch:23.12-py3`
 - **Biocontainers**: `docker://biocontainers/fastqc:v0.11.9_cv8`
 
@@ -208,14 +211,16 @@ For trending AI applications like Ollama, see our dedicated guide:
 - **Use local storage** (`$HOME` or `$WORK`) for containers
 - **Bind only necessary directories** to avoid overhead
 - **Consider container size** for transfer and storage
-- **Use appropriate partitions** (GPU containers on h100)
+- **Use appropriate partitions** (GPU containers on h100 partition)
+- **Use approved containers** like Ollama for AI applications
 
 ### Security
 
-- **Only use trusted container sources**
+- **Only use trusted container sources** (Docker Hub, NGC, etc.)
 - **Verify container contents** before running
 - **Don't run containers as root** unless necessary
 - **Keep containers updated** for security patches
+- **Use approved applications** like Ollama for AI workloads
 
 ---
 

@@ -33,13 +33,13 @@ For software that needs to be compiled from source code with specific configurat
 
 ---
 
-## 🚀 Example Applications
+## 🚀 Popular User Applications
 
-### **Trending Applications** → Real-World Examples
-Popular applications that demonstrate how to use the package management methods above:
+### **Commonly Used Software** → User-Installed Applications
+Popular applications that users frequently install and use, demonstrating how to use the package management methods above:
 
-- **[Running Jupyter Notebook](jupyter-notebook.md)** - Example of using conda (category 2) for interactive development
-- **[Running Ollama](running-ollama.md)** - Example of using containers (category 3.1) for AI applications
+- **[Running Jupyter Notebook](jupyter-notebook.md)** - Using conda (category 2) for interactive development
+- **[Running Ollama](running-ollama.md)** - Using containers (category 3.1) for AI applications
 
 ---
 
@@ -52,7 +52,7 @@ Popular applications that demonstrate how to use the package management methods 
 | Pre-built Applications | **User-installed** | Complex software stacks | Apptainer containers | [Using Containers](containers.md) |
 | Custom Software | **User-installed** | Source compilation, specialized tools | Build from source | [Building from Source](building-from-source.md) |
 
-### Example Applications
+### Popular User Applications
 | Application | Package Management Method | Installation Type | Documentation |
 |-------------|---------------------------|-------------------|---------------|
 | Jupyter Notebook | Conda (Data Science) | User-installed | [Running Jupyter Notebook](jupyter-notebook.md) |
@@ -65,7 +65,7 @@ Popular applications that demonstrate how to use the package management methods 
 1. **HPC applications?** Check available modules: `module avail` (system-provided)
 2. **Data science work?** Set up MiniForge: See [Getting Started with MiniForge](miniforge.md) (user-installed)
 3. **Custom software?** Choose containers or source build based on your needs (user-installed)
-4. **Want examples?** See how others use these methods: [Example Applications](#trending-applications--real-world-examples)
+4. **Want popular applications?** See commonly used software: [Popular User Applications](#popular-user-applications)
 
 ---
 
@@ -78,7 +78,7 @@ Popular applications that demonstrate how to use the package management methods 
 - [Building from Source](building-from-source.md) - **User-installed** source compilation
 - [Advanced Installation](advanced-installation.md) - General installation guidance
 
-### Example Applications
+### Popular User Applications
 - [Running Jupyter Notebook](jupyter-notebook.md) - Using conda for interactive development
 - [Running Ollama](running-ollama.md) - Using containers for AI applications
 
