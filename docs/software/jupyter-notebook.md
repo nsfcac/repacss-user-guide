@@ -101,7 +101,7 @@ Or copy and paste one of these URLs:
 
 ```bash
 # Request an interactive session
-srun --pty --partition=zen4 --cpus-per-task=4 --mem=8G bash
+interactive -p zen4 -c 4 -m 8G
 
 # Activate your environment
 conda activate jupyter_env

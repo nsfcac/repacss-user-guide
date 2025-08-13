@@ -76,7 +76,7 @@ Popular applications that users frequently install and use, demonstrating how to
 - [Getting Started with MiniForge](miniforge.md) - **User-installed** data science with conda
 - [Using Containers](containers.md) - **User-installed** Apptainer/Singularity containers
 - [Building from Source](building-from-source.md) - **User-installed** source compilation
-- [Advanced Installation](advanced-installation.md) - General installation guidance
+
 
 ### Popular User Applications
 - [Running Jupyter Notebook](jupyter-notebook.md) - Using conda for interactive development

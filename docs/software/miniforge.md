@@ -31,7 +31,7 @@ If you just want to get started quickly:
 - **Anaconda**: A commercial distribution that includes Conda and many preinstalled data science packages.
 - **Miniconda**: A minimal Anaconda installer with basic tools and default channels.
 - **MiniForge**: A minimal installer with only conda-forge preconfigured and no proprietary channels.
-- **Mamba**: A drop-in replacement for Conda, built in C++ for speed and efficiency.
+- **Mamba**: A drop-in replacement for Conda, built in C++ for speed and efficiency. Included in MiniForge.
 
 ---
 
@@ -158,6 +158,26 @@ conda env remove --name <env_name>
 
 ---
 
+## 📦 Installing Packages with Pip
+
+When a package is unavailable via `conda`, you can use `pip` within an activated conda environment:
+
+```bash
+# Activate your conda environment first
+conda activate myenv
+
+# Install packages with pip
+pip install somepackage
+
+# Install from requirements.txt
+pip install -r requirements.txt
+```
+
+!!! warning "Important"
+    Always use `pip` inside an activated conda environment to prevent conflicts with system Python.
+
+---
+
 ## Optimizing Conda Initialization
 
 Avoid installing all packages in the `base` environment. Create small, purpose-specific environments for each project.
@@ -194,6 +214,6 @@ For more details, see: [Anaconda Terms of Service](https://www.anaconda.com/term
 ## 📚 Related Documentation
 
 - [Running Jupyter Notebook](jupyter-notebook.md) - Interactive Python development with Jupyter
-- [Advanced Installation](advanced-installation.md) - For packages not available in conda
 - [Module System](module-system.md) - For system-level software
 - [Using Containers](containers.md) - For container-based applications
+- [Building from Source](building-from-source.md) - For packages requiring compilation

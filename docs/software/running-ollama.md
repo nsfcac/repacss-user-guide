@@ -195,7 +195,7 @@ export OLLAMA_BASE_URL="http://localhost:$OLPORT";
 
 ```bash
 # Request GPU resources
-srun --pty --partition=h100 --gres=gpu:1 --cpus-per-task=20 --mem=64G bash
+interactive -p h100 -t 02:00:00 -g 1
 
 # Load CUDA module
 module load cuda/12.6.2

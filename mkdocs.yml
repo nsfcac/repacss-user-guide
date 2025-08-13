@@ -95,7 +95,6 @@ nav:
           - User Self-Installation:
               - Containers: software/containers.md
               - Building from Source: software/building-from-source.md
-              - Advanced Installation: software/advanced-installation.md
       - Popular User Applications:
           - Running Jupyter Notebook: software/jupyter-notebook.md
           - Running Ollama: software/running-ollama.md

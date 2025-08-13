@@ -37,7 +37,7 @@ Explore the full documentation by visiting the deployed site (coming soon).
 │   ├── miniforge.md
 │   ├── containers.md
 │   ├── building-from-source.md
-│   ├── advanced-installation.md
+
 │   ├── running-ollama.md
 │   └── jupyter-notebook.md
 ├── performance/

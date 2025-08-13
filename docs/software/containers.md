@@ -133,7 +133,7 @@ apptainer exec -B ~/ollama-work:/work ollama.sif ollama run llama3.1:8b
 
 ```bash
 # Request an interactive session
-interactive -p h100 -c 4 -m 8G
+interactive -p h100 -t 02:00:00 -g 1
 
 # Load any required modules
 module load cuda/12.6.2  # if using GPU

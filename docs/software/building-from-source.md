@@ -233,7 +233,7 @@ source $HOME/software/myapp/setup.sh
 
 ```bash
 # Request interactive session for building
-srun --pty --partition=zen4 --cpus-per-task=8 --mem=16G bash
+interactive -p zen4 -c 8 -m 16G
 
 # Load modules and build
 module load gcc/14.2.0
@@ -320,7 +320,7 @@ make test
 - [Software Management Overview](index.md) - General software management
 - [Module System](module-system.md) - System software via modules
 - [Using Containers](containers.md) - Alternative to source builds
-- [Advanced Installation](advanced-installation.md) - General installation guide
+- [Getting Started with MiniForge](miniforge.md) - Python package management with conda
 
 ---
 
