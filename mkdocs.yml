@@ -26,6 +26,7 @@ theme:
   features:
     - search.suggest
     - content.footer.last-updated
+    - content.code.copy
 plugins:
   - search
   - git-revision-date-localized:

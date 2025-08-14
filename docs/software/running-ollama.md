@@ -6,208 +6,113 @@ A comprehensive guide for running Ollama (local LLM inference) on REPACSS GPU cl
 
 Ollama is a popular AI application for running large language models locally. This guide shows you how to deploy Ollama using containers on REPACSS GPU nodes.
 
-The REPACSS team provides a repository with pre-configured scripts (`https://github.com/nsfcac/ollama_repacss.git`) that includes:
+
+**This is an example of using containers (user-installed) for AI applications.** For general container usage, see [Using Containers](containers.md).
+
+The REPACSS team also provides a repository with pre-configured scripts (`https://github.com/nsfcac/ollama_repacss.git`) that includes:
 - Helper scripts for easy setup
 - Example Python scripts for testing
 - Jupyter notebook tutorials
 - Pre-configured environment settings
 
-**This is an example of using containers (user-installed) for AI applications.** For general container usage, see [Using Containers](containers.md).
-
 ---
 
-## 🚀 Quick Start
+## 🚀 One-Time Setup
 
-### Prerequisites
+### Clone the Repository (Only Once)
 
-- Access to REPACSS GPU nodes (h100 partition)
-- `apptainer` module available
-- Sufficient memory (64GB+ recommended)
-
-### Basic Setup
-
-```bash
-# 1. Request GPU resources
-interactive -p h100 -t 02:00:00 -g 1
-
-# 2. Clone the repository
-cd $HOME
-git clone https://github.com/nsfcac/ollama_repacss.git
-cd ollama_repacss
-
-# 3. Pull Ollama container
-apptainer pull ollama.sif docker://ollama/ollama:0.6.8
-
-# 4. Set environment and source wrapper
-export SCRATCH_BASE=/mnt/<Your Group Name>/home/$USER
-source ollama.sh
-
-# 5. Start Ollama server
-ollama serve &
-
-# 6. List and use available models
-ollama list
-ollama run falcon3:1b
-```
-
----
-
-## 📦 Installation Methods
-
-### Using REPACSS Repository (Recommended)
-
-The REPACSS team provides a repository with pre-configured scripts for easy setup. This method includes helper scripts and examples.
-
-#### Step 1: Request GPU Resources
-
-```bash
-# Request interactive session with GPU
-interactive -p h100 -t 02:00:00 -g 1
-```
-
-#### Step 2: Clone the Ollama Repository
-
-Clone the REPACSS Ollama repository which contains pre-written scripts for convenient setup:
+Choose a directory and clone the Ollama configuration repository. This only needs to be done once:
 
 ```bash
 cd $HOME
-cd <your_project>
-git clone https://github.com/nsfcac/ollama_repacss.git
-cd ollama_repacss
+mkdir <your_ollama_working_dir>
+cd <your_ollama_working_dir>
+git clone https://github.com/nsfcac/repacss_ollama_configuration.git
 ```
 
 This repository contains:
-- **`ollama.sh`**: A helper script to launch and manage the Ollama server
+- **`setup_ollama.sh`**: A setup script to install and launch the Ollama server
+- **`ollama.sh`**: A script to set the configurations of the Ollama server
 - **`test.py`**: An example Python script to verify your Ollama server is working
 - **`tutorial.ipynb`**: A Jupyter notebook that connects to your Ollama server
 - **`requirements.txt`**: Python libraries needed to run the notebook
 
-#### Step 3: Download Ollama and Configure Environment
+---
 
-Download the Ollama container (we recommend version 0.6.8 for REPACSS) and set up the environment:
+## 🧪 Running Ollama (Every Time)
+
+### Step 1: Request GPU Resources
+
+Use the following command to start an interactive job with 1 GPU for 2 hours:
 
 ```bash
-# Pull Ollama container (version 0.6.8 recommended)
-apptainer pull ollama.sif docker://ollama/ollama:0.6.8
-
-# Set scratch directory for models
-export SCRATCH_BASE=/mnt/<Your Group Name>/home/$USER
+interactive -p h100 -t 02:00:00 -g 1
 ```
 
-#### Step 4: Source the Ollama Wrapper
+### Step 2: Set Up Environment and Start Ollama
 
-This sets up a wrapper function to easily start the Ollama server and issue commands:
+We are using ollama 0.6.8 in this version. The first time will take several minutes to download the .sif engine file:
 
 ```bash
-source ollama.sh
+# Navigate to your repository
+cd $HOME/<your_ollama_working_dir>/repacss_ollama_configuration
+
+# Set up and launch the Ollama server
+source setup_ollama.sh
 ```
 
-#### Step 5: Launch Ollama Server
+---
 
-Ollama server has been launched in the background:
+## 🎯 Using Ollama
 
-```bash
-ollama serve &
-```
+### Step 1: Check Available Models
 
-#### Step 6: Use Available Models
-
-REPACSS provides a shared LLM directory. Check available models first:
+We are using a shared LLM directory on REPACSS. Check the model list first:
 
 ```bash
-# List available models
 ollama list
+```
 
-# Use existing models (example with falcon3:1b)
+### Step 2: Run Inference with Existing Models
+
+Use existing models (example with falcon3:1b):
+
+```bash
 ollama run falcon3:1b
 ```
+
+### Step 3: Pull and Use New Models (Optional)
 
 If you want to use a new model, choose a model supported by Ollama and pull it:
 
 ```bash
 # Pull a new model
 ollama pull llama3.1:8b
-```
 
-#### Step 7: Test Inference
-
-Test the model directly with a simple prompt:
-
-```bash
+# Test the new model
 ollama run llama3.1:8b
->>> What is the capital of Texas?
+>>> what is the capital of Texas?
 ```
 
-### Step 8: Verify Server Status from Login Node
+### Step 4: Verify Server Status from Login Node
 
-From login node (repacs.ttu.edu), check if the Ollama server is running:
+From a login node (not the GPU node), check if the Ollama server is running:
 
 ```bash
 curl http://<hostname>:<port>
 ```
-You can find a host.txt and port.txt in your ~/ollama folder/ Replace <hostname> with your GPU node's hostname and <port> with your Ollama server's port number. 
+
+You can find a `host.txt` and `port.txt` in your `<your_ollama_working_dir>/ollama` folder. Replace `<hostname>` with your GPU node's hostname and `<port>` with your Ollama server's port number.
 
 You should see:
 
 ```
 Ollama is running
 ```
----
 
-## 🔧 Advanced Configuration
+## 📋 Running Ollama in Batch Mode
 
-### Using Shared Model Directory
-
-REPACSS provides a shared LLM directory. Check available models first:
-
-```bash
-# List available models
-ollama list
-
-# Use existing models
-ollama run falcon3:1b
-```
-
-### Pulling New Models
-
-```bash
-# Pull a new model
-ollama pull llama3.1:8b
-
-# Verify model is available
-ollama list
-```
-
-### Environment Variables
-
-```bash
-# Set up port and host
-export OLPORT=$(python -c "import socket; s = socket.socket(); s.bind(('', 0));print(s.getsockname()[1]);s.close()");
-export OLLAMA_HOST=127.0.0.1:$OLPORT;
-export OLLAMA_BASE_URL="http://localhost:$OLPORT";
-```
-
----
-
-## 🚀 Running Ollama in Different Modes
-
-### Interactive Session
-
-```bash
-# Request GPU resources
-interactive -p h100 -t 02:00:00 -g 1
-
-# Load CUDA module
-module load cuda/12.6.2
-
-# Start Ollama server
-ollama serve >ollama.log 2>ollama.err &
-
-# Run models
-ollama run llama3.2 --verbose
-```
-
-### Batch Job
+For production workloads or long-running inference, use batch jobs:
 
 ```bash
 #!/bin/bash
@@ -222,7 +127,6 @@ ollama run llama3.2 --verbose
 
 # Load required modules
 module purge
-module load cuda/12.6.2
 
 # Start Ollama server
 ollama serve >ollama.log 2>ollama.err &
@@ -243,37 +147,19 @@ pkill ollama
 
 ## 🌐 Remote Access
 
-### From Login Node
-
-From a login node (not the GPU node), check if the Ollama server is running:
-
-```bash
-curl http://<hostname>:<port>
-```
-
-You can find a `host.txt` and `port.txt` in your `~/ollama` folder. Replace `<hostname>` with your GPU node's hostname and `<port>` with your Ollama server's port number.
-
-You should see:
-
-```
-Ollama is running
-```
-
 ### Using Jupyter Notebook
 
-From a login node (not the GPU node), or any other nodes, you can run:
+You can also access Ollama through Jupyter Notebook for interactive development:
 
 ```bash
+# From login node, start Jupyter
 jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
-```
 
-Then on your terminal of local machine:
-
-```bash
+# From your local machine, create SSH tunnel
 ssh -L 8081:127.0.0.1:8081 -l <your_account> -fN repacss.ttu.edu
 ```
 
-Then you can explore the `tutorial.ipynb` in your browser (`127.0.0.1:8081`).
+Then open `http://127.0.0.1:8081` in your browser and explore the `tutorial.ipynb` notebook.
 
 ---
 
@@ -304,26 +190,21 @@ Then you can explore the `tutorial.ipynb` in your browser (`127.0.0.1:8081`).
 
 ### Common Issues
 
-1. **CUDA not found**
-   ```bash
-   # Load CUDA module
-   module load cuda/12.6.2
-   ```
 
-2. **Port conflicts**
+1. **Port conflicts**
    ```bash
    # Use dynamic port allocation
    export OLPORT=$(python -c "import socket; s = socket.socket(); s.bind(('', 0));print(s.getsockname()[1]);s.close()")
    ```
 
-3. **Memory issues**
+2. **Memory issues**
    ```bash
    # Reduce CPU count or use smaller models
    # Check available memory
    free -h
    ```
 
-4. **Model download problems**
+3. **Model download problems**
    ```bash
    # Check network connectivity
    # Use shared models when available
