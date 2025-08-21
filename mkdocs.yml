@@ -26,6 +26,7 @@ theme:
   features:
     - search.suggest
     - content.footer.last-updated
+    - content.code.copy
 plugins:
   - search
   - git-revision-date-localized:
@@ -88,11 +89,17 @@ nav:
       # - Policy: account/policy.md
       
   - Software:
-      - Module System: software/module-system.md
-      # - Available Software: software/available-software.md
-      - Installing Packages: software/installing-packages.md
-      - Conda: software/conda.md
-
+      - Overview: software/index.md
+      - Package Management:
+          - HPC Applications (Module System): software/module-system.md
+          - Data Science (MiniForge): software/miniforge.md
+          - User Self-Installation:
+              - Containers: software/containers.md
+              - Building from Source: software/building-from-source.md
+      - Popular User Applications:
+          - Running Jupyter Notebook: software/jupyter-notebook.md
+          - Running Ollama: software/running-ollama.md
+      
   - Performance:
       - Compiler Flags: performance/compiler-flags.md
       # - Profiling Tools: performance/profiling-tools.md

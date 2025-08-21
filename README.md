@@ -13,7 +13,7 @@ This repository powers a structured, searchable documentation site built with **
 - ✅ Getting Started
 - 🔐 Connecting to REPACSS
 - 🧮 Running Jobs with Slurm
-- 💾 Software & Modules
+- 💾 Software Management (Spack, Conda, Containers, Trending Applications)
 - 🚀 Performance Optimization
 - 🛠 Troubleshooting & Reference
 - 🧠 Understanding the REPACSS System
@@ -32,6 +32,14 @@ Explore the full documentation by visiting the deployed site (coming soon).
 ├── connecting/
 ├── running-jobs/
 ├── software/
+│   ├── index.md
+│   ├── module-system.md
+│   ├── miniforge.md
+│   ├── containers.md
+│   ├── building-from-source.md
+
+│   ├── running-ollama.md
+│   └── jupyter-notebook.md
 ├── performance/
 ├── reference/
 ├── understanding/

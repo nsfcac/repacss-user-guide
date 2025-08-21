@@ -1,6 +1,8 @@
 # Using Software Modules on REPACSS
 
-REPACSS offers a wide selection of research and instructional software using the Lmod environment module system. This guide shows you how to find, load, and manage software modules, and provides an up-to-date summary of available software environments.
+REPACSS offers a wide selection of **system-provided** research and instructional software using the **Spack package manager** and **Lmod environment module system**. This guide shows you how to find, load, and manage software modules, and provides an up-to-date summary of available software environments.
+
+**This covers system-provided HPC applications, compilers, and system software - no installation required, just load what you need.** For user-installed data science applications, see [Getting Started with MiniForge](miniforge.md) next.
 
 ---
 
@@ -32,6 +34,7 @@ Software modules are grouped by repository path and hardware partition. You can 
 | openblas              | 0.3.28        | Optimized BLAS library                                           |
 | **openmpi**           | 5.0.4         | High-performance MPI (default)                                   |
 | proj                  | 9.4.1         | Cartographic projections and coordinate transformations          |
+| pmix                  | 5.0.3         | Standardized API for launching and managing parallel applications |
 | python                | 3.10.10       | Python programming language                                      |
 | **python**            | 3.12.5        | Python programming language (default)                            |
 | r                     | 4.4.1         | Statistical computing and graphics                               |
@@ -83,6 +86,7 @@ Software modules are grouped by repository path and hardware partition. You can 
 |-----------------------|---------------|------------------------------------------------------------------|
 | intel-oneapi-mkl      | 2024.2.2      | Intel Math Kernel Library                                        |
 | intel-oneapi-mpi      | 2021.4.0      | Intel MPI Library                                                |
+| quantum-espresso      | 7.4           | Electronic-structure and materials modeling suite                 |
 
 #### `/opt/apps/nfs/modules/zen4/rocky9.4/intel-oneapi-mpi/2021.4.0-5ksoj4d/oneapi/2023.0.0`
 !!! note
