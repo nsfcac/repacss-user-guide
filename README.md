@@ -64,7 +64,7 @@ brew install mkdocs
 
 ### Clone and Serve
 ```bash
-git clone https://github.com/TalkingJupiter/repacss-user-guide.git
+git clone https://github.com/nsfcac/repacss-user-guide.git
 cd repacss-user-guide
 mkdocs serve
 ```
