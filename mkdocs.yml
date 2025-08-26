@@ -34,7 +34,12 @@ plugins:
       enable_creation_date: false
       timezone: America/Chicago
       locale: en
-      
+extra:
+  homepage: https://repacss.org/
+  analytics:
+    provider: google
+    property: G-Z4BQCMWZDV
+
 extra_css:
   - assets/stylesheets/extra.css
 
@@ -53,7 +58,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  # - Getting Started: getting-started-at-REPACSS.md
+ 
   - Absolute Beginner Guide: absolute-beginner-guide.md
 
   - Connecting to REPACSS:
@@ -73,7 +78,6 @@ nav:
 
   - Understanding Our Systems:
       - Architecture: understanding/repacss-system/architecture.md
-      # - Timeline: understanding/repacss-system/timeline.md
       # - Known Issues: understanding/repacss-system/known-issues.md
       # - Vendor Bugs: understanding/repacss-system/vendor-bugs.md
       - File System:
