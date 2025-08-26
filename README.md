@@ -20,35 +20,6 @@ This repository powers a structured, searchable documentation site built with **
 
 Explore the full documentation by visiting the deployed site (coming soon).
 
----
-
-## 📦 Project Structure
-
-```
-📁 docs/
-├── index.md
-├── getting-started-at-REPACSS.md
-├── account/
-├── connecting/
-├── running-jobs/
-├── software/
-│   ├── index.md
-│   ├── module-system.md
-│   ├── miniforge.md
-│   ├── containers.md
-│   ├── building-from-source.md
-
-│   ├── running-ollama.md
-│   └── jupyter-notebook.md
-├── performance/
-├── reference/
-├── understanding/
-├── assets/
-│   └── stylesheets/
-│       └── extra.css
-└── unix-permissions.md
-```
-
 Configuration is controlled in [`mkdocs.yml`](mkdocs.yml).
 
 ---
@@ -57,21 +28,33 @@ Configuration is controlled in [`mkdocs.yml`](mkdocs.yml).
 
 You can preview the site locally using MkDocs:
 
-### Install MkDocs (with Homebrew)
-```bash
-brew install mkdocs
-```
+### Prerequisites
+- Python 3.8+ installed on your system
 
-### Clone and Serve
+### Clone the repository
 ```bash
 git clone https://github.com/nsfcac/repacss-user-guide.git
 cd repacss-user-guide
+```
+
+### Set up a Python virtual environment
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
+```
+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Serve the site
+```bash
 mkdocs serve
 ```
 
 Visit `http://localhost:8000` to view it.
 
-> ℹ️ Note: You can also install the Material theme with `pip install mkdocs-material`.
 
 ---
 

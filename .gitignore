@@ -4,3 +4,4 @@
 .cursor/
 **/.DS_Store
 .venv/
+site/
