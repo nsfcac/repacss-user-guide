@@ -38,7 +38,7 @@ extra:
   homepage: https://repacss.org/
   analytics:
     provider: google
-    property: G-Z4BQCMWZDV
+    property: G-22EMREBVW7
 
 extra_css:
   - assets/stylesheets/extra.css
