@@ -91,7 +91,7 @@ The network backbone of REPACSS supports high-throughput and low-latency communi
 ## Additional Resources
 
 * [Running Jobs](../../running-jobs/basics.md)
-* [Available Software](../../software/available-software.md)
+* [Available Software](../../software/index.md)
 * [GPU Job Submission](../../running-jobs/interactive.md)
 * [Monitoring and Troubleshooting](../../running-jobs/monitoring.md)
 

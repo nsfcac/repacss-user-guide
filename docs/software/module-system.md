@@ -302,7 +302,7 @@ This helps with troubleshooting and documenting your environment.
 
 For a full list of available software, see the tables above.
 
-For Python-specific help, see the [Installing Packages](installing-packages.md) guide.
+For Python-specific help, see the [Getting Started with MiniForge](miniforge.md) guide.
 
 Need help? Contact REPACSS support:
 

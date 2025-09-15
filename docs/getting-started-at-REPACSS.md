@@ -72,9 +72,7 @@ module load gcc/12   # Load a specific version
 Resources:
 
 - [Using Modules](software/module-system.md)
-- [Available Software](software/available-software.md)
-- [Installing Your Own Packages](software/installing-packages.md)
-
+- [Available Software](software/index.md)
 ---
 
 ## Submitting Your First Job
