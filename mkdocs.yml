@@ -72,6 +72,7 @@ nav:
       - Job Examples: running-jobs/examples.md
       - Determine Resource Needs: running-jobs/determining-resource-requirements.md
       - Interactive Sessions: running-jobs/interactive.md
+      - Checkpoint/Restart: running-jobs/checkpoint-restart.md
       - Scheduling: running-jobs/scheduling.md
       - Monitoring: running-jobs/monitoring.md
       - Best Practices: running-jobs/best-practices.md
