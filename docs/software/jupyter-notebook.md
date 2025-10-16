@@ -15,11 +15,15 @@ Jupyter Notebook is a popular application for interactive Python development tha
 ### Prerequisites
 
 - Conda environment with Jupyter installed
-- Access to REPACSS login nodes or compute nodes
+- Access to REPACSS compute nodes (zen4 for CPU jobs and h100 for GPU jobs)
+- Jupyter must run inside an interactive job on compute nodes (login node is not allowed)
 
 ### Basic Setup
 
 ```bash
+# Request an interactive session (login node not allowed)
+interactive -p zen4 -c 4 -m 8G   # use -p h100 -g 1 for GPU
+
 # Activate your conda environment
 conda activate myenv
 
@@ -27,8 +31,10 @@ conda activate myenv
 conda install jupyter notebook ipykernel
 
 # Launch Jupyter
-jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
+jupyter notebook --no-browser --ip=0.0.0.0 --port=8081
 ```
+
+Note: If port `8081` is already in use, Jupyter may automatically select the next available port (for example, `8082`). Always use the actual port shown in Jupyter's startup output when creating your SSH tunnel and in your browser URL.
 
 ---
 
@@ -81,23 +87,11 @@ conda install jupyter_contrib_nbextensions
 
 ## 🚀 Launching Jupyter Notebook
 
-### On Login Node
+### Login Node (Not Allowed)
 
-```bash
-# Start Jupyter on login node
-jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
-```
+Running Jupyter on the login node is not allowed. Please request an interactive session on a compute node (see below) and launch Jupyter there.
 
-You'll see output like:
-
-```bash
-To access the server, open this file in a browser:
-    file:///mnt/REPACSS/home/username/.local/share/jupyter/runtime/jpserver-1341111-open.html
-Or copy and paste one of these URLs:
-    http://127.0.0.1:8081/tree?token=...
-```
-
-### On Compute Nodes (Recommended for Heavy Work)
+### On Compute Nodes (Intended for Heavy Work)
 
 ```bash
 # Request an interactive session
@@ -107,7 +101,13 @@ interactive -p zen4 -c 4 -m 8G
 conda activate jupyter_env
 
 # Launch Jupyter
-jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
+jupyter notebook --no-browser --ip=0.0.0.0 --port=8081
+```
+
+Once the interactive session starts, note the allocated node name. For CPU `zen4` jobs it looks like `rpc-xx-x`; for GPU `h100` jobs it looks like `rpg-xx-x`. You can print it with:
+
+```bash
+hostname
 ```
 
 ---
@@ -119,14 +119,19 @@ jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
 If you're running Jupyter on a remote server, set up an SSH tunnel from your local machine:
 
 ```bash
-ssh -L 8081:127.0.0.1:8081 -l <your_username> -fN repacss.ttu.edu
+# For zen4 CPU nodes (hostnames look like rpc-xx-x)
+ssh -L <your-local-port>:rpc-xx-x:<remote-port> -l <your_username> -fN repacss.ttu.edu
+
+# For h100 GPU nodes (hostnames look like rpg-xx-x)
+ssh -L <your-local-port>:rpg-xx-x:<remote-port> -l <your_username> -fN repacss.ttu.edu
 ```
 
-Replace `<your_username>` with your actual username.
+Replace `<your_username>` with your actual username, `rpc-xx-x`/`rpg-xx-x` with the node name printed by `hostname`, `<remote-port>` with the real port printed by Jupyter on the compute node (e.g., `8081`, `8082`, etc.), and choose `<your-local-port>` for your machine (for example, `8081`). You can find the `<remote-port>` in the startup message like `http://127.0.0.1:<remote-port>/tree?token=...` or by running `jupyter server list` on the compute node.
 
 ### Accessing in Browser
 
-Then open `http://127.0.0.1:8081/` in your local browser.
+Then open `http://127.0.0.1:<your-local-port>/` in your local browser.
+Example: if you used `8081` locally, open `http://127.0.0.1:8081/`.
 
 You should now see the Jupyter interface.
 
@@ -153,22 +158,24 @@ conda activate jupyter_env
 module load cuda/12.6.2
 ```
 
-### Step 3: Set Up SSH Tunnel to GPU Node
-
-From your local machine, set up tunnel to the specific GPU node:
-
-```bash
-ssh -L 8081:rpg-93-1:8081 -l <username> -fN repacss.ttu.edu
-```
-
-Replace `rpg-93-1` with your actual GPU node name.
-
-### Step 4: Launch Jupyter
+### Step 3: Launch Jupyter
 
 ```bash
 # Launch Jupyter on GPU node
 jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
 ```
+
+Note: Jupyter may auto-select a different port if `8081` is taken. Use the port printed in the startup output (the `<remote-port>` in the URL) or run `jupyter server list` on the node to discover it.
+
+### Step 4: Set Up SSH Tunnel to GPU Node
+
+From your local machine, set up tunnel to the specific GPU node using the `<remote-port>` from the previous step:
+
+```bash
+ssh -L <your-local-port>:rpg-xx-x:<remote-port> -l <username> -fN repacss.ttu.edu
+```
+
+Replace `rpg-xx-x` with your actual GPU node name (GPU nodes start with `rpg-`) and `<remote-port>` with the actual Jupyter port shown in the GPU node's startup output. Use `jupyter server list` on the node if unsure.
 
 You are now running Jupyter Notebook with access to GPU resources!
 
@@ -234,6 +241,12 @@ Also remember to:
    # Find and kill processes using the port
    lsof -ti:8081 | xargs kill -9
    ```
+   - Alternatively, start Jupyter with your preferred port and let it auto-select the next available port. Then update your SSH tunnel to use the actual port shown in the Jupyter startup message.
+   - To discover the active port, check the startup output for a URL like `http://127.0.0.1:<port>/...` or run:
+   - To discover the active port, check the startup output for a URL like `http://127.0.0.1:<remote-port>/...` or run:
+     ```bash
+     jupyter server list
+     ```
 
 2. **Cannot connect to Jupyter**
    - Check if SSH tunnel is active
