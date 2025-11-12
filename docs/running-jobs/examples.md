@@ -37,52 +37,152 @@ Jobs on REPACSS can be submitted in two main forms:
 
 ## Script Templates
 
-### Basic Job Script with C
+### Basic MPI Job Script
 
-1. Create a file named `my_program.c` with the following content:
-```bash
+This example demonstrates how to run a pure MPI application. For details on available MPI implementations and their usage, see [MPI Implementations and Usage Guidance](../software/module-system.md#mpi-implementations-and-usage-guidance).
+
+!!! note
+    Steps 1-2 below show how to create and compile a test program. If you already have your own MPI program compiled, you can skip to step 3 and use your program instead.
+
+1. Create a file named `mpi_program.c` with the following content:
+```c
 #include <stdio.h>
-#include <unistd.h>
+#include <mpi.h>
 
-int main() {
-    printf("SLURM job started.\n");
-    printf("Sleeping for 60 seconds to simulate work...\n");
-    sleep(60);
-    printf("Job complete. Goodbye!\n");
+int main(int argc, char **argv) {
+    int rank, size;
+    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    int name_len;
+
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Get_processor_name(processor_name, &name_len);
+
+    printf("Hello from processor %s, rank %d out of %d processors\n",
+           processor_name, rank, size);
+
+    MPI_Finalize();
     return 0;
 }
 ```
 
-2. Load the GCC module and compile the program:
+2. Load the required modules and compile the program:
 ```bash
 module load gcc/14.2.0
-gcc my_program.c -o my_program
+module load mpich/4.1.2
+mpicc mpi_program.c -o mpi_program
 ```
 
-3. Create a file named `submit_job.sh` with the following contents:
+3. Create a file named `mpi_job.sh` with the following contents:
 ```bash
 #!/bin/bash
-#SBATCH --job-name=test
-#SBATCH --output=test.out
-#SBATCH --error=test.err
+#SBATCH --job-name=mpi_job
+#SBATCH --output=mpi_job.out
+#SBATCH --error=mpi_job.err
+#SBATCH --partition=zen4
 #SBATCH --time=01:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --nodes=2
+#SBATCH --ntasks=8
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
+#SBATCH --mem-per-cpu=2G
 
 # Load modules
 module load gcc/14.2.0
+module load mpich/4.1.2
 
-# Run program
-./my_program
+# Run MPI program using srun (for OpenMPI/MPICH)
+srun -n 8 ./mpi_program
 ```
 <small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
 
 4. Make the script executable and submit it using `sbatch`:
 ```bash
-sbatch submit_job.sh
+sbatch mpi_job.sh
 ```
+
+!!! note
+    For Intel MPI, use `mpirun -np 8 ./mpi_program` instead of `srun`. See [MPI Implementations and Usage Guidance](../software/module-system.md#mpi-implementations-and-usage-guidance) for details.
+
+### Hybrid MPI+OpenMP Job Script
+
+This example demonstrates how to run a hybrid MPI+OpenMP application that uses both MPI for inter-node communication and OpenMP for intra-node parallelism.
+
+!!! note
+    Steps 1-2 below show how to create and compile a test program. If you already have your own hybrid MPI+OpenMP program compiled, you can skip to step 3 and use your program instead.
+
+1. Create a file named `hybrid_program.c` with the following content:
+```c
+#include <stdio.h>
+#include <mpi.h>
+#include <omp.h>
+
+int main(int argc, char **argv) {
+    int rank, size;
+    int thread_id, num_threads;
+    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    int name_len;
+
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Get_processor_name(processor_name, &name_len);
+
+    #pragma omp parallel private(thread_id, num_threads)
+    {
+        thread_id = omp_get_thread_num();
+        num_threads = omp_get_num_threads();
+        printf("MPI rank %d/%d on %s: OpenMP thread %d/%d\n",
+               rank, size, processor_name, thread_id, num_threads);
+    }
+
+    MPI_Finalize();
+    return 0;
+}
+```
+
+2. Load the required modules and compile the program:
+```bash
+module load gcc/14.2.0
+module load mpich/4.1.2
+mpicc -fopenmp hybrid_program.c -o hybrid_program
+```
+
+3. Create a file named `hybrid_job.sh` with the following contents:
+```bash
+#!/bin/bash
+#SBATCH --job-name=hybrid_job
+#SBATCH --output=hybrid_job.out
+#SBATCH --error=hybrid_job.err
+#SBATCH --partition=zen4
+#SBATCH --time=01:00:00
+#SBATCH --nodes=2
+#SBATCH --ntasks=4
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=2G
+
+# Load modules
+module load gcc/14.2.0
+module load mpich/4.1.2
+
+# Set OpenMP threads per MPI task
+export OMP_NUM_THREADS=4
+
+# Run hybrid program with CPU binding to physical cores
+srun --cpu-bind=cores -n 4 ./hybrid_program
+```
+<small>*To determine your resource needs, refer to the [Determine Resource Needs](determining-resource-requirements.md) documentation.*</small>
+
+4. Make the script executable and submit it using `sbatch`:
+```bash
+sbatch hybrid_job.sh
+```
+
+!!! tip
+    This example uses 2 nodes with 4 MPI tasks and 4 OpenMP threads per task, for a total of 16 parallel threads. The `--cpu-bind=cores` flag ensures OpenMP threads are bound to physical cores rather than hyperthreads. Adjust `--ntasks`, `--cpus-per-task`, and `OMP_NUM_THREADS` based on your application's needs.
+
+!!! note
+    For more information on MPI implementations and launchers, see [MPI Implementations and Usage Guidance](../software/module-system.md#mpi-implementations-and-usage-guidance). 
 
 
 ### Python Job Script

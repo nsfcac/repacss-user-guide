@@ -18,6 +18,7 @@ Software modules are grouped by repository path and hardware partition. You can 
 |-----------------------|---------------|------------------------------------------------------------------|
 | boost                 | 1.86.0        | C++ libraries for tasks and structures                           |
 | bwa                   | 0.7.17        | Burrows-Wheeler Aligner for sequence alignment                   |
+| dmtcp                 | 3.0.0         | Distributed MultiThreaded CheckPointing                         |
 | eigen                 | 3.4.0         | C++ template library for linear algebra                          |
 | ffmpeg                | 6.1.1         | Audio and video processing tools                                 |
 | gdal                  | 3.10.0        | Geospatial Data Abstraction Library                              |
@@ -43,20 +44,23 @@ Software modules are grouped by repository path and hardware partition. You can 
 | swig                  | 4.1.0-fortran | Simplified Wrapper and Interface Generator for Fortran           |
 | tmux                  | 3.4           | Terminal multiplexer                                             |
 
-#### `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`
+#### `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-f2walvn/Core`
 !!! note
-    These modules are only available after loading the `mpich` module (default in zen4). Run:
+    These modules are only available after loading the `mpich` module for the zen4 partition. To load the zen4 version of mpich (4.1.2), run:
     
     ```bash
-    module load mpich
+    module load mpich/4.1.2
     ```
+    
     before using any of these packages.
-    To make sure you are loading the default zen4 mpich, not the h100 mpich. After loading, check the module path with:
+    
+    **Important**: The h100 partition has mpich 4.3.0 as its default. To ensure you are loading the zen4 mpich (4.1.2) and not the h100 mpich (4.3.0), verify the module path after loading:
     
     ```bash
     module show mpich
     ```
-    The path should include `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`.
+    
+    The path should include `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-f2walvn/Core`. If you see `/opt/apps/nfs/modules/h100/rocky9.4/Core` instead, you have loaded the h100 version.
     
     
 
@@ -70,6 +74,7 @@ Software modules are grouped by repository path and hardware partition. You can 
 | p3dfft3               | 3.0.0         | Parallel 3D FFT library                                          |
 | quantum-espresso      | 7.4           | Electronic-structure and materials modeling suite                 |
 | scotch                | 7.0.4         | Graph partitioning, static mapping, and clustering library        |
+| vtk                   | 9.3.1         | Visualization Toolkit for 3D computer graphics                   |
 | wrf                   | 4.6.1         | Weather Research and Forecasting Model                           |
 | wps                   | 4.5           | WRF Preprocessing System                                         |
 
@@ -110,22 +115,33 @@ These modules are GPU-enabled. To access them, prepend the h100 path to your MOD
 
 | Module   | Version        | Description                                 |
 |----------|---------------|---------------------------------------------|
-| cuda     | 12.6.2        | NVIDIA CUDA Toolkit                         |
-| cudnn    | 9.2.0.82-12   | NVIDIA CUDA Deep Neural Network library     |
-| mpich    | 4.1.2         | MPI implementation (GPU-enabled)            |
-| nccl     | 2.22.3-1      | NVIDIA Collective Communications Library    |
-| openmpi  | 5.0.4         | High-performance implementation of MPI (GPU-enabled)      |
+| cuda     | 12.9.0        | NVIDIA CUDA Toolkit                         |
+| cudnn    | 9.8.0.87-12   | NVIDIA CUDA Deep Neural Network library     |
+| **gcc**  | 15.1.0        | GNU Compiler Collection (default)           |
+| **mpich**| 4.3.0         | MPI implementation (GPU-enabled, default)  |
+| nccl     | 2.27.5-1      | NVIDIA Collective Communications Library    |
+| nvhpc    | 25.5          | NVIDIA HPC Compilers                        |
+
+### zen4-spack1.0.1 Partition
+
+#### `/opt/apps/nfs/modules/zen4-spack1.0.1/rocky9.4/Core`
+
+| Module   | Version        | Description                                 |
+|----------|---------------|---------------------------------------------|
+| likwid   | 5.4.1         | Performance monitoring and benchmarking suite|
 
 ---
 
 ## MPI Implementations and Usage Guidance
 
+For running MPI applications in interactive sessions on CPU-only nodes, see [Interactive Sessions on CPU-Only Nodes](../running-jobs/interactive.md#interactive-sessions-on-cpu-only-nodes).
+
 ### Overview
 
-Three MPI implementations are available: **OpenMPI**, **MPICH**, and **Intel MPI**. OpenMPI and MPICH are provided for both CPU (zen4) and GPU (h100) partitions, while Intel MPI is only available in the CPU (zen4) partition. The h100 versions are CUDA-enabled for GPU workloads.
+Three MPI implementations are available: **OpenMPI**, **MPICH**, and **Intel MPI**. OpenMPI and MPICH are provided for the CPU (zen4) partition, while MPICH is also available for the GPU (h100) partition. Intel MPI is only available in the CPU (zen4) partition. The h100 versions are CUDA-enabled for GPU workloads.
 
 - **zen4**: CPU-only MPI modules (default: mpich, openmpi) + Intel MPI (after loading intel-oneapi-compilers)
-- **h100**: GPU-enabled MPI modules (mpich, openmpi)
+- **h100**: GPU-enabled MPI module (default: mpich 4.3.0)
 
 ### Using MPI-Dependent Packages
 
@@ -133,7 +149,7 @@ Some software packages in the zen4 partition require specific MPI modules to be 
 
 #### MPICH-Dependent Packages
 
-Software packages like `fftw`, `hdf5`, `lammps`, `openfoam`, `quantum-espresso`, `wrf`, etc. (see the [MPICH table above](#optappsnfsmoduleszen4rocky94mpich412-a5xh3gecore)) require the `mpich` module to be loaded first:
+Software packages like `fftw`, `hdf5`, `lammps`, `openfoam`, `quantum-espresso`, `wrf`, etc. (see the [MPICH table above](#optappsnfsmoduleszen4rocky94mpich412-f2walvncore)) require the `mpich` module to be loaded first:
 
 ```bash
 module load mpich
@@ -145,7 +161,7 @@ To make sure you are loading the default zen4 mpich, not the h100 mpich, verify 
 module show mpich
 ```
 
-The output should reference `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-a5xh3ge/Core`.
+The output should reference `/opt/apps/nfs/modules/zen4/rocky9.4/mpich/4.1.2-f2walvn/Core`.
 
 #### Intel MPI-Dependent Packages
 
@@ -176,12 +192,12 @@ This ensures optimal performance and compatibility with each MPI implementation.
 
 ### Accessing GPU-Enabled MPI Modules
 
-To use CUDA-enabled `mpich` or `openmpi` in the GPU (h100) partition:
+To use CUDA-enabled `mpich` in the GPU (h100) partition:
 1. Prepend the h100 module path to your MODULEPATH:
    ```bash
    module use /opt/apps/nfs/modules/h100/rocky9.4/Core
    ```
-2. Load the desired MPI module (e.g., `mpich` or `openmpi`).
+2. Load the `mpich` module (default version 4.3.0).
 
 ### Switching Between MPI Implementations
 

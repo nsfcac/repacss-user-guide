@@ -59,6 +59,15 @@ Once the session begins, you can run programs directly or use `srun` for launchi
 srun ./my_cpu_program
 ```
 
+For MPI applications, load the required MPI module and use `srun` with the appropriate number of tasks. For example, to run LAMMPS (a molecular dynamics simulator) with 4 MPI processes:
+
+```bash
+module load mpich/4.1.2
+srun -n 4 lmp -in input.lmp
+```
+
+See [MPI Implementations and Usage Guidance](../software/module-system.md#mpi-implementations-and-usage-guidance) for more details on available MPI implementations and their usage.
+
 ---
 
 ## Resource Allocation Timeout and Immediate Scheduling
