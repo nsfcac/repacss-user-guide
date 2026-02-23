@@ -61,6 +61,13 @@ nav:
  
   - Absolute Beginner Guide: absolute-beginner-guide.md
 
+  - Getting and Managing Your Account:
+      - Overview: account/index.md
+      - ACCESS: account/access.md
+      - TTU: account/ttu.md
+      - Passwords: account/passwords.md
+      # - Policy: account/policy.md
+
   - Connecting to REPACSS:
       - Overview: connecting/index.md
       - VPN: connecting/vpn.md
@@ -85,13 +92,6 @@ nav:
         - File Transfer: understanding/repacss-system/file-system/file-transfer.md
         - File Permissions: understanding/repacss-system/file-system/unix-permissions.md 
         - Sharing File Access: understanding/repacss-system/file-system/ACL.md
-
-  - Getting and Managing Your Account:
-      - Overview: account/index.md
-      - TTU: account/ttu.md
-      # - ACCESS: account/access.md
-      - Passwords: account/passwords.md
-      # - Policy: account/policy.md
       
   - Software:
       - Overview: software/index.md

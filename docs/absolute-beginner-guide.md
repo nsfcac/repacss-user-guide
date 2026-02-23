@@ -20,6 +20,20 @@ Welcome to REPACSS — REmotely-managed Power Aware Computing Systems and Servic
 
 ---
 
+## Getting ACCESS Allocation
+
+REPACSS is integrated with the [ACCESS](https://access-ci.org/) system. **All users** (TTU or external) must request compute resources through ACCESS before they can run jobs on REPACSS.
+
+### Quick Steps
+
+1. **Register** — Create an ACCESS account at [New User Registration](https://operations.access-ci.org/identity/new-user) using your university identity.
+
+2. **Create a Project** — Choose a project type (e.g., "Explore" or "Discover") at [Project Types](https://allocations.access-ci.org/project-types). Each type provides ACCESS credits that you can redeem for REPACSS CPU/GPU hours.
+
+3. **Exchange Credits for REPACSS** — In your project's **Credits + Resources** tab, search for "REPACSS" and request Texas Tech REPACSS CPU (1 credit/core-hour) or GPU (100 credits/GPU hour). Complete the justification and resource questions, then submit for approval.
+
+<small>*For detailed instructions with screenshots, see the [ACCESS Account Guide](account/access.md).*</small>
+
 ## Accessing the System
 Before accessing REPACSS resources, users must be connected to TTUnet or TTUnet VPN.   
 
