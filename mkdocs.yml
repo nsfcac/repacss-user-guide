@@ -65,6 +65,7 @@ nav:
       - Overview: account/index.md
       - ACCESS: account/access.md
       - TTU: account/ttu.md
+      - External Accounts: account/external_accounts.md
       - Passwords: account/passwords.md
       # - Policy: account/policy.md
 
