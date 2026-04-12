@@ -24,7 +24,7 @@ Welcome to REPACSS — REmotely-managed Power Aware Computing Systems and Servic
 
 REPACSS is integrated with the [ACCESS](https://access-ci.org/) system. **All users** (TTU or external) must request compute resources through ACCESS before they can run jobs on REPACSS.
 
-### Quick Steps
+### Quick Setup Steps
 
 1. **Register** — Create an ACCESS account at [New User Registration](https://operations.access-ci.org/identity/new-user) using your university identity.
 
