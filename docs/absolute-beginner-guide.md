@@ -52,7 +52,7 @@ Before accessing REPACSS resources, users must be connected to TTUnet or TTUnet 
 
 ### SSH Login
 
-To initiate a session:
+To initiate a session, open a terminal (PowerShell on Windows, Terminal on macOS or Linux, or tools like MobaXterm) and run:
 
 ```bash
 ssh <your_username>@repacss.ttu.edu
