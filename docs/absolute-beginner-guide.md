@@ -179,7 +179,7 @@ Users should include required module commands at the beginning of their job scri
     ```bash
     module load gcc
     ```
-<small>*For additonal details, refer to the [Module System](software/module-system.md) documentation.*</small>
+<small>*For additional details, refer to the [Module System](software/module-system.md) documentation.*</small>
 
 ---
 ## Job Submission with C Program
