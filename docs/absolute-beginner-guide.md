@@ -190,7 +190,10 @@ Users should include required module commands at the beginning of their job scri
 
 This example demonstrates the procedure for compiling and executing a basic C program using a SLURM batch script.
 
-### Create your source code
+### Create Your Source Code
+
+Create a file called `hello.c`:
+
 ```c
 #include <stdio.h>
 
@@ -200,24 +203,52 @@ int main(){
 }
 ```
 
-### Create your Batch Script(`run_hello.sh`)
+### Create Your Batch Script (`run_hello.sh`)
+
 ```bash
 #!/bin/bash
-#SBATCH --job-name=hello_job
-#SBATCH --output=hello_output.out
-#SBATCH --error=hello_error.err
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
+#SBATCH --job-name=hello_job        # Name of the job
+#SBATCH --output=hello_output.out   # File to save standard output
+#SBATCH --error=hello_error.err     # File to save error messages
+#SBATCH --time=00:05:00             # Max runtime (HH:MM:SS)
+#SBATCH --nodes=1                   # Number of nodes
+#SBATCH --ntasks=1                  # Number of tasks
+#SBATCH --cpus-per-task=1           # Number of CPUs per task
 
-module load gcc
+module load gcc          # Load the GCC compiler
 
-gcc hello.c -o hello
+gcc hello.c -o hello     # Compile the C program
 
-./hello
+./hello                  # Run the compiled program
 ```
+
 <small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
+
+### Submit Your Job
+
+```bash
+sbatch run_hello.sh
+```
+
+### Monitor Your Job
+
+```bash
+squeue --me
+```
+
+### Check Your Output
+
+Once the job completes, view the result:
+
+```bash
+cat hello_output.out
+```
+
+You should see:
+
+```
+Hello from my SLURM job.
+```
 
 ### Submit Your Job
 To submit the batch script to the SLURM workload manager, execute the following command:
