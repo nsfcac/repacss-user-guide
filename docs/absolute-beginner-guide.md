@@ -225,6 +225,7 @@ gcc hello.c -o hello     # Compile the C program
 <small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
 
 ### Submit Your Job
+To submit the batch script to the SLURM workload manager, execute the following command:
 
 ```bash
 sbatch run_hello.sh
@@ -248,12 +249,6 @@ You should see:
 
 ```
 Hello from my SLURM job.
-```
-
-### Submit Your Job
-To submit the batch script to the SLURM workload manager, execute the following command:
-```bash
-sbatch run_hello.sh
 ```
 
 !!! tip "How to monitor the job status?"
