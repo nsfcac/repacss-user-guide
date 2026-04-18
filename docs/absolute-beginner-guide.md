@@ -171,14 +171,18 @@ module list             # View loaded modules
 module unload gcc       # Unload a module
 ```
 
-Users should include required module commands at the beginning of their job scripts.
+Users should include required module commands at the beginning of their job scripts so the software is available when your job runs.
+
+!!! tip
+    Not sure what's available? Run `module avail` first to see the full list of software on REPACSS.
 
 ??? example "Load GCC module"
     For example, to load gcc in a job script:
 
-    ```bash
+```bash
     module load gcc
-    ```
+```
+
 <small>*For additional details, refer to the [Module System](software/module-system.md) documentation.*</small>
 
 ---
