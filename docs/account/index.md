@@ -15,7 +15,7 @@ Secure authentication is required for all user interactions with the REPACSS sys
 - Multi-Factor Authentication (MFA) support
 - SSH key registration for secure and password-less logins
 
-If your password is forgotten or compromised, you must contact Texas Tech University’s IT Help Central to initiate a reset and regain account access.
+If your password is forgotten or compromised, you must contact Texas Tech University’s [IT Help Central](https://askit.ttu.edu/sp) to initiate a reset and regain account access.
 
 ---
 
