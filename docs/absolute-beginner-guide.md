@@ -48,8 +48,6 @@ Before accessing REPACSS resources, users must be connected to TTUnet or TTUnet 
     <br> 
     *Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. If you encounter connectivity issues, connect via wired Ethernet or enable the VPN to ensure uninterrupted access.*
 
-
-
 ### SSH Login
 
 To initiate a session, open a terminal (PowerShell on Windows, Terminal on macOS or Linux, or tools like MobaXterm) and run:
@@ -110,11 +108,14 @@ REPACSS offers multiple storage environments optimized for different use cases:
 | Work          | `/mnt/GROUPID/work/USERID`   | $WORK  |
 
 ### Checking Quotas
-REPACSS storage space usage is currently organized by the REPACSS group. 
-Use the following command to display your current file usage:
+REPACSS storage space usage is organized by your assigned group.
+
+After logging into REPACSS, run the following command:
 
 ```bash
 $ df -h /mnt/$(id -gn)
+
+Example output:
 
 Filesystem              Size  Used Avail Use% Mounted on
 10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS
