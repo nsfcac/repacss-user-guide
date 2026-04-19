@@ -2,7 +2,7 @@
 
 ## What is ACCESS?
 
-[ACCESS](https://access-ci.org) is a U.S. [U.S. National Science Foundation (NSF)](https://nsf.gov) program that provides researchers with access to advanced computational resources, support services, and training. REPACSS aims to integrate with ACCESS in the future to:
+[ACCESS](https://access-ci.org) is a U.S. National Science Foundation (NSF) program that provides researchers with access to advanced computational resources, support services, and training. REPACSS aims to integrate with ACCESS in the future to:
 
 - Expand national access to REPACSS resources
 - Support collaboration across U.S. institutions
