@@ -6,6 +6,13 @@
 In order to access REPACSS resources, users must maintain an active and secure account. Proper account management ensures continued access to computing services, storage allocations, and user support systems.
 
 ---
+## Getting Access
+
+If you are a new user, you must first request an account before logging in. Visit the [ACCESS](account/access.md) page to get started.
+
+If your account has expired or been deactivated, contact the REPACSS Support Team at [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu) to request reactivation.
+
+---
 
 ## Password and Credential Management
 
@@ -15,7 +22,7 @@ Secure authentication is required for all user interactions with the REPACSS sys
 - Multi-Factor Authentication (MFA) support
 - SSH key registration for secure and password-less logins
 
-If your password is forgotten or compromised, you must contact Texas Tech University’s IT Help Central to initiate a reset and regain account access.
+If your password is forgotten or compromised, you must contact Texas Tech University’s [IT Help Central](https://askit.ttu.edu/sp) to initiate a reset and regain account access.
 
 ---
 

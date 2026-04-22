@@ -48,8 +48,6 @@ Before accessing REPACSS resources, users must be connected to TTUnet or TTUnet 
     <br> 
     *Note: Users located within the Computer Science Department building may experience restricted access when using TTUnet Wi-Fi. If you encounter connectivity issues, connect via wired Ethernet or enable the VPN to ensure uninterrupted access.*
 
-
-
 ### SSH Login
 
 To initiate a session, open a terminal (PowerShell on Windows, Terminal on macOS or Linux, or tools like MobaXterm) and run:
@@ -110,11 +108,14 @@ REPACSS offers multiple storage environments optimized for different use cases:
 | Work          | `/mnt/GROUPID/work/USERID`   | $WORK  |
 
 ### Checking Quotas
-REPACSS storage space usage is currently organized by the REPACSS group. 
-Use the following command to display your current file usage:
+REPACSS storage space usage is organized by your assigned group.
+
+After logging into REPACSS, run the following command:
 
 ```bash
 $ df -h /mnt/$(id -gn)
+
+Example output:
 
 Filesystem              Size  Used Avail Use% Mounted on
 10.102.95.220:/REPACSS  9.1T  162G  9.0T   2% /mnt/REPACSS
@@ -170,22 +171,29 @@ module list             # View loaded modules
 module unload gcc       # Unload a module
 ```
 
-Users should include required module commands at the beginning of their job scripts.
+Users should include required module commands at the beginning of their job scripts so the software is available when your job runs.
+
+!!! tip
+    Not sure what's available? Run `module avail` first to see the full list of software on REPACSS.
 
 ??? example "Load GCC module"
     For example, to load gcc in a job script:
 
-    ```bash
+```bash
     module load gcc
-    ```
-<small>*For additonal details, refer to the [Module System](software/module-system.md) documentation.*</small>
+```
+
+<small>*For additional details, refer to the [Module System](software/module-system.md) documentation.*</small>
 
 ---
 ## Job Submission with C Program
 
 This example demonstrates the procedure for compiling and executing a basic C program using a SLURM batch script.
 
-### Create your source code
+### Create Your Source Code
+
+Create a file called `hello.c`:
+
 ```c
 #include <stdio.h>
 
@@ -195,29 +203,52 @@ int main(){
 }
 ```
 
-### Create your Batch Script(`run_hello.sh`)
+### Create Your Batch Script (`run_hello.sh`)
+
 ```bash
 #!/bin/bash
-#SBATCH --job-name=hello_job
-#SBATCH --output=hello_output.out
-#SBATCH --error=hello_error.err
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
+#SBATCH --job-name=hello_job        # Name of the job
+#SBATCH --output=hello_output.out   # File to save standard output
+#SBATCH --error=hello_error.err     # File to save error messages
+#SBATCH --time=00:05:00             # Max runtime (HH:MM:SS)
+#SBATCH --nodes=1                   # Number of nodes
+#SBATCH --ntasks=1                  # Number of tasks
+#SBATCH --cpus-per-task=1           # Number of CPUs per task
 
-module load gcc
+module load gcc          # Load the GCC compiler
 
-gcc hello.c -o hello
+gcc hello.c -o hello     # Compile the C program
 
-./hello
+./hello                  # Run the compiled program
 ```
+
 <small>*To determine your resource needs, refer to the [Determine Resource Needs](running-jobs/determining-resource-requirements.md) documentation.*</small>
 
 ### Submit Your Job
 To submit the batch script to the SLURM workload manager, execute the following command:
+
 ```bash
 sbatch run_hello.sh
+```
+
+### Monitor Your Job
+
+```bash
+squeue --me
+```
+
+### Check Your Output
+
+Once the job completes, view the result:
+
+```bash
+cat hello_output.out
+```
+
+You should see:
+
+```
+Hello from my SLURM job.
 ```
 
 !!! tip "How to monitor the job status?"
