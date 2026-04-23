@@ -175,9 +175,8 @@ nvidia-smi
 ```
 Ensure required modules such as CUDA are loaded:
 
-```bash
-module load cuda
-```
+!!! note
+    `module load cuda` is not yet available. CUDA 13.1 is accessible through the NVIDIA driver automatically when you request a GPU node.
 
 Failure to request GPUs may result in errors such as:
 
