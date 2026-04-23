@@ -138,6 +138,21 @@ python3 script.py
 ```
 !!! warning "Miniforge Required"
     This script requires Miniforge to be installed on your account. If you haven't installed it yet, refer to the [Miniforge](../software/miniforge.md) documentation before running this script.
+
+??? example "No conda? Use this instead"
+    If you don't have Miniforge installed, you can run a basic Python script directly:
+
+```bash
+    #!/bin/bash
+    #SBATCH --job-name=python_job
+    #SBATCH --ntasks=1
+    #SBATCH --cpus-per-task=8
+    #SBATCH --mem=32G
+    #SBATCH --time=01:00:00
+    #SBATCH --partition=zen4
+
+    python3 script.py
+```
 ---
 
 ## Submitting GPU Jobs
