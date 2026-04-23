@@ -134,7 +134,7 @@ module load gcc
 source ~/miniforge3/etc/profile.d/conda.sh
 conda activate myenv
 
-python script.py
+python3 script.py
 ```
 
 ---
