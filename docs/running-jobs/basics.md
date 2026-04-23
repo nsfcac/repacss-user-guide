@@ -100,10 +100,13 @@ module load gcc
 srun -n 4 ./a.out
 ```
 
+!!! tip
+    Not sure what your partition or account is? Run `sinfo` to see available partitions and `sacct` to find your account name from a previous job.
+
 Slurm options may also be specified at the command line:
 
 ```bash
-sbatch -N 2 -p h100 ./job.sh
+sbatch -N 2 -p <your_partition> ./job.sh
 ```
 
 ---
