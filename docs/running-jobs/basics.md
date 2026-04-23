@@ -136,7 +136,8 @@ conda activate myenv
 
 python3 script.py
 ```
-
+!!! warning "Miniforge Required"
+    This script requires Miniforge to be installed on your account. If you haven't installed it yet, refer to the [Miniforge](../software/miniforge.md) documentation before running this script.
 ---
 
 ## Submitting GPU Jobs
