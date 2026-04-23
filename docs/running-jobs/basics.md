@@ -178,12 +178,13 @@ Ensure required modules such as CUDA are loaded:
 !!! note
     `module load cuda` is not yet available. CUDA 13.1 is accessible through the NVIDIA driver automatically when you request a GPU node.
 
-Failure to request GPUs may result in errors such as:
+If you request a GPU but forget the `--gres` flag, you may see:
 
 ```
 No CUDA-capable device is detected
 ```
 
+This means no GPU was allocated to your job. Make sure `--gres=gpu:nvidia_h100_nvl:1` is included in your script.
 ---
 
 ## Job Monitoring
