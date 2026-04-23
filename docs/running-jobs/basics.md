@@ -92,8 +92,8 @@ Sample job script:
 #SBATCH --job-name=test
 #SBATCH --nodes=2
 #SBATCH --time=01:00:00
-#SBATCH --partition=h100
-#SBATCH --account=mXXXX
+#SBATCH --partition=<your_partition>   # e.g. zen4 or h100 — run `sinfo` to see available partitions
+#SBATCH --account=<your_account>       # e.g. discl — run `sacct` to find your account name
 
 module load gcc
 
