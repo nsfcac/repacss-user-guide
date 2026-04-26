@@ -33,7 +33,9 @@ Jobs on REPACSS can be submitted in two main forms:
   sbatch -p zen4 job.sh     # CPU partition
   sbatch -p h100 job.sh     # GPU partition
 ```
-
+  !!! note
+      If neither `-p` nor a `#SBATCH --partition=...` directive is
+      provided, jobs are submitted to the default partition, **zen4**.
 ---
 
 ## Script Templates
