@@ -171,10 +171,14 @@ Before submitting a GPU job, verify that the GPU is accessible by starting an in
 interactive -p h100 -c 4
 nvidia-smi
 ```
-Ensure required modules such as CUDA are loaded:
+Ensure CUDA is loaded after landing on a GPU node:
+
+```bash
+module load cuda
+```
 
 !!! note
-    `module load cuda` is not yet available. CUDA 13.1 is accessible through the NVIDIA driver automatically when you request a GPU node.
+    `module load cuda` will fail on the login node. Always load CUDA after requesting a GPU node.
 
 If you request a GPU but forget the `--gres` flag, you may see:
 
