@@ -69,10 +69,10 @@ sacct -j 123456,123457
 
 ## Using `sstat`
 
-Use `sstat` to report resource usage for jobs that are currently running:
+Use `sstat` to report resource usage for jobs that are currently running. `sstat` queries job *steps*, not the top-level job ID — for batch scripts, append `.batch`:
 
 ```bash
-sstat -j 123456 -o JobID,MaxRSS
+sstat -j 123456.batch -o JobID,MaxRSS
 ```
 
 ---
