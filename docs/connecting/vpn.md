@@ -24,7 +24,7 @@ This guide provides setup instructions for the following operating systems:
 
 Prior to installing the VPN client, users must formally request access:
 
-1. Navigate to the [TTU VPN Access Request Form](https://software.ttu.edu/global-protect) and make sure you are signed-in to see the form.
+1. Navigate to the [TTU VPN software page](https://software.ttu.edu/global-protect) and download the VPN client. Inside the page you will find the [TTU VPN assistance request](https://askit.ttu.edu/sp?id=sc_cat_item&sys_id=a990ee5ddbdf41144d17266e139619f8) form to request access.
 2. Under "Type of Assistance," select: `Enable`
 3. Provide the following justification:
    ```
