@@ -165,8 +165,8 @@ mpicc -fopenmp hybrid_program.c -o hybrid_program
 #SBATCH --mem-per-cpu=2G
 
 # Load modules
-module load gcc/14.2.0
-module load mpich/4.1.2
+module load gcc/15.2.0
+module load mpich/4.3.2
 
 # Set OpenMP threads per MPI task
 export OMP_NUM_THREADS=4
