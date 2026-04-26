@@ -27,11 +27,12 @@ Jobs on REPACSS can be submitted in two main forms:
 
 * **Batch Jobs**: Scheduled jobs submitted via script.
 
-  ```bash
-  sbatch job.sh
-  sbatch -p zen4 job.sh
-  sbatch -p h100 job.sh
-  ```
+```bash
+  sbatch job.sh             # uses partition set inside the script,
+                            # or zen4 if none is specified
+  sbatch -p zen4 job.sh     # CPU partition
+  sbatch -p h100 job.sh     # GPU partition
+```
 
 ---
 
