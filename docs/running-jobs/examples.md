@@ -27,12 +27,15 @@ Jobs on REPACSS can be submitted in two main forms:
 
 * **Batch Jobs**: Scheduled jobs submitted via script.
 
-  ```bash
-  sbatch job.sh
-  sbatch -p zen4 job.sh
-  sbatch -p h100 job.sh
-  ```
-
+```bash
+  sbatch job.sh             # uses partition set inside the script,
+                            # or zen4 if none is specified
+  sbatch -p zen4 job.sh     # CPU partition
+  sbatch -p h100 job.sh     # GPU partition
+```
+  !!! note
+      If neither `-p` nor a `#SBATCH --partition=...` directive is
+      provided, jobs are submitted to the default partition, **zen4**.
 ---
 
 ## Script Templates
@@ -69,8 +72,8 @@ int main(int argc, char **argv) {
 
 2. Load the required modules and compile the program:
 ```bash
-module load gcc/14.2.0
-module load mpich/4.1.2
+module load gcc/15.2.0
+module load mpich/4.3.2
 mpicc mpi_program.c -o mpi_program
 ```
 
@@ -143,8 +146,8 @@ int main(int argc, char **argv) {
 
 2. Load the required modules and compile the program:
 ```bash
-module load gcc/14.2.0
-module load mpich/4.1.2
+module load gcc/15.2.0
+module load mpich/4.3.2
 mpicc -fopenmp hybrid_program.c -o hybrid_program
 ```
 
@@ -162,8 +165,8 @@ mpicc -fopenmp hybrid_program.c -o hybrid_program
 #SBATCH --mem-per-cpu=2G
 
 # Load modules
-module load gcc/14.2.0
-module load mpich/4.1.2
+module load gcc/15.2.0
+module load mpich/4.3.2
 
 # Set OpenMP threads per MPI task
 export OMP_NUM_THREADS=4
@@ -198,6 +201,11 @@ print("Job complete. Goodbye!")
 ```
 
 2. Create a file named `submit_python_job.sh` with the following content:
+!!! note "Prerequisites"
+    This example assumes MiniForge is installed at `~/miniforge3` and a
+    conda environment named `myenv` exists. If you haven't set this up
+    yet, follow the [MiniForge guide](https://guide.repacss.org/software/miniforge.html)
+    first.
 ```bash
 #!/bin/bash
 #SBATCH --job-name=python_job

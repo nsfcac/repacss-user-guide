@@ -83,6 +83,11 @@ du -sh
 ---
 
 ## Determining Resource Requirements by Running Test Jobs (Recommended)
+!!! note "Prerequisites"
+    The example below uses Python via MiniForge. If you haven't installed
+    MiniForge or created a conda environment yet, follow the
+    [MiniForge guide](https://guide.repacss.org/software/miniforge.html)
+    first. The examples assume an environment named `myenv`.
 
 The most reliable method to measure your job’s resource needs is to submit a small-scale test job and examine the SLURM job statistics after completion.
 
