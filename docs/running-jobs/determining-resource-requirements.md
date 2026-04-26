@@ -115,7 +115,8 @@ time.sleep(60)
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=1G
 
-module load python
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate myenv
 
 srun python test_script.py
 ```
