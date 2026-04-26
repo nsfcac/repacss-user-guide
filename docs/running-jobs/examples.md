@@ -72,8 +72,8 @@ int main(int argc, char **argv) {
 
 2. Load the required modules and compile the program:
 ```bash
-module load gcc/14.2.0
-module load mpich/4.1.2
+module load gcc/15.2.0
+module load mpich/4.3.2
 mpicc mpi_program.c -o mpi_program
 ```
 
