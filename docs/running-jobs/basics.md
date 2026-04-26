@@ -93,7 +93,6 @@ Sample job script:
 #SBATCH --nodes=2
 #SBATCH --time=01:00:00
 #SBATCH --partition=<your_partition>   # e.g. zen4 or h100 — run `sinfo` to see available partitions
-#SBATCH --account=<your_account>       # e.g. discl — run `sacct` to find your account name
 
 module load gcc
 
@@ -101,7 +100,7 @@ srun -n 4 ./a.out
 ```
 
 !!! tip
-    Not sure what your partition or account is? Run `sinfo` to see available partitions and `sacct` to find your account name from a previous job.
+    Not sure what partition to use? Run `sinfo` to see all available partitions.
 
 Slurm options may also be specified at the command line:
 
