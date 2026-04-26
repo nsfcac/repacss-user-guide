@@ -157,7 +157,7 @@ python3 script.py
 ## Submitting GPU Jobs
 
 !!! warning
-    The `cuda` Lmod module is not yet available on REPACSS. However, **CUDA 13.1 is available through the NVIDIA driver** and GPU jobs can still be submitted and run. Users who need conda-based CUDA should refer to the [Miniforge](../software/miniforge.md) documentation.
+    CUDA modules are only available on GPU nodes, not on the login node. To use CUDA, you must first request a GPU node either through an interactive session or a batch job.
     *For detailed usage examples, please refer to the [Job Examples](examples.md) section.*
 
 To request GPU resources, use the `--gres` flag:
