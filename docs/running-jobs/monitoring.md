@@ -76,7 +76,7 @@ sstat -j 123456 -o JobID,MaxRSS
 ```
 
 ---
-
+<!--
 ## Using `jobstats`
 
 `jobstats` is a Python-based reporting tool that summarizes job activity using data from `sacct`, `squeue`, and `sreport`.
@@ -97,7 +97,7 @@ To display all options:
 ```bash
 jobstats --help
 ```
-
+-->
 ---
 
 ## Email Notifications
