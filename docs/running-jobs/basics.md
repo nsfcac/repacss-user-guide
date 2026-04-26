@@ -165,11 +165,10 @@ To request GPU resources, use the `--gres` flag:
 ```bash
 #SBATCH --gres=gpu:nvidia_h100_nvl:1
 ```
-Before submitting a GPU job, verify that the GPU is accessible by running `nvidia-smi` in your job script:
+Before submitting a GPU job, verify that the GPU is accessible by starting an interactive session and running `nvidia-smi`:
 
 ```bash
-#SBATCH --gres=gpu:nvidia_h100_nvl:1
-
+interactive -p h100 -c 4
 nvidia-smi
 ```
 Ensure required modules such as CUDA are loaded:
