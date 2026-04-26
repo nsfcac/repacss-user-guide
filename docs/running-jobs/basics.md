@@ -180,7 +180,7 @@ module load cuda
 !!! note
     `module load cuda` will fail on the login node. Always load CUDA after requesting a GPU node.
 
-If you request a GPU but forget the `--gres` flag, you may see:
+If you forget the `--gres` flag, you may see:
 
 ```
 No CUDA-capable device is detected
