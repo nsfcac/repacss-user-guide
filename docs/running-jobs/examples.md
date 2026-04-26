@@ -201,6 +201,11 @@ print("Job complete. Goodbye!")
 ```
 
 2. Create a file named `submit_python_job.sh` with the following content:
+!!! note "Prerequisites"
+    This example assumes MiniForge is installed at `~/miniforge3` and a
+    conda environment named `myenv` exists. If you haven't set this up
+    yet, follow the [MiniForge guide](https://guide.repacss.org/software/miniforge.html)
+    first.
 ```bash
 #!/bin/bash
 #SBATCH --job-name=python_job
