@@ -92,18 +92,20 @@ Sample job script:
 #SBATCH --job-name=test
 #SBATCH --nodes=2
 #SBATCH --time=01:00:00
-#SBATCH --partition=h100
-#SBATCH --account=mXXXX
+#SBATCH --partition=<your_partition>   # e.g. zen4 or h100 — run `sinfo` to see available partitions
 
 module load gcc
 
 srun -n 4 ./a.out
 ```
 
+!!! tip
+    Not sure what partition to use? Run `sinfo` to see all available partitions.
+
 Slurm options may also be specified at the command line:
 
 ```bash
-sbatch -N 2 -p h100 ./job.sh
+sbatch -N 2 -p <your_partition> ./job.sh
 ```
 
 ---
@@ -131,15 +133,31 @@ module load gcc
 source ~/miniforge3/etc/profile.d/conda.sh
 conda activate myenv
 
-python script.py
+python3 script.py
 ```
+!!! warning "Miniforge Required"
+    This script requires Miniforge to be installed on your account. If you haven't installed it yet, refer to the [Miniforge](../software/miniforge.md) documentation before running this script.
 
+??? example "No conda? Use this instead"
+    If you don't have Miniforge installed, you can run a basic Python script directly:
+
+```bash
+    #!/bin/bash
+    #SBATCH --job-name=python_job
+    #SBATCH --ntasks=1
+    #SBATCH --cpus-per-task=8
+    #SBATCH --mem=32G
+    #SBATCH --time=01:00:00
+    #SBATCH --partition=zen4
+
+    python3 script.py
+```
 ---
 
 ## Submitting GPU Jobs
 
 !!! warning
-    We are currently in the process of installing the CUDA module on our systems. In the meantime, users are advised to install CUDA via their conda environment to ensure compatibility with GPU workflows.   
+    CUDA modules are only available on GPU nodes, not on the login node. To use CUDA, you must first request a GPU node either through an interactive session or a batch job.
     *For detailed usage examples, please refer to the [Job Examples](examples.md) section.*
 
 To request GPU resources, use the `--gres` flag:
@@ -147,19 +165,28 @@ To request GPU resources, use the `--gres` flag:
 ```bash
 #SBATCH --gres=gpu:nvidia_h100_nvl:1
 ```
+Before submitting a GPU job, verify that the GPU is accessible by starting an interactive session and running `nvidia-smi`:
 
-Ensure required modules such as CUDA are loaded:
+```bash
+interactive -p h100 -c 4
+nvidia-smi
+```
+Ensure CUDA is loaded after landing on a GPU node:
 
 ```bash
 module load cuda
 ```
 
-Failure to request GPUs may result in errors such as:
+!!! note
+    `module load cuda` will fail on the login node. Always load CUDA after requesting a GPU node.
+
+If you forget the `--gres` flag, you may see:
 
 ```
 No CUDA-capable device is detected
 ```
 
+This means no GPU was allocated to your job. Make sure `--gres=gpu:nvidia_h100_nvl:1` is included in your script.
 ---
 
 ## Job Monitoring

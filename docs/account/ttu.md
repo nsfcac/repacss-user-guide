@@ -10,7 +10,7 @@
 The REPACSS system is physically hosted within TTU's research computing infrastructure and may be accessed via the following methods:
 
 - **On Campus**: Users may connect through wired Ethernet or the TTUnet Wi-Fi network.
-- **Off Campus**: Access is available through the TTU GlobalProtect Virtual Private Network (VPN). Instructions are available on the [VPN Setup Guide](https://www.depts.ttu.edu/itts/software/vpn.php).
+- **Off Campus**: Access is available through the TTU GlobalProtect Virtual Private Network (VPN). Instructions are available on the [VPN Setup Guide](https://guide.repacss.org/connecting/vpn.html).
 - **Authentication**: All system access requires secure login via SSH or authorized web-based interfaces.
 
 !!! warning "VPN Requirement"
