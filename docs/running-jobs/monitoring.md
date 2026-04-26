@@ -50,21 +50,14 @@ sacct --format=JobID,JobName,State,Start,Elapsed
 Filter jobs by date:
 
 ```bash
-sacct -S 2024-06-01 -E 2024-06-13
+sacct -S 2026-04-01 -E 2026-04-26
 ```
 
 Display only failed jobs:
 
 ```bash
-sacct -X --format=User,JobName,State -s F --start=2024-06-01 --end=now
+sacct -X --format=User,JobName,State -s F --start=2026-04-01 --end=now
 ```
-
-Filter by specific job IDs:
-
-```bash
-sacct -j 123456,123457
-```
-
 ---
 
 ## Using `sstat`
