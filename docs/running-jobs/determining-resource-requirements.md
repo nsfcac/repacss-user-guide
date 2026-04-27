@@ -115,7 +115,8 @@ time.sleep(60)
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=1G
 
-module load python
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate myenv
 
 srun python test_script.py
 ```
@@ -185,7 +186,8 @@ If the job failed due to memory or runtime limits, increment your requests incre
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=200M
 
-module load python
+source ~/miniforge3/etc/profile.d/conda.sh
+conda activate myenv
 
 srun python production_script.py
 ```

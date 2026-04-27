@@ -50,33 +50,26 @@ sacct --format=JobID,JobName,State,Start,Elapsed
 Filter jobs by date:
 
 ```bash
-sacct -S 2024-06-01 -E 2024-06-13
+sacct -S 2026-04-01 -E 2026-04-26
 ```
 
 Display only failed jobs:
 
 ```bash
-sacct -X --format=User,JobName,State -s F --start=2024-06-01 --end=now
+sacct -X --format=User,JobName,State -s F --start=2026-04-01 --end=now
 ```
-
-Filter by specific job IDs:
-
-```bash
-sacct -j 123456,123457
-```
-
 ---
 
 ## Using `sstat`
 
-Use `sstat` to report resource usage for jobs that are currently running:
+Use `sstat` to report resource usage for jobs that are currently running. `sstat` queries job *steps*, not the top-level job ID — for batch scripts, append `.batch`:
 
 ```bash
-sstat -j 123456 -o JobID,MaxRSS
+sstat -j 123456.batch -o JobID,MaxRSS
 ```
 
 ---
-
+<!--
 ## Using `jobstats`
 
 `jobstats` is a Python-based reporting tool that summarizes job activity using data from `sacct`, `squeue`, and `sreport`.
@@ -97,7 +90,7 @@ To display all options:
 ```bash
 jobstats --help
 ```
-
+-->
 ---
 
 ## Email Notifications
