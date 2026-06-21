@@ -114,7 +114,7 @@ hostname
 conda activate jupyter_env
 
 # On GPU nodes, load CUDA if needed
-module load cuda/12.6.2
+module load cuda/13.0.2
 ```
 
 ### Step 3: Launch Jupyter
