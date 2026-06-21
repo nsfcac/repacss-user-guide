@@ -79,8 +79,8 @@ You should now see your prompt change to:
 # Install common data science packages
 conda install numpy scipy matplotlib pandas scikit-learn
 
-# Install additional Jupyter extensions (optional)
-conda install jupyter_contrib_nbextensions
+# Note: jupyter_contrib_nbextensions is not compatible with notebook 7.x
+# and is not supported on REPACSS. Skip this step.
 ```
 
 ---
