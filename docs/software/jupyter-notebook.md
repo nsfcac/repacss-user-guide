@@ -115,6 +115,8 @@ conda activate jupyter_env
 
 # On GPU nodes, load CUDA if needed
 module load cuda/13.0.2
+# Note: CUDA modules are only available on h100 GPU nodes.
+# Running module load cuda on zen4 CPU nodes will return "No module found".
 ```
 
 ### Step 3: Launch Jupyter
