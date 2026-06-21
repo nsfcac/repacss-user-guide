@@ -54,7 +54,7 @@ You should see output similar to:
 
 ```bash
 repacss:$ conda --version
-conda 25.5.1
+conda 26.x.x  # version may vary
 ```
 
 ### Step 2: Create and Activate Environment
@@ -79,8 +79,8 @@ You should now see your prompt change to:
 # Install common data science packages
 conda install numpy scipy matplotlib pandas scikit-learn
 
-# Install additional Jupyter extensions (optional)
-conda install jupyter_contrib_nbextensions
+# Note: jupyter_contrib_nbextensions is not compatible with notebook 7.x
+# and is not supported on REPACSS. Skip this step.
 ```
 
 ---
@@ -114,7 +114,9 @@ hostname
 conda activate jupyter_env
 
 # On GPU nodes, load CUDA if needed
-module load cuda/12.6.2
+module load cuda/13.0.2
+# Note: CUDA modules are only available on h100 GPU nodes.
+# Running module load cuda on zen4 CPU nodes will return "No module found".
 ```
 
 ### Step 3: Launch Jupyter
