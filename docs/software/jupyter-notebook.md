@@ -54,7 +54,7 @@ You should see output similar to:
 
 ```bash
 repacss:$ conda --version
-conda 26.1.1
+conda 26.x.x  # version may vary
 ```
 
 ### Step 2: Create and Activate Environment
