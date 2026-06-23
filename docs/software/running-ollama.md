@@ -114,6 +114,11 @@ curl http://<hostname>:<port>
 
 You can find a `host.txt` and `port.txt` in your `<your_ollama_working_dir>/ollama` folder. Replace `<hostname>` with your GPU node's hostname and `<port>` with your Ollama server's port number.
 
+> **Note:** The port number changes every time you restart the Ollama server. Always check `port.txt` for the current port before connecting:
+> ```bash
+> cat ~/<your_ollama_working_dir>/ollama/port.txt
+> ```
+
 You should see:
 
 ```
