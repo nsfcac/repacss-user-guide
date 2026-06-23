@@ -135,11 +135,11 @@ For production workloads or long-running inference, use batch jobs:
 #SBATCH --output=ollama_%j.out
 #SBATCH --error=ollama_%j.err
 
-# Load required modules
 module purge
 
-# Start Ollama server
-ollama serve >ollama.log 2>ollama.err &
+# Set up Ollama container and start server
+cd $HOME/<your_ollama_working_dir>/repacss_ollama_configuration
+source setup_ollama.sh
 
 # Wait for server to start
 sleep 10
