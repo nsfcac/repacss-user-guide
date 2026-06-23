@@ -9,7 +9,7 @@ Ollama is a popular AI application for running large language models locally. Th
 
 **This is an example of using containers (user-installed) for AI applications.** For general container usage, see [Using Containers](containers.md).
 
-The REPACSS team also provides a repository with pre-configured scripts (`https://github.com/nsfcac/ollama_repacss.git`) that includes:
+The REPACSS team also provides a repository with pre-configured scripts (`https://github.com/nsfcac/repacss_ollama_configuration`) that includes:
 
 - Helper scripts for easy setup
 - Example Python scripts for testing
