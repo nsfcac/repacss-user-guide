@@ -51,6 +51,12 @@ Use the following command to start an interactive job with 1 GPU for 2 hours:
 interactive -p h100 -t 02:00:00 -g 1
 ```
 
+> **Note:** If this is your first time running Ollama, the setup script needs to build the container file (`ollama.sif`), which requires more memory than a single GPU session provides. For first-time setup only, use:
+> ```bash
+> salloc --partition=h100 --gpus=4 --exclusive
+> ```
+> Once the container is built, subsequent runs can use the regular `interactive` command above.
+
 ### Step 2: Set Up Environment and Start Ollama
 
 We are using ollama 0.6.8 in this version. The first time will take several minutes to download the .sif engine file:
@@ -87,6 +93,8 @@ ollama run falcon3:1b
 
 If you want to use a new model, choose a model supported by Ollama and pull it:
 
+> **Warning:** The shared models directory (`/mnt/SHARED-AREA/ollama_models`) is read-only for regular users. Running `ollama pull` will fail with a "read-only file system" error. To use a model, check `ollama list` first and use only models already available in the shared directory.
+
 ```bash
 # Pull a new model
 ollama pull llama3.1:8b
@@ -105,6 +113,11 @@ curl http://<hostname>:<port>
 ```
 
 You can find a `host.txt` and `port.txt` in your `<your_ollama_working_dir>/ollama` folder. Replace `<hostname>` with your GPU node's hostname and `<port>` with your Ollama server's port number.
+
+> **Note:** The port number changes every time you restart the Ollama server. Always check `port.txt` for the current port before connecting:
+> ```bash
+> cat ~/<your_ollama_working_dir>/ollama/port.txt
+> ```
 
 You should see:
 
@@ -127,11 +140,11 @@ For production workloads or long-running inference, use batch jobs:
 #SBATCH --output=ollama_%j.out
 #SBATCH --error=ollama_%j.err
 
-# Load required modules
 module purge
 
-# Start Ollama server
-ollama serve >ollama.log 2>ollama.err &
+# Set up Ollama container and start server
+cd $HOME/<your_ollama_working_dir>/repacss_ollama_configuration
+source setup_ollama.sh
 
 # Wait for server to start
 sleep 10
