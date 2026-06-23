@@ -87,6 +87,8 @@ ollama run falcon3:1b
 
 If you want to use a new model, choose a model supported by Ollama and pull it:
 
+> **Warning:** The shared models directory (`/mnt/SHARED-AREA/ollama_models`) is read-only for regular users. Running `ollama pull` will fail with a "read-only file system" error. To use a model, check `ollama list` first and use only models already available in the shared directory.
+
 ```bash
 # Pull a new model
 ollama pull llama3.1:8b
