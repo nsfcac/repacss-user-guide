@@ -101,11 +101,13 @@ Any workload requiring high-performance, extended runtime, or parallel execution
 
 REPACSS offers multiple storage environments optimized for different use cases:
 
-| Storage Type  | Location              | Environment Variable                            |
-|---------------|-----------------------|--------------------------------------------|
-| Home          | `/mnt/GROUPID/home/USERID`   | $HOME |
-| Scratch       | `/mnt/GROUPID/scratch/USERID`| $SCRATCH |
-| Work          | `/mnt/GROUPID/work/USERID`   | $WORK  |
+| Storage Type   | Location                       | Environment Variable |
+|----------------|--------------------------------|----------------------|
+| Home           | `/mnt/GROUPID/home/USERID`     | `$HOME`              |
+| Scratch        | `/mnt/GROUPID/scratch/USERID`  | `$SCRATCH`           |
+| Work           | `/mnt/GROUPID/work/USERID`     | `$WORK`              |
+| SHARED-AREA    | `/mnt/SHARED-AREA`             | Not applicable       |
+| SHARED-SCRATCH | `/mnt/SHARED-SCRATCH`          | Not applicable       |
 
 ### Checking Quotas
 REPACSS storage space usage is organized by your assigned group.
@@ -293,4 +295,3 @@ With these steps, new users are now equipped with the foundational knowledge to:
 - Submit and monitor jobs on the cluster
 
 Users are encouraged to explore the extended documentation to deepen their understanding and optimize their use of REPACSS resources. -->
-

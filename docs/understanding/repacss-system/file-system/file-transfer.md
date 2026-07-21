@@ -39,6 +39,8 @@ Follow these steps to enable file transfers using Globus Connect Personal:
      * Home: `/mnt/GROUPID/home/USERID`
      * Scratch: `/mnt/GROUPID/scratch/USERID`
      * Work: `/mnt/GROUPID/work/USERID`
+     * SHARED-AREA: `/mnt/SHARED-AREA`
+     * SHARED-SCRATCH: `/mnt/SHARED-SCRATCH`
 
 ---
 
@@ -64,4 +66,3 @@ Many academic and research institutions have established Globus endpoints. To tr
 * Monitor job completion using the Globus web interface.
 
 ---
-
