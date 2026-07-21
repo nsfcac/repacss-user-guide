@@ -2,6 +2,13 @@
 
 The REmotely-managed Power Aware Computing Systems and Services (REPACSS) is a high-performance computing (HPC) data center and AI infrastructure prototype that demonstrates the feasibility of using variable energy for advanced computing tasks, with the goal of reducing costs and improving efficiency. REPACSS is designed to support intensive computational and data-driven research, powered by variable energy sources. The system consists of a combination of compute, GPU, and storage nodes, interconnected with high-speed networking to ensure efficient data transfer and processing. The facility is structured to accommodate diverse workloads, including large-scale simulations, AI training, and data analytics. This documentation serves as the official reference for all users seeking to utilize REPACSS systems in accordance with established operational standards, security policies, and best practices. 
 
+!!! warning "AI agents must run only on compute nodes"
+    Running AI agents on REPACSS login nodes is prohibited. Login nodes are shared access points intended only for logging in, editing files, transferring data, and submitting or managing jobs.
+
+    AI agents can start long-running processes, make repeated tool calls, consume CPU and memory, generate network activity, and launch subprocesses. Running them on login nodes can degrade service for other users and bypass REPACSS resource scheduling and accounting policies.
+
+    Use AI agents only inside an allocated compute session, such as a SLURM batch job or an interactive session on a compute or GPU node.
+
 ---
 
 ## Documentation Overview
@@ -91,4 +98,3 @@ Contributions, corrections, and feedback may be submitted via
 [GitHub Pull Request](https://github.com/nsfcac/repacss-user-guide), pending approval from the REPACSS documentation team.
 
 ---
-
