@@ -10,16 +10,82 @@ Visual Studio Code is a modern, lightweight IDE (Integrated Development Environm
 
 ---
 
+## Create an SSH key pair
+
+If you do not already have an SSH key, create one **on your local computer** before configuring VS Code. Do not generate the key on a REPACSS login or compute node.
+
+If you already have an SSH key that you want to use, skip the generation commands and use that key's path in the `IdentityFile` settings below.
+
+On macOS or Linux, run:
+
+```bash
+mkdir -p ~/.ssh
+ssh-keygen -t ed25519 -f ~/.ssh/repacss
+```
+
+On Windows, open PowerShell and run:
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.ssh"
+ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\repacss"
+```
+
+When prompted, enter a passphrase to protect the key. The command creates two files:
+
+- `repacss` — your **private key**. Keep it secret and do not upload or email it.
+- `repacss.pub` — your **public key**. This is the file that must be provided through the REPACSS SSH-key registration process. If no registration process has been provided for your account, contact [REPACSS Support](mailto:repacss.support@ttu.edu).
+
+If the registration process asks you to paste the public key, display the complete one-line contents with `cat ~/.ssh/repacss.pub` on macOS/Linux or `Get-Content "$env:USERPROFILE\.ssh\repacss.pub"` in Windows PowerShell.
+
+If a key with this name already exists, do not overwrite it unless you are sure it is no longer needed. Choose another filename and use that same filename in both `IdentityFile` settings in the SSH configuration below.
+
+After the public key has been registered, add the private key to your local SSH agent to avoid entering its passphrase repeatedly:
+
+```bash
+# macOS/Linux
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/repacss
+```
+
+```powershell
+# Windows PowerShell
+Start-Service ssh-agent
+ssh-add "$env:USERPROFILE\.ssh\repacss"
+```
+
+If Windows reports that the `ssh-agent` service is disabled, enable **OpenSSH Authentication Agent** in the Windows Services app, then run the commands above again.
+
+---
+
+## Before you begin
+
+Make sure your eRaider account has VPN and MFA enabled (see [VPN Setup](vpn.md) and [MFA Setup](mfa.md)), and that your public SSH key has been registered with REPACSS. The private key must remain on your local computer.
+
+You will also need a local installation of [Visual Studio Code](https://code.visualstudio.com/) and permission to request an interactive Slurm allocation.
+
+---
+
 ## Recommended workflow
 
 The following workflow uses an interactive Slurm allocation. The allocation must remain active for as long as VS Code is connected to the compute node.
 
 ### 1. Request a compute node
 
-From a normal terminal on your local computer, connect to REPACSS and start an interactive session. For example:
+From a normal terminal on your local computer, connect to REPACSS and start an interactive session. Use your actual TTU eRaider username. If you created the key with the commands above, explicitly provide it when making the initial connection. If you are using a different key, replace the path after `-i` with that key's path:
 
 ```bash
-ssh repacss
+ssh -i ~/.ssh/repacss your_ttu_username@repacss.ttu.edu
+```
+
+On Windows PowerShell, use:
+
+```powershell
+ssh -i "$env:USERPROFILE\.ssh\repacss" your_ttu_username@repacss.ttu.edu
+```
+
+After you are connected to the login node, request the allocation:
+
+```bash
 interactive -p zen4 -c 8 -t 04:00:00
 ```
 
@@ -43,7 +109,7 @@ echo "$SLURM_JOB_ID"
 scontrol show job "$SLURM_JOB_ID" | grep 'NodeList='
 ```
 
-Record the node name exactly. The REPACSS RPC compute-node names are in these ranges:
+Record the node name exactly. REPACSS RPC compute-node names generally begin with `rpc-`. The ranges below show naming patterns; the bracket notation is not part of the hostname and should not be copied into `HostName`:
 
 ```text
 rpc-91-[1-20]
@@ -65,15 +131,16 @@ Open the SSH configuration file **on your local computer**, not in your REPACSS 
 
 Keep a login-node entry as the jump host, then add an entry for the node that Slurm assigned. In this example, the assigned node is `rpc-91-7`:
 
+!!! note "About `IdentityFile`"
+    `IdentityFile` points to the **private SSH key on your local computer**. In `~/.ssh/repacss`, `~` means your local home directory and `repacss` is the key's filename; it is not a path on REPACSS. This example assumes your key is named `repacss` and has no file extension. If your key has a different name, replace both `IdentityFile ~/.ssh/repacss` lines with its path—for example, `IdentityFile ~/.ssh/id_ed25519` on macOS/Linux or `IdentityFile C:/Users/YourUsername/.ssh/id_ed25519` on Windows. Never share or upload the private-key file.
+
 ```ssh
 # Login node (jump host)
 Host repacss
-    HostName repacss.hpcc.ttu.edu
+    HostName repacss.ttu.edu
     User your_ttu_username
     IdentityFile ~/.ssh/repacss
     IdentitiesOnly yes
-    ForwardAgent yes
-    LogLevel QUIET
 
 # Current interactive compute-node allocation
 Host repacss-compute
@@ -82,11 +149,9 @@ Host repacss-compute
     IdentityFile ~/.ssh/repacss
     IdentitiesOnly yes
     ProxyJump repacss
-    ForwardAgent yes
-    LogLevel QUIET
 ```
 
-Replace both instances of `your_ttu_username` with your TTU eRaider username, and replace `rpc-91-7` with the node name returned by `hostname`. The `ProxyJump repacss` line tells SSH to reach the compute node through the login node; your local computer does not need direct network access to the compute node.
+Replace both instances of `your_ttu_username` with your TTU eRaider username, replace `rpc-91-7` with the node name returned by `hostname`, and confirm that both `IdentityFile` lines point to the private key you use for REPACSS. The `ProxyJump repacss` line tells SSH to reach the compute node through the login node; your local computer does not need direct network access to the compute node.
 
 If your existing `repacss` entry already contains the login-node settings, keep that entry and add only the `repacss-compute` block. When a later allocation uses a different node, update the `HostName` in this block before reconnecting.
 
@@ -98,7 +163,7 @@ chmod 600 ~/.ssh/config
 
 ### 4. Test the proxy connection
 
-Open a second local terminal so that the interactive allocation remains running, then test the new alias:
+Open a second local terminal so that the interactive allocation remains running. Test the new alias:
 
 ```bash
 ssh repacss-compute
@@ -106,6 +171,8 @@ hostname
 ```
 
 The final command should print the allocated compute node, such as `rpc-91-7`. If it prints `repacss` or another login-node name, stop and correct the SSH configuration before opening VS Code.
+
+If you want to test the login-node alias separately, run `ssh repacss` from the same local terminal. This should connect to the login node; exit that session before continuing.
 
 ### 5. Connect VS Code to the compute node
 
@@ -135,17 +202,3 @@ This releases the compute-node allocation. VS Code connections are valid only wh
 
 !!! warning
     If your home directory on REPACSS exceeds its quota, VS Code Remote-SSH connections may silently fail. Be sure to check your usage and offload files if needed.
-
----
-
-## SSH Configuration prerequisites
-
-Before using the configuration above, make sure your SSH key is added to your ssh-agent and that your eRaider account has VPN and MFA enabled (see [VPN Setup](vpn.md) and [MFA Setup](mfa.md)).
-
-You can verify the login-node alias independently with:
-
-```bash
-ssh repacss
-```
-
-Use `ssh repacss-compute` only after you have an active Slurm allocation on the node named in its `HostName` setting. Do not use the compute-node alias after the allocation has ended, because compute nodes are not general-purpose login hosts.
