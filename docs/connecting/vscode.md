@@ -39,6 +39,38 @@ If the registration process asks you to paste the public key, display the comple
 
 If a key with this name already exists, do not overwrite it unless you are sure it is no longer needed. Choose another filename and use that same filename in both `IdentityFile` settings in the SSH configuration below.
 
+If REPACSS allows users to register keys through their home directory, copy the public key to your REPACSS account. On Linux, or on macOS if `ssh-copy-id` is installed, run:
+
+```bash
+ssh-copy-id -i ~/.ssh/repacss.pub your_ttu_username@repacss.ttu.edu
+```
+
+If `ssh-copy-id` is not available, use this macOS/Linux alternative:
+
+```bash
+cat ~/.ssh/repacss.pub | ssh your_ttu_username@repacss.ttu.edu 'umask 077; mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys'
+```
+
+On Windows PowerShell, run:
+
+```powershell
+Get-Content "$env:USERPROFILE\.ssh\repacss.pub" | ssh your_ttu_username@repacss.ttu.edu 'umask 077; mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys'
+```
+
+These commands copy **only the public key** and may prompt for your REPACSS password and MFA. If REPACSS has given you a different key-registration procedure, follow that procedure instead. Never copy the private key.
+
+Test the key after registration:
+
+```bash
+ssh -i ~/.ssh/repacss your_ttu_username@repacss.ttu.edu
+```
+
+On Windows PowerShell, use:
+
+```powershell
+ssh -i "$env:USERPROFILE\.ssh\repacss" your_ttu_username@repacss.ttu.edu
+```
+
 After the public key has been registered, add the private key to your local SSH agent to avoid entering its passphrase repeatedly:
 
 ```bash
