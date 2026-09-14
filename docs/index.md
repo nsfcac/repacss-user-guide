@@ -5,7 +5,7 @@ The REmotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 !!! warning "AI agents must run only on compute nodes"
     Running AI agents on REPACSS login nodes is prohibited. Login nodes are shared access points intended only for logging in, editing files, and submitting or managing jobs.
 
-    AI agents can start long-running processes, make repeated tool calls, consume CPU and memory, generate network activity, and launch subprocesses. Running them on login nodes can degrade service for other users and bypass REPACSS resource scheduling and accounting policies.
+    AI agents can start long-running processes, make repeated tool calls, consume CPU and memory, generate network activity, and launch subprocesses. Running them on login nodes can degrade service for other users and bypass REPACSS resource scheduling policies.
 
     Use AI agents only inside an allocated compute session, such as a SLURM batch job or an interactive session on a compute or GPU node.
 
@@ -19,8 +19,8 @@ The REmotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 - [Absolute Beginner’s Guide](absolute-beginner-guide.md)  
   A high-level introduction to high-performance computing concepts and REPACSS usage for new users.
 
-- [Scheduling Policies and Compute Accounting](running-jobs/scheduling.md)  
-  Definitions of resource allocation models, charge factors, runtime limits, and job prioritization policies.
+- [Scheduling Policies](running-jobs/scheduling.md)  
+  Definitions of resource allocation models, runtime limits, and job prioritization policies.
 
 - [Sample SLURM Job Scripts](running-jobs/examples.md)  
   Verified examples to support the construction and submission of batch job scripts.

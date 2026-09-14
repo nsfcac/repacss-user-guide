@@ -7,7 +7,7 @@ This section defines key terms frequently used throughout the REPACSS documentat
 ## A
 
 **Account**  
-A project allocation or funding unit used to charge for computing time.
+An account is a user-specific identity that provides access to computing resources, files, software programs, and associated permissions.
 
 **Allocation**  
 The computing time assigned to a project, typically measured in node-hours.
