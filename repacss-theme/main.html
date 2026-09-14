@@ -17,17 +17,21 @@
       </div>
       
       <div class="md-footer-copyright">
-	<a href="{{ 'account/policy.html' | url }}"
-	   title="Acknowledge REPACSS">Acknowledge REPACSS</a><br>
-	<!-- <a href="https://www.lbl.gov/disclaimers/" target="_blank"
-	   title="Privacy and Security Notice">Privacy and Security Notice</a><br> -->
-	<a href="mailto:repacss.support@ttu.edu" title="Contact Us">Contact Us</a><br>
+        <a href="{{ 'account/policy.html' | url }}"
+        title="Acknowledge REPACSS">Acknowledge REPACSS</a><br>
+        <!-- <a href="https://www.lbl.gov/disclaimers/" target="_blank"
+        title="Privacy and Security Notice">Privacy and Security Notice</a><br> -->
+        <a href="mailto:repacss.support@ttu.edu" title="Contact Us">Contact Us</a><br>
+        <div class="repacss-copyright">{{ config.copyright }}</div>
       </div>
 
+        
+
       {% include "partials/social.html" %}
-      
+
     </div>
   </div>
+ 
 </footer>
 {% endblock %}
 

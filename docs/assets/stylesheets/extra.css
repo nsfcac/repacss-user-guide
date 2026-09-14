@@ -28,6 +28,10 @@
   --md-code-fg-color:                  rgb(64, 0, 0); /* slightly reddish black */
 }
 
+.md-footer{
+  background-color: #000;
+}
+
 /* Footer social padding */
 .md-footer-social {
   padding-top: 1rem;
@@ -42,4 +46,15 @@
 /* Underline links in body content */
 .md-content a {
   text-decoration: underline;
+}
+
+/* Footer middle column: links and copyright centered */
+.md-footer-copyright {
+  text-align: center;
+}
+
+.repacss-copyright {
+  margin-top: 0.4rem;
+  color: #fff;
+  font-size: 0.7rem;
 }
