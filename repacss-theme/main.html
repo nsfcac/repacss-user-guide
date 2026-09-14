@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block footer %}
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+  
+      <div>
+	<a href="https://www.repacss.org" title="REPACSS" target="_blank">
+	  <img alt="REPACSS Home" src="{{ 'assets/images/Favicon.svg' | url}}"
+	       height="70" width="90" style="padding: 10px; height: 70px; width: 90px ">
+	</a>
+	<a href="https://www.nsf.gov" title="NSF" target="_blank">
+	  <img alt="NSFHome" src="{{ 'assets/images/nsf_logo.png' | url}}"
+	       height="70" width="71" style="padding: 10px; height: 70px; width: 71px ">
+	</a>
+      </div>
+      
+      <div class="md-footer-copyright">
+	<a href="{{ 'account/policy.html' | url }}"
+	   title="Acknowledge REPACSS">Acknowledge REPACSS</a><br>
+	<!-- <a href="https://www.lbl.gov/disclaimers/" target="_blank"
+	   title="Privacy and Security Notice">Privacy and Security Notice</a><br> -->
+	<a href="mailto:repacss.support@ttu.edu" title="Contact Us">Contact Us</a><br>
+      </div>
+
+      {% include "partials/social.html" %}
+      
+    </div>
+  </div>
+</footer>
+{% endblock %}
+

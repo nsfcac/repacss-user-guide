@@ -6,7 +6,7 @@ site_author: REPACSS Team
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: repacss-theme/
   language: en
   palette:
     - scheme: default
@@ -67,7 +67,7 @@ nav:
       - TTU: account/ttu.md
       - External Accounts: account/external_accounts.md
       - Passwords: account/passwords.md
-      # - Policy: account/policy.md
+      - Policy: account/policy.md
 
   - Connecting to REPACSS:
       - Overview: connecting/index.md
