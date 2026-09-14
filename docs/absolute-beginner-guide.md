@@ -180,10 +180,9 @@ Users should include required module commands at the beginning of their job scri
 
 ??? example "Load GCC module"
     For example, to load gcc in a job script:
-
-```bash
+    ```bash
     module load gcc
-```
+    ```
 
 <small>*For additional details, refer to the [Module System](software/module-system.md) documentation.*</small>
 
