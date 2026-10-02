@@ -3,10 +3,11 @@ site_url: https://nsfcac.github.io/repacss-user-guide/
 use_directory_urls: false
 site_description: Official documentation for the REPACSS HPC cluster at Texas Tech University
 site_author: REPACSS Team
+copyright: "&copy; 2026 Texas Tech University. All rights reserved."
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: repacss-theme/
   language: en
   palette:
     - scheme: default
@@ -39,6 +40,23 @@ extra:
   analytics:
     provider: google
     property: G-837FYSF17X
+  social:
+    - icon: material/home-circle
+      link: https://www.repacss.org
+      name: REPACSS Home
+    - icon: material/help-circle
+      link: https://guide.repacss.org/support.html
+      name: REPACSS Help Desk
+    # - icon: material/heart-pulse
+    #   link: https://www.nersc.gov/users/status
+    #   name: NERSC Center Status
+    - icon: fontawesome/brands/github
+      link: https://github.com/nsfcac
+      name: NSFCAC GitHub
+    - icon: fontawesome/brands/microsoft
+      link: https://teams.microsoft.com/l/team/19%3AGUibrd_0s_qo4BQOAMlhkEVQ0gv1CMdSwiijRz_ey9c1%40thread.tacv2/conversations?groupId=8014973a-ed11-4aff-8a0c-09a4d34cd1fa&tenantId=178a51bf-8b20-49ff-b655-56245d5c173c
+      name: NERSC User Group Slack
+
 
 extra_css:
   - assets/stylesheets/extra.css
@@ -67,7 +85,7 @@ nav:
       - TTU: account/ttu.md
       - External Accounts: account/external_accounts.md
       - Passwords: account/passwords.md
-      # - Policy: account/policy.md
+      - Policy: account/policy.md
 
   - Connecting to REPACSS:
       - Overview: connecting/index.md
