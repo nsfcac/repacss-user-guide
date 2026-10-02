@@ -18,7 +18,7 @@ MiniForge offers several advantages over traditional Anaconda distributions:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 If you just want to get started quickly:
 
@@ -165,7 +165,7 @@ conda env remove --name <env_name>
 
 ---
 
-## 📦 Installing Packages with Pip
+## Installing Packages with Pip
 
 When a package is unavailable via `conda`, you can use `pip` within an activated conda environment:
 
@@ -223,7 +223,7 @@ For more details, see: [Anaconda Terms of Service](https://www.anaconda.com/term
 
 ---
 
-## 📚 Related Documentation
+## Related Documentation
 
 - [Running Jupyter Notebook](jupyter-notebook.md) - Interactive Python development with Jupyter
 - [Module System](module-system.md) - For system-level software

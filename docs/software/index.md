@@ -2,40 +2,40 @@
 
 This section covers all aspects of software management on REPACSS, organized by package management approach and use case.
 
-## 🎯 Software Management Categories
+## Software Management Categories
 
-### 1. **HPC Applications & System Software** → Spack + Module System
+### 1. HPC Applications and System Software (Spack and Module System)
 **System-provided software** - Users simply load what they need.
 
 For HPC applications, compilers, libraries, and system-level software managed through Spack and loaded via the Lmod environment module system. **No installation required** - just load the modules you need.
 
 **Start here:** [Module System](module-system.md)
 
-### 2. **Data Science Applications** → Conda/MiniForge
+### 2. Data Science Applications (Conda/MiniForge)
 **User-installed software** - Users install locally, then add packages.
 
 For Python/R-based data science, machine learning, and scientific computing packages using MiniForge (conda) environments. **Requires local installation** of MiniForge, then install packages like [Jupyter Notebook](jupyter-notebook.md) for interactive development.
 
 **Start here:** [Getting Started with MiniForge](miniforge.md)
 
-### 3. **User Self-Installed Software** → Custom Solutions
+### 3. User Self-Installed Software (Custom Solutions)
 **User-installed software** - Users install their own software using:
 
-#### 3.1 **Containers (Apptainer)** → Pre-built Binaries
+#### 3.1 Containers with Apptainer (Pre-built Binaries)
 For pre-built applications, complex software stacks, and reproducible environments. Examples include [Ollama](running-ollama.md) for AI applications.
 
 **Start here:** [Using Containers](containers.md)
 
-#### 3.2 **Building from Source** → Custom Compilation
+#### 3.2 Building from Source (Custom Compilation)
 For software that needs to be compiled from source code with specific configurations.
 
 **Start here:** [Building from Source](building-from-source.md)
 
 ---
 
-## 🚀 Popular User Applications
+## Popular User Applications
 
-### **Commonly Used Software** → User-Installed Applications
+### Commonly Used Software
 Popular applications that users frequently install and use, demonstrating how to use the package management methods above:
 
 - **[Running Jupyter Notebook](jupyter-notebook.md)** - Using conda (category 2) for interactive development
@@ -43,7 +43,7 @@ Popular applications that users frequently install and use, demonstrating how to
 
 ---
 
-## 📋 Quick Reference
+## Quick Reference
 
 | Category | Installation Type | Use Case | Solution | Documentation |
 |----------|-------------------|----------|----------|---------------|
@@ -60,7 +60,7 @@ Popular applications that users frequently install and use, demonstrating how to
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **HPC applications?** Check available modules: `module avail` (system-provided)
 2. **Data science work?** Set up MiniForge: See [Getting Started with MiniForge](miniforge.md) (user-installed)
@@ -69,7 +69,7 @@ Popular applications that users frequently install and use, demonstrating how to
 
 ---
 
-## 📚 Documentation Structure
+## Documentation Structure
 
 ### Package Management Methods
 - [Module System](module-system.md) - **System-provided** HPC applications via Spack + Lmod
@@ -84,7 +84,7 @@ Popular applications that users frequently install and use, demonstrating how to
 
 ---
 
-## 🆘 Need Help?
+## Need Help?
 
 For software-related issues or to request new software installations, contact:
 ```

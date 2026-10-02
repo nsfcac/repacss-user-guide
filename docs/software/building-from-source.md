@@ -2,7 +2,7 @@
 
 This guide covers compiling and installing **user-installed** software from source code on REPACSS when pre-built packages are not available or don't meet your requirements.
 
-## 🎯 When to Build from Source
+## When to Build from Source
 
 Build from source when you need:
 
@@ -14,7 +14,7 @@ Build from source when you need:
 
 ---
 
-## 🔧 Prerequisites
+## Prerequisites
 
 ### Load Required Modules
 
@@ -44,7 +44,7 @@ module show gcc/14.2.0
 
 ---
 
-## 🏗️ Basic Build Process
+## Basic Build Process
 
 ### 1. Download and Extract Source
 
@@ -100,7 +100,7 @@ Add these lines to your `~/.bashrc` for persistence.
 
 ---
 
-## 🔍 Common Build Systems
+## Common Build Systems
 
 ### Autotools (./configure)
 
@@ -147,7 +147,7 @@ pip install --user .
 
 ---
 
-## 📦 Building with Dependencies
+## Building with Dependencies
 
 ### Example: Building with MPI
 
@@ -186,7 +186,7 @@ make install
 
 ---
 
-## 🎯 Best Practices
+## Best Practices
 
 ### Directory Organization
 
@@ -227,7 +227,7 @@ source $HOME/software/myapp/setup.sh
 
 ---
 
-## 🚀 Building in Jobs
+## Building in Jobs
 
 ### Interactive Build Session
 
@@ -268,7 +268,7 @@ make install
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -315,7 +315,7 @@ make test
 
 ---
 
-## 📚 Related Documentation
+## Related Documentation
 
 - [Software Management Overview](index.md) - General software management
 - [Module System](module-system.md) - System software via modules
@@ -324,7 +324,7 @@ make test
 
 ---
 
-## 🆘 Support
+## Support
 
 For build-related issues or assistance, contact:
 
