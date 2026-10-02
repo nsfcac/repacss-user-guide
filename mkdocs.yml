@@ -55,7 +55,7 @@ extra:
       name: NSFCAC GitHub
     - icon: fontawesome/brands/microsoft
       link: https://teams.microsoft.com/l/team/19%3AGUibrd_0s_qo4BQOAMlhkEVQ0gv1CMdSwiijRz_ey9c1%40thread.tacv2/conversations?groupId=8014973a-ed11-4aff-8a0c-09a4d34cd1fa&tenantId=178a51bf-8b20-49ff-b655-56245d5c173c
-      name: NERSC User Group Slack
+      name: REPACSS Teams Channel
 
 
 extra_css:
