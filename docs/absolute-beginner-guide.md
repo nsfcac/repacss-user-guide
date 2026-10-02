@@ -73,7 +73,7 @@ Login node is intended for **lightweight tasks** only. Users should use it to:
 - Submit SLURM job scripts  
 
 !!! warning
-    Do not run compute-intensive applications or parallel jobs on the login node.
+    Do not run compute-intensive applications, parallel jobs or agents on the login node.
 
 
 ### Compute Nodes
@@ -180,10 +180,9 @@ Users should include required module commands at the beginning of their job scri
 
 ??? example "Load GCC module"
     For example, to load gcc in a job script:
-
-```bash
-    module load gcc
-```
+    ```bash
+        module load gcc
+    ```
 
 <small>*For additional details, refer to the [Module System](software/module-system.md) documentation.*</small>
 
@@ -252,12 +251,6 @@ You should see:
 ```
 Hello from my SLURM job.
 ```
-
-!!! tip "How to monitor the job status?"
-    To monitor the status of the submitted job, use:
-    ```bash
-    squeue --me
-    ```
 
 <small>*For additonal details, refer to the [Job Examples](running-jobs/examples.md) documentation.*</small>
 
