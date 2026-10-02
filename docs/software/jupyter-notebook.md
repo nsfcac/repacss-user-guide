@@ -2,7 +2,7 @@
 
 A comprehensive guide for running Jupyter Notebook for interactive Python development on REPACSS using conda environments.
 
-## 🎯 Overview
+## Overview
 
 Jupyter Notebook is a popular application for interactive Python development that can be installed in your conda environments. This guide shows you how to set up and run Jupyter Notebook on REPACSS.
 
@@ -10,7 +10,7 @@ Jupyter Notebook is a popular application for interactive Python development tha
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -38,7 +38,7 @@ Note: If port `8081` is already in use, Jupyter may automatically select the nex
 
 ---
 
-## 📦 Installing Jupyter in Your Environment
+## Installing Jupyter in Your Environment
 
 ### Step 1: Set Up Conda Environment
 
@@ -85,7 +85,7 @@ conda install numpy scipy matplotlib pandas scikit-learn
 
 ---
 
-## 🚀 Launching Jupyter Notebook
+## Launching Jupyter Notebook
 
 ### Login Node (Not Allowed)
 
@@ -130,7 +130,7 @@ Note: If `8081` is in use, Jupyter may auto-select another port (e.g., `8082`). 
 
 ---
 
-## 🌐 Accessing Jupyter Remotely
+## Accessing Jupyter Remotely
 
 ### Setting Up SSH Tunnel
 
@@ -155,14 +155,14 @@ You should now see the Jupyter interface.
 
 ---
 
-## 🔥 Notes for GPU Users
+## Notes for GPU Users
 
 - On `h100` nodes, ensure any required CUDA modules are loaded (example: `module load cuda/12.6.2`).
 - The SSH tunnel examples above already cover both CPU (`rpc-xx-x`) and GPU (`rpg-xx-x`) nodes.
 
 ---
 
-## 🛑 Stopping Jupyter Notebook
+## Stopping Jupyter Notebook
 
 ### Graceful Shutdown
 
@@ -188,7 +188,7 @@ Also remember to:
 
 ---
 
-## 🎯 Best Practices
+## Best Practices
 
 ### Resource Management
 
@@ -213,7 +213,7 @@ Also remember to:
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -262,7 +262,7 @@ jupyter notebook --debug --no-browser --ip=127.0.0.1 --port=8081
 
 ---
 
-## 📚 Related Documentation
+## Related Documentation
 
 - [Getting Started with MiniForge](miniforge.md) - Setting up conda environments
 - [Software Management Overview](index.md) - General software management
@@ -271,7 +271,7 @@ jupyter notebook --debug --no-browser --ip=127.0.0.1 --port=8081
 
 ---
 
-## 🆘 Support
+## Support
 
 For Jupyter-specific issues or assistance, contact:
 

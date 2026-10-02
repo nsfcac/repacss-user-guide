@@ -2,7 +2,7 @@
 
 A comprehensive guide for running Ollama (local LLM inference) on REPACSS GPU clusters using containers.
 
-## 🎯 Overview
+## Overview
 
 Ollama is a popular AI application for running large language models locally. This guide shows you how to deploy Ollama using containers on REPACSS GPU nodes.
 
@@ -18,7 +18,7 @@ The REPACSS team also provides a repository with pre-configured scripts (`https:
 
 ---
 
-## 🚀 One-Time Setup
+## One-Time Setup
 
 ### Clone the Repository (Only Once)
 
@@ -41,7 +41,7 @@ This repository contains:
 
 ---
 
-## 🧪 Running Ollama (Every Time)
+## Running Ollama (Every Time)
 
 ### Step 1: Request GPU Resources
 
@@ -71,7 +71,7 @@ source setup_ollama.sh
 
 ---
 
-## 🎯 Using Ollama
+## Using Ollama
 
 ### Step 1: Check Available Models
 
@@ -125,7 +125,7 @@ You should see:
 Ollama is running
 ```
 
-## 📋 Running Ollama in Batch Mode
+## Running Ollama in Batch Mode
 
 For production workloads or long-running inference, use batch jobs:
 
@@ -160,7 +160,7 @@ pkill ollama
 
 ---
 
-## 🌐 Remote Access
+## Remote Access
 
 ### Using Jupyter Notebook
 
@@ -178,7 +178,7 @@ Then open `http://127.0.0.1:8081` in your browser and explore the `tutorial.ipyn
 
 ---
 
-## 🎯 Best Practices
+## Best Practices
 
 ### Resource Management
 
@@ -201,7 +201,7 @@ Then open `http://127.0.0.1:8081` in your browser and explore the `tutorial.ipyn
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -247,7 +247,7 @@ tail -f ollama.err
 
 ---
 
-## 📚 Related Documentation
+## Related Documentation
 
 - [Software Management Overview](index.md) - General software management
 - [Using Containers](containers.md) - General container usage
@@ -257,7 +257,7 @@ tail -f ollama.err
 
 ---
 
-## 🆘 Support
+## Support
 
 For Ollama-specific issues or assistance, contact:
 

@@ -68,15 +68,15 @@ May be used within job scripts or interactive sessions.
 
 | Option (long)     | Short | Description                               | sbatch | srun |
 | ----------------- | ----- | ----------------------------------------- | ------ | ---- |
-| `--time`          | `-t`  | Maximum wall clock time                   | ✅      | ❌    |
-| `--nodes`         | `-N`  | Number of nodes                           | ✅      | ✅    |
-| `--ntasks`        | `-n`  | Number of parallel tasks (e.g., MPI)      | ✅      | ✅    |
-| `--cpus-per-task` | `-c`  | CPU cores allocated per task              | ✅      | ✅    |
-| `--gpus`          | `-G`  | Number of GPUs requested                  | ✅      | ✅    |
-| `--constraint`    | `-C`  | Specific hardware or node type constraint | ✅      | ❌    |
-| `--qos`           | `-q`  | Quality of Service tier                   | ✅      | ❌    |
-| `--account`       | `-A`  | Project account for usage tracking        | ✅      | ❌    |
-| `--job-name`      | `-J`  | Name assigned to the job                  | ✅      | ❌    |
+| `--time`          | `-t`  | Maximum wall clock time                   | Yes    | No   |
+| `--nodes`         | `-N`  | Number of nodes                           | Yes    | Yes  |
+| `--ntasks`        | `-n`  | Number of parallel tasks (e.g., MPI)      | Yes    | Yes  |
+| `--cpus-per-task` | `-c`  | CPU cores allocated per task              | Yes    | Yes  |
+| `--gpus`          | `-G`  | Number of GPUs requested                  | Yes    | Yes  |
+| `--constraint`    | `-C`  | Specific hardware or node type constraint | Yes    | No   |
+| `--qos`           | `-q`  | Quality of Service tier                   | Yes    | No   |
+| `--account`       | `-A`  | Project account for usage tracking        | Yes    | No   |
+| `--job-name`      | `-J`  | Name assigned to the job                  | Yes    | No   |
 
 !!! tip
     It is advisable to use long-form flags (e.g., `--nodes=2`) in scripts for clarity and maintainability.

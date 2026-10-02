@@ -2,7 +2,7 @@
 
 This guide covers using Apptainer/Singularity containers for running **user-installed** pre-built applications and complex software stacks on REPACSS.
 
-## 🎯 When to Use Containers
+## When to Use Containers
 
 Use containers when you need:
 
@@ -14,7 +14,7 @@ Use containers when you need:
 
 ---
 
-## 🐳 Getting Started with Apptainer
+## Getting Started with Apptainer
 
 ### Check Apptainer Availability
 
@@ -55,7 +55,7 @@ apptainer shell ollama.sif
 ---
 
 <!-- 
-## 🔧 Building Custom Containers
+## Building Custom Containers
 
 ### Creating Definition Files
 
@@ -98,7 +98,7 @@ apptainer build --cache-dir /tmp/singularity-cache myapp.sif myapp.def
 ---
 -->
 
-## 📁 Working with Data
+## Working with Data
 
 ### Binding Directories
 
@@ -127,7 +127,7 @@ apptainer exec -B ~/ollama-work:/work ollama.sif ollama run llama3.1:8b
 
 ---
 
-## 🚀 Running Containers in Jobs
+## Running Containers in Jobs
 
 ### Interactive Jobs
 
@@ -166,7 +166,7 @@ apptainer exec -B $HOME:/home/user ollama.sif ollama run llama3.1:8b
 
 ---
 
-## 🔍 Finding Containers
+## Finding Containers
 
 ### Popular Container Sources
 
@@ -197,7 +197,7 @@ For trending AI applications like Ollama, see our dedicated guide:
 
 ---
 
-## 🎯 Best Practices
+## Best Practices
 
 ### Container Management
 
@@ -224,7 +224,7 @@ For trending AI applications like Ollama, see our dedicated guide:
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -250,7 +250,7 @@ For trending AI applications like Ollama, see our dedicated guide:
 
 ---
 
-## 📚 Related Documentation
+## Related Documentation
 
 - [Software Management Overview](index.md) - General software management
 - [Module System](module-system.md) - System software via modules
@@ -259,7 +259,7 @@ For trending AI applications like Ollama, see our dedicated guide:
 
 ---
 
-## 🆘 Support
+## Support
 
 For container-related issues or assistance, contact:
 
