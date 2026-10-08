@@ -9,6 +9,8 @@ The REmotely-managed Power Aware Computing Systems and Services (REPACSS) is a h
 
     Use AI agents only inside an allocated compute session, such as a SLURM batch job or an interactive session on a compute or GPU node.
 
+    To learn more about cluster policies please see the [Policy](account/policy.md) page
+
 ---
 
 ## Documentation Overview
