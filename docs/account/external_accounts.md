@@ -2,7 +2,7 @@
 
 ## Account Activation Process
 
-After your credits are approved, if you are outside Texas Tech University, we will submit a request on your behalf to IT Help Central to create an eRaider account for you or your team. If the request is approved by the IT Department, you will receive an eRaider account activation email with instructions for setting up your account.
+After your credits are approved, if you are not affiliated with Texas Tech University, we will submit a request on your behalf to IT Help Central to create an eRaider account for you or your team. If the request is approved by the IT Department, you will receive an eRaider account activation email with instructions for setting up your account.
 
 To activate your eRaider account, complete the following steps:
 

@@ -24,9 +24,7 @@ For accounts authenticated via Texas Tech University’s eRaider system:
 3. Enter the required identity verification details.
 4. Follow the reset instructions delivered to your registered email address.
 
-If additional assistance is required, contact **TTU IT Help Central**:
 
-- **Phone**: 806-742-HELP (4357) 
 
 ---
 
@@ -75,22 +73,21 @@ Submit a password change request via email to [repacss.support@ttu.edu](mailto:r
 
 ## Login Failures and Lockout Policy
 
-User accounts are temporarily locked following **15 consecutive failed login attempts**. This lock will automatically expire after **15 minutes**. If you are still unable to access your account, please initiate a password reset or contact support.
+User accounts are temporarily locked following **15 consecutive failed login attempts**. This lock will automatically expire after **15 minutes**. If you are still unable to access your account, please contact IT Help Central for support.
 
 ---
 
 ## Multi-Factor Authentication (MFA)
 
-At present, **Multi-Factor Authentication (MFA)** is **not required** for direct REPACSS access. However, users accessing through TTU’s GlobalProtect VPN or other university services may be subject to TTU’s institutional MFA requirements.
+At present, **Multi-Factor Authentication (MFA)** is **not required** for direct REPACSS access. However, users accessing through TTU’s GlobalProtect VPN or other university services will be subject to TTU’s institutional MFA requirements.
 
 ---
 
 ## Assistance and Support
 
-For account assistance or additional help:
+Due to university policies, the REPACSS team is not responsible for eRaider passwords. If additional assistance is required, contact **TTU IT Help Central**:
 
-- **Email**: [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu)  
-- **In Person**: Engineering Center, Texas Tech University Campus
-
+- **Phone**: 806-742-HELP (4357) 
+- **Email**: [ithelpcentral@ttu.edu](mailto:ithelpcentral@ttu.edu)
 ---
 
