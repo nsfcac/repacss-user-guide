@@ -101,6 +101,7 @@ nav:
       # - Checkpoint/Restart: running-jobs/checkpoint-restart.md
       - Scheduling: running-jobs/scheduling.md
       - Monitoring: running-jobs/monitoring.md
+      - Job Cost Calculator: running-jobs/job_script_gen.md
       - Best Practices: running-jobs/best-practices.md
 
   - Understanding Our Systems:
