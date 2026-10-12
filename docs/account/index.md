@@ -8,7 +8,7 @@ In order to access REPACSS resources, users must maintain an active and secure a
 ---
 ## Getting Access
 
-If you are a new user, you must first request an account before logging in. Visit the [ACCESS](account/access.md) page to get started.
+If you are a new user, you must first request an account before logging in. Visit the [ACCESS](access.md) page to get started.
 
 If your account has expired or been deactivated, contact the REPACSS Support Team at [repacss.support@ttu.edu](mailto:repacss.support@ttu.edu) to request reactivation.
 
