@@ -94,8 +94,8 @@ Accounts are subject to deactivation under the following conditions:
 
 Upon deactivation:
 
-- Login credentials and MFA tokens are invalidated.
-- Data may be accessible through designated transfer endpoints for a limited duration, subject to administrative approval.
+- Login credentials and MFA tokens (if deactivated by IT) are invalidated.
+- Data may be accessible through Globus endpoints for a limited duration, subject to administrative approval.
 
 ---
 
@@ -106,7 +106,7 @@ Upon deactivation:
 
 ### Acknowledgment Text
 
-> *This research used resources of the REPACSS high-performance computing system at Texas Tech University, supported in part by the National Science Foundation under NSF Award No. 2404438*
+> *This research used resources of the REPACSS high-performance computing system at Texas Tech University, supported in part by the National Science Foundation under NSF Award No. [2404438](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2404438)*
 
 Proper citation ensures continued support and funding for REPACSS and reflects the scientific value of computational infrastructure.
 
